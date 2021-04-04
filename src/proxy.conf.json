@@ -1,0 +1,10 @@
+{
+    "/api": {
+      "target": "https://appliedvisionbaseball.com/wp-admin/admin-ajax.php",
+      "secure": true,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api": ""
+      }
+    }
+  }
