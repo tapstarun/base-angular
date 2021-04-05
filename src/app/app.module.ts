@@ -9,7 +9,8 @@ import { QuizComponent } from './quiz/quiz.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { QuiztemplateComponent } from './quiz/quiztemplate/quiztemplate.component';
+import { QuiztemplateComponent } from './quiztemplate/quiztemplate.component';
+import { QuestionComponent } from './quiztemplate/questions/questions.component';  
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import { QuiztemplateComponent } from './quiz/quiztemplate/quiztemplate.componen
     QuizComponent,
     HeaderComponent,
     FooterComponent,
-    QuiztemplateComponent
+    QuiztemplateComponent,
+    QuestionComponent
+    
   ],
   imports: [
     BrowserModule,

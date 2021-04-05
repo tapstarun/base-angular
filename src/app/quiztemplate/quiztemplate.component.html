@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="quiz jumbotron" *ngIf="quizData">
+        
+        <!-- First page of quiz -->
+        <div *ngIf="showFirstPage">
+            <div class="col-md-12"> 
+                <p>{{quizData.quiz_title}}</p>
+                <pre>{{quizData.quiz_description}}</pre>
+            </div>
+            <div class="col-md-12"> 
+            <button mat-raised-button color="primary" (click)="playQuiz();">Start</button>
+            </div>
+        </div>
+
+
+        <div *ngIf="!showFirstPage">
+            <!-- <div class="col-md-12"> 
+                <div class="col-md-8"> 
+                    Video
+                </div>
+
+                <div class="col-md-4"> 
+Button
+                </div>
+            </div> -->
+            <div class="quiz-question" *ngIf="currentQuestion">
+                    <div (click)="nextQuestion(currentQuestion.currentIndex)">{{currentQuestion.id}}</div>
+            </div>
+            
+        </div>
+
+    </div>    
+    
+
+    
+</div>

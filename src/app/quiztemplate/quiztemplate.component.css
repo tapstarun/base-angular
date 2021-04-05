@@ -1,0 +1,8 @@
+.quiz-question{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background: grey;
+    top: 0;
+    left: 0;
+}

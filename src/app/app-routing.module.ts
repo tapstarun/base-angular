@@ -3,10 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 import { QuizComponent } from './quiz/quiz.component';
-import { QuiztemplateComponent } from './quiz/quiztemplate/quiztemplate.component';
+import { QuiztemplateComponent } from './quiztemplate/quiztemplate.component';
 
 const routes: Routes = [
-  {path:'quiz/start/:id',component:QuiztemplateComponent},
+  {path:'quiztemplate',component:QuiztemplateComponent},
   {path:'quiz',component:QuizComponent},
   {path:'',redirectTo:'quiz', pathMatch: 'full'}
 ];

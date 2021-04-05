@@ -3,45 +3,9 @@
         <pre>{{sliderData.content}}</pre>
         
         <img src='https://appliedvisionbaseball.com/wp-content/uploads/2020/09/11.png' (click)="startQuiz(0)">
-        <!-- Ng Matrial slider -->
-        <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation" [type]="'carousel-multi-item'"
-              [animation]="'slide'">
-            <mdb-carousel-item *ngFor="let item of sliderItem; let i = index">  
-                <div class="col-md-4">         
-                <mdb-card class="my-1">
-                    
-                    <mdb-card-img [src]="'https://appliedvisionbaseball.com/wp-content/uploads/2020/09/11.png'" alt="Card image cap"></mdb-card-img>
-                </mdb-card>
-                </div>
-            </mdb-carousel-item>
-        </mdb-carousel>
-
-    </div>
-</div>
-<div class="container-fluid">
-    <!-- First page of quiz -->
-    <div class="row quiz jumbotron" *ngIf="!quizStart">
-        <p class="ays-fs-title">You V.S. Hiro (Swing Trigger)</p>
-        <p class="ays-fs-subtitle"></p>
-        <p>PRESS the SWING button as SOON as you IDENTIFY a STRIKE.</p>
-        <p>Start Pitch Recognition</p>
-        <button mat-raised-button color="primary" (click)="playQuiz();">Start</button>
         
-    </div>    
 
-
-    <div class="row quiz-container" *ngIf="quizStart">
-   
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" >
-                Video here 
-                <button class="btn btn-danger" (click)="playQuiz();">Button</button>
-            </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                Button
-            </div>
-        </div>
-  
     </div>
 </div>
+
 

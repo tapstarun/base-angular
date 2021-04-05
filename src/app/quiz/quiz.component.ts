@@ -13,10 +13,10 @@ export class QuizComponent implements OnInit {
   loader=false;
   sliderData={};
   sliderItem={};
-  url='https://appliedvisionbaseball.com/';
+  
 
 
-  constructor(private quizService:QuizService,private router: Router) { }
+  constructor(private quizService:QuizService,private router: Router,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getQuizSlider();
@@ -28,16 +28,16 @@ export class QuizComponent implements OnInit {
     this.loader=true;
     this.quizService.getQuizData().subscribe(sliderDataAPi=>{
       this.sliderData=sliderDataAPi;
-      this.sliderItem=sliderDataAPi['image'];
-      console.log( this.sliderItem);
+      this.sliderItem=sliderDataAPi['image'];     
       this.loader=false;
       this.quizStart=true;
      });
   }
 
-  startQuiz(index:number):any{
-    console.log(index);
-    this.router.navigate(['quiz/start',{id:index} ]);
+  startQuiz(index:number):any{   
+    let quizData=JSON.stringify(this.sliderItem[index]); 
+    localStorage.setItem('quiz', quizData);
+    this.router.navigate(['quiztemplate'] );
   }
 
 }
