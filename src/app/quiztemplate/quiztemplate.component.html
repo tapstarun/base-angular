@@ -24,7 +24,7 @@ Button
                 </div>
             </div> -->
             <div class="quiz-question" *ngIf="currentQuestion">
-                    <div (click)="nextQuestion(currentQuestion.currentIndex)">{{currentQuestion.id}}</div>
+                    <div (click)="nextQuestion(currentQuestion.currentIndex)">{{currentQuestion.id}}{{currentQuestion.currentIndex}}</div>
             </div>
             
         </div>

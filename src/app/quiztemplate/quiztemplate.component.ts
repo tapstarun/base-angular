@@ -14,6 +14,8 @@ export class QuiztemplateComponent implements OnInit {
   showFirstPage=true;
   questions:any[];
   currentQuestion:any;
+  BASE_IMAGE_URL = 'https://content.jwplatform.com/v2/media/';
+  BASE_VIDEO_URL = 'https://content.jwplatform.com/manifests/';
 
   constructor(private activatedRoute: ActivatedRoute) { 
     this.quizData = {} as any;
@@ -23,16 +25,17 @@ export class QuiztemplateComponent implements OnInit {
 
   ngOnInit(): void {
     this.quizData = JSON.parse(localStorage.getItem("quiz"));
-    console.log(this.quizData);
-         this.questions =  this.quizData.question_ids;
-//      this.questions =  this.quizData.question_ids.map((element,index)=>{
-//        this.ques
+    this.questions =  this.quizData.question_ids.forEach(ques=>{
+      console.log(ques);
+      return ques;//{...ques,url:''};
+    });
 
-// return element;
-//      });
+    console.log(this.quizData.question_ids);
+
     if(this.questions.length > 0){
-      // this.questions[0].isCurrentQuestion = true;
+     
       this.currentQuestion = this.questions[0];
+     
       this.currentQuestion.currentIndex = 0;
     }
     
@@ -45,7 +48,17 @@ export class QuiztemplateComponent implements OnInit {
 
   nextQuestion(index:number){
     console.log(index);
-    this.currentQuestion.currentIndex = index + 1;
-    this.currentQuestion = this.questions[this.currentQuestion.currentIndex];
+    let currentIndexValue=index + 1;  // increase the value everytime
+
+    if(currentIndexValue < this.questions.length){
+     
+      this.currentQuestion = this.questions[currentIndexValue];
+      this.currentQuestion.currentIndex = currentIndexValue;
+
+    }else {
+
+      console.log(this.currentQuestion);
+
+    }
   }
 }
