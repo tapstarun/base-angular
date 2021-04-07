@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {MatButtonModule} from '@angular/material/button';
-import {HttpClientModule} from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +11,8 @@ import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QuiztemplateComponent } from './quiztemplate/quiztemplate.component';
 import { QuestionComponent } from './quiztemplate/questions/questions.component';  
+import { ResultComponent } from './quiztemplate/result/result.component';  
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { QuestionComponent } from './quiztemplate/questions/questions.component'
     HeaderComponent,
     FooterComponent,
     QuiztemplateComponent,
-    QuestionComponent
+    QuestionComponent,
+    ResultComponent
     
   ],
   imports: [

@@ -12,6 +12,10 @@ export class QuiztemplateComponent implements OnInit {
 
   quizData:any;
   showFirstPage=true;
+  showSwing=false;
+  showNormalQuiz=false;
+  showSingleLineQuiz=false;
+  resultPage=false;
   questions:any[];
   currentQuestion:any;
   BASE_IMAGE_URL = 'https://content.jwplatform.com/v2/media/';
@@ -25,10 +29,7 @@ export class QuiztemplateComponent implements OnInit {
 
   ngOnInit(): void {
     this.quizData = JSON.parse(localStorage.getItem("quiz"));
-    this.questions =  this.quizData.question_ids.forEach(ques=>{
-      console.log(ques);
-      return ques;//{...ques,url:''};
-    });
+    this.questions =  this.quizData.question_ids;
 
     console.log(this.quizData.question_ids);
 
@@ -44,6 +45,7 @@ export class QuiztemplateComponent implements OnInit {
 
   playQuiz():void{
     this.showFirstPage=false;
+    this.showNormalQuiz=true;
   }
 
   nextQuestion(index:number){
@@ -60,5 +62,10 @@ export class QuiztemplateComponent implements OnInit {
       console.log(this.currentQuestion);
 
     }
+  }
+
+  result(){
+    
+    this.resultPage=true;
   }
 }

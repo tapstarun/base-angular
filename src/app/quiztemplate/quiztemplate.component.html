@@ -1,32 +1,149 @@
 <div class="container-fluid">
-    <div class="quiz jumbotron" *ngIf="quizData">
+    <div class="quiz" *ngIf="quizData">
         
         <!-- First page of quiz -->
-        <div *ngIf="showFirstPage">
+        <div class="quiz-firstPage" *ngIf="showFirstPage">
             <div class="col-md-12"> 
-                <p>{{quizData.quiz_title}}</p>
-                <pre>{{quizData.quiz_description}}</pre>
+                <p class="quiz-head">{{quizData.quiz_title}}</p>
+                <pre class="text-white">{{quizData.quiz_description}}</pre>
             </div>
             <div class="col-md-12"> 
-            <button mat-raised-button color="primary" (click)="playQuiz();">Start</button>
+            <button class="quiz-btn" (click)="playQuiz();">Start</button>
             </div>
         </div>
 
 
-        <div *ngIf="!showFirstPage">
-            <!-- <div class="col-md-12"> 
-                <div class="col-md-8"> 
-                    Video
+        <div *ngIf="showSwing">
+           
+                <div class="row row_sec"> 
+                    <div class="col-md-7 col_video"> 
+                        <div class="video">
+                            <video controls (click)="toggleVideo()" #videoPlayer>
+                                <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+                            </video>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 col_video"> 
+                        <div class="video_card">
+                            <div class="video_top_content">
+                            <div>
+                                <p>1/10</p>
+                                <p>Pitch Count</p>
+                            </div>
+                            <div>
+                                <a href="javascript:void(0);" class="btn video_btn">Next</a>
+                            </div>
+                        </div>
+                        </div>
+                        
+                        <div class="video_box">
+                            <a href="javascript:void(0);" (click)="result();">SWING!</a>
+                        </div>
+                        <div class="report-btn">
+                            <a href="javascript:void(0);" class="report_button">Report Issue</a>
+                        </div>
+                    </div>
+                </div>
+        
+            
+            
+        </div>
+
+
+        <div *ngIf="showNormalQuiz">
+           
+            <div class="row row_sec"> 
+                <div class="col-md-7 col_video"> 
+                    <div class="video">
+                        <video controls (click)="toggleVideo()" #videoPlayer>
+                            <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+                        </video>
+                    </div>
                 </div>
 
-                <div class="col-md-4"> 
-Button
+                <div class="col-md-5 col_video"> 
+                    <div class="video_card">
+                        <div class="video_top_content">
+                        <div>
+                            <p>1/10</p>
+                            <p>Pitch Count</p>
+                        </div>
+                        <div>
+                            <a href="javascript:void(0);" class="btn video_btn">Next</a>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- showNormalQuiz start -->
+                    <div class="show_Normal-Quiz">
+                        <div class="ays-bind-subquestion">
+                            <p class="text-center">Fastball</p>
+                            <div class="normal_quiz-btn">
+                                <button type="button" class="btn quiz-one">Ball</button>
+                                <button type="button" class="btn quiz-two">Strike</button>
+                            </div>
+                        </div>
+                        <div class="ays-bind-subquestion">
+                            <p class="text-center">Slider</p>
+                            <div class="normal_quiz-btn">
+                                <button type="button" class="btn quiz-one">Ball</button>
+                                <button type="button" class="btn quiz-two">Strike</button>
+                            </div>
+                        </div>
+                        <!-- showNormalQuiz end -->
+                        <!-- Timer -->
+
+                        <!-- Timer end-->
+                    </div>
+                    <div class="report-btn">
+                        <a href="javascript:void(0);" class="report_button">Report Issue</a>
+                    </div>
                 </div>
-            </div> -->
-            <div class="quiz-question" *ngIf="currentQuestion">
-                    <div (click)="nextQuestion(currentQuestion.currentIndex)">{{currentQuestion.id}}{{currentQuestion.currentIndex}}</div>
+            </div>  
+    </div>
+
+
+
+    <div *ngIf="showSingleLineQuiz">
+           
+        <div class="row row_sec"> 
+            <div class="col-md-7 col_video"> 
+                <div class="video">
+                    <video controls (click)="toggleVideo()" #videoPlayer>
+                        <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+                    </video>
+                </div>
             </div>
-            
+
+            <div class="col-md-5 col_video"> 
+                <div class="video_card">
+                    <div class="video_top_content">
+                    <div>
+                        <p>1/10</p>
+                        <p>Pitch Count</p>
+                    </div>
+                    <div>
+                        <a href="javascript:void(0);" class="btn video_btn">Next</a>
+                    </div>
+                </div>
+                </div>
+                
+                <div class="video_box">
+                    <a href="javascript:void(0);" (click)="result();">SWING!</a>
+                </div>
+                <div class="report-btn">
+                    <a href="javascript:void(0);" class="report_button">Report Issue</a>
+                </div>
+            </div>
+        </div>
+
+    
+    
+</div>
+
+
+        <div *ngIf="resultPage">
+result page
         </div>
 
     </div>    
