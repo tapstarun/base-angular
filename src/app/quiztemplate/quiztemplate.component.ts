@@ -46,6 +46,7 @@ export class QuiztemplateComponent implements OnInit {
   playQuiz():void{
     this.showFirstPage=false;
     this.showNormalQuiz=true;
+    this.showSingleLineQuiz=false;
   }
 
   nextQuestion(index:number){
