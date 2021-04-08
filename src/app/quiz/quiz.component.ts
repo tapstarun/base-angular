@@ -21,6 +21,7 @@ export class QuizComponent implements OnInit {
   ngOnInit(): void {
     this.getQuizSlider();
   }
+  
   /***
    * Get Quiz data for slider so we can get the quiz
    */
@@ -28,7 +29,8 @@ export class QuizComponent implements OnInit {
     this.loader=true;
     this.quizService.getQuizData().subscribe(sliderDataAPi=>{
       this.sliderData=sliderDataAPi;
-      this.sliderItem=sliderDataAPi['image'];     
+      this.sliderItem=sliderDataAPi['image'];
+       console.log(this.sliderData);   
       this.loader=false;
       this.quizStart=true;
      });
@@ -37,6 +39,7 @@ export class QuizComponent implements OnInit {
   startQuiz(index:number):any{   
     let quizData=JSON.stringify(this.sliderItem[index]); 
     localStorage.setItem('quiz', quizData);
+    
     this.router.navigate(['quiztemplate'] );
   }
 

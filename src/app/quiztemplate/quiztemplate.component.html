@@ -19,7 +19,7 @@
                     <div class="col-md-7 col_video"> 
                         <div class="video">
                             <video controls (click)="toggleVideo()" #videoPlayer>
-                                <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+                                <source src="{{currentQuestion.url}}}" type="video/mp4" />
                             </video>
                         </div>
                     </div>
@@ -28,18 +28,19 @@
                         <div class="video_card">
                             <div class="video_top_content">
                             <div>
-                                <p>1/10</p>
+                                <p>{{currentQuestion.currentIndex +1}}/{{currentQuestion.totalQuestion}}</p>
                                 <p>Pitch Count</p>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <a href="javascript:void(0);" class="btn video_btn">Next</a>
-                            </div>
+                            </div> -->
                         </div>
                         </div>
                         
                         <div class="video_box">
-                            <a href="javascript:void(0);" (click)="result();">SWING!</a>
+                            <a href="javascript:void(0);" (click)="optionSelect(1);">SWING!</a>
                         </div>
+
                         <div class="report-btn">
                             <a href="javascript:void(0);" class="report_button">Report Issue</a>
                         </div>
@@ -54,42 +55,39 @@
         <div *ngIf="showNormalQuiz">
            
             <div class="row row_sec"> 
+                
                 <div class="col-md-7 col_video"> 
                     <div class="video">
                         <video controls (click)="toggleVideo()" #videoPlayer>
-                            <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+                            <source src="{{currentQuestion.url}}" type="video/mp4" />
                         </video>
                     </div>
                 </div>
 
-                <div class="col-md-5 col_video col-add_after"> 
+                <div class="col-md-5 col_video col-add_after-1"> 
                     <div class="video_card">
                         <div class="video_top_content">
                         <div>
-                            <p>1/10</p>
+                            <p>{{currentQuestion.currentIndex+1}}/{{currentQuestion.totalQuestion}}</p>
                             <p>Pitch Count</p>
                         </div>
-                        <div>
+                        <!-- <div>
                             <a href="javascript:void(0);" class="btn video_btn">Next</a>
-                        </div>
+                        </div> -->
                     </div>
                     </div>
                     <!-- showNormalQuiz start -->
                     <div class="show_Normal-Quiz">
-                        <div class="ays-bind-subquestion">
-                            <p class="text-center">Fastball</p>
+                        <div class="ays-bind-subquestion"  *ngFor="let quizans of currentQuestion.answers">
+                            <div class="ays-bind-subquestion">
+                               
+                            <p class="text-center" >{{quizans.label}}</p>
                             <div class="normal_quiz-btn">
-                                <button type="button" class="btn quiz-one">Ball</button>
-                                <button type="button" class="btn quiz-two">Strike</button>
+                                <button type="button" class="btn quiz-one" (click)="normalQuizAnswer(quizans.answer1.id);">{{quizans.answer1.answer}}</button>
+                                <button type="button" class="btn quiz-two" (click)="normalQuizAnswer(quizans.answer2.id);">{{quizans.answer2.answer}}</button>
                             </div>
-                        </div>
-                        <div class="ays-bind-subquestion">
-                            <p class="text-center">Slider</p>
-                            <div class="normal_quiz-btn">
-                                <button type="button" class="btn quiz-one">Ball</button>
-                                <button type="button" class="btn quiz-two">Strike</button>
-                            </div>
-                        </div>
+                             </div>   
+                         </div>                     
                         <!-- showNormalQuiz end -->
                         <!-- Timer -->
 
@@ -108,9 +106,10 @@
            
         <div class="row row_sec"> 
             <div class="col-md-7 col_video"> 
-                <div class="video">
-                    <video controls (click)="toggleVideo()" #videoPlayer>
-                        <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+                <div class="video">                    
+                    
+                    <video  (click)="toggleVideo(videoPlayer)" #videoPlayer playsinline onloadedmetadata="this.muted=true">
+                        <source src="https://cdn.jwplayer.com/videos/xrTCH9Hs-eqAMKrlW.mp4" type="video/mp4" />
                     </video>
                 </div>
             </div>
@@ -155,3 +154,4 @@ result page
 
     
 </div>
+

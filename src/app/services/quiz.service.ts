@@ -19,6 +19,6 @@ export class QuizService{
         //     level:3
         // };
         
-        return this.http.get('api/?action=get_level_data_dev&post_id=3879&user_id=477');
+        return this.http.get('api/?action=get_level_data_dev&post_id=1258&user_id=477');
     }
 }
