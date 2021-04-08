@@ -26,7 +26,7 @@ export class QuiztemplateComponent implements OnInit  {
   timer=3;
   react_time=3;
   timeOutRunining:any;
-  questionDisplay="col-add_after";
+  questionDisplay=true;
   BASE_IMAGE_URL = 'https://content.jwplatform.com/v2/media/';
   BASE_VIDEO_URL = 'https://cdn.jwplayer.com/videos/';
 //https://cdn.jwplayer.com/v2/media/gi2pb1VW
@@ -163,13 +163,13 @@ constructor(private activatedRoute: ActivatedRoute) {
   }
 
   onVideoEnded(){
-    this.questionDisplay="";
+    this.questionDisplay=true;
     this.moveToNextAsPerTemplate(); 
   }
 
   nextQuestion(index:number){
     console.log(index);
-    this.questionDisplay="col-add_after";
+    this.questionDisplay=false;
     let currentIndexValue=index + 1;  // increase the value everytime
 
     if(currentIndexValue < this.questions.length){
