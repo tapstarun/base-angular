@@ -26,6 +26,7 @@ export class QuiztemplateComponent implements OnInit  {
   timer=3;
   react_time=3;
   timeOutRunining:any;
+  questionDisplay="col-add_after";
   BASE_IMAGE_URL = 'https://content.jwplatform.com/v2/media/';
   BASE_VIDEO_URL = 'https://cdn.jwplayer.com/videos/';
 //https://cdn.jwplayer.com/v2/media/gi2pb1VW
@@ -96,21 +97,40 @@ constructor(private activatedRoute: ActivatedRoute) {
     console.log(this.timeOutRunining);
     
     if(this.timeOutRunining!=undefined){
-        this.react_time=this.timer-1;
+        this.react_time=this.react_time-1;
+          console.log(this.react_time);
         if(this.react_time==0){
           clearTimeout(this.timeOutRunining);
           
           let storeData={       
             'user_answer':0        
           };
-          this.storeDataInStats(storeData); // Store the data in db
-    
+          // // Store the data in db
+          switch (this.quiz_Type) {
+
+            case 'theme_swinger':
+              this.optionSelect(false);// Pass argu false because none of the person select the value
+              break;
+            case 'theme_baseball':
+                this.storeDataInStats(storeData);
+                break;
+      
+            case 'theme_singlecolumnbutton':
+                this.storeDataInStats(storeData);
+                break;
+                
+            default:
+              this.storeDataInStats(storeData);
+              break;
+          }
+
         }else{
-            setTimeout(()=>{             
+          this.timeOutRunining=setTimeout(()=>{             
               this.getReactionTime();
-              console.log('next timeout');
+              console.log('else timeout');
             }, 1000);
         }
+        console.log('timer finished');
     }
   }
 
@@ -118,58 +138,38 @@ constructor(private activatedRoute: ActivatedRoute) {
    * 
    * Call function as per the quiz template
    */
-  moveToNextAsPerTemplate(bool:boolean):any{
+  moveToNextAsPerTemplate():any{
     console.log(" moveToNextAsPerTemplate function calling");
     /***
      * 
      * Call a function for reaction time
      */
-    this.getReactionTime();
-    
-    switch (this.quiz_Type) {
-
-      case 'theme_swinger':
-        this.optionSelect(false);// Pass argu false because none of the person select the value
-        break;
-      case 'theme_baseball':
-        
-          break;
-
-      case 'theme_singlecolumnbutton':
-        
-          break;
-          
-      default:
-        
-        break;
-    }
-    return true;
+     this.timeOutRunining=setTimeout(()=>{             
+      this.getReactionTime();
+      console.log('first timeout');
+    }, 1000);    
   }
 
     /****
    * Video control from here
    */
-     toggleVideo(event:any){
-      if(!this.videoPlayed){
-        this.videoPlayed=true;
-        this.videoPlayer.nativeElement?.play();
-      }   
-      this.videoPlayer.nativeElement.onended = function(e) {
-        console.log('Video ended');
-        // this.timeOutRunining=setTimeout(()=>{
-        //   console.log('timeout');
-        //   this.moveToNextAsPerTemplate(()=>{
-        //     console.log('next timeout');
-        //   });
-        //   console.log('next timeout');
-        // }, 1000);
-      };
-      //videoPlayer.onTimeOut
-    }
+  toggleVideo(event:any){
   
+    if(!this.videoPlayed){
+      this.videoPlayed=true;
+      this.videoPlayer.nativeElement?.play();
+    }    
+
+  }
+
+  onVideoEnded(){
+    this.questionDisplay="";
+    this.moveToNextAsPerTemplate(); 
+  }
 
   nextQuestion(index:number){
     console.log(index);
+    this.questionDisplay="col-add_after";
     let currentIndexValue=index + 1;  // increase the value everytime
 
     if(currentIndexValue < this.questions.length){
@@ -223,12 +223,9 @@ constructor(private activatedRoute: ActivatedRoute) {
 
       }
 
-      let storeData={
-        'question_id':this.currentQuestion.id,       
-        'correct_ans':this.currentQuestion.correct_answer,
+      let storeData={        
         'user_answer':userAns,
-        'pitch_type':this.currentQuestion.pitch_type,
-        'react_time':this.react_time,
+        
       };
 
       this.storeDataInStats(storeData); // Store the data in db
@@ -243,7 +240,8 @@ constructor(private activatedRoute: ActivatedRoute) {
    */
    normalQuizAnswer(userAns:number){
       this.accuracy=false;
-      
+      console.log(this.timeOutRunining);
+      clearTimeout(this.timeOutRunining);
       if(userAns===this.currentQuestion.correct_answer){
         this.accuracy=true;
       }
@@ -253,8 +251,6 @@ constructor(private activatedRoute: ActivatedRoute) {
       };
       this.storeDataInStats(storeData); // Store the data in db
 
-      console.log(this.accuracy);  
-     
    }
 
 
@@ -271,7 +267,7 @@ constructor(private activatedRoute: ActivatedRoute) {
       'action':'statistic_data'
      };
      console.log(data);
-
+     console.log(this.currentQuestion.currentIndex);
      this.nextQuestion(this.currentQuestion.currentIndex);
    }
 

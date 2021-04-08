@@ -58,13 +58,14 @@
                 
                 <div class="col-md-7 col_video"> 
                     <div class="video">
-                        <video controls (click)="toggleVideo()" #videoPlayer>
+                        {{currentQuestion.url}}
+                        <video controls (click)="toggleVideo()" #videoPlayer (ended)="onVideoEnded()">
                             <source src="{{currentQuestion.url}}" type="video/mp4" />
                         </video>
                     </div>
                 </div>
 
-                <div class="col-md-5 col_video col-add_after-1"> 
+                <div class="col-md-5 col_video " [ngClass]="questionDisplay"> 
                     <div class="video_card">
                         <div class="video_top_content">
                         <div>
