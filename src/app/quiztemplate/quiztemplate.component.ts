@@ -163,13 +163,15 @@ constructor(private activatedRoute: ActivatedRoute) {
   }
 
   onVideoEnded(){
-    this.questionDisplay=true;
+    console.log('video ended');
+    this.questionDisplay=false;
+    console.log('questionDisplay true');
     this.moveToNextAsPerTemplate(); 
   }
 
   nextQuestion(index:number){
     console.log(index);
-    this.questionDisplay=false;
+    this.questionDisplay=true;
     let currentIndexValue=index + 1;  // increase the value everytime
 
     if(currentIndexValue < this.questions.length){

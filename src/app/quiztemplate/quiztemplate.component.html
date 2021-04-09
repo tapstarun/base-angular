@@ -60,7 +60,7 @@
                     <div class="video">
                         {{currentQuestion.url}}
                         <video controls (click)="toggleVideo()" #videoPlayer (ended)="onVideoEnded()">
-                            <source src="{{currentQuestion.url}}" type="video/mp4" />
+                            <source [src]="currentQuestion.url" type="video/mp4" />
                         </video>
                     </div>
                 </div>
