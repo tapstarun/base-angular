@@ -13,6 +13,12 @@ import { QuiztemplateComponent } from './quiztemplate/quiztemplate.component';
 import { QuestionComponent } from './quiztemplate/questions/questions.component';  
 import { ResultComponent } from './quiztemplate/result/result.component';  
 
+// Video controller 
+import {VgCoreModule} from '@videogular/ngx-videogular/core';
+import {VgControlsModule} from '@videogular/ngx-videogular/controls';
+import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
+import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +36,11 @@ import { ResultComponent } from './quiztemplate/result/result.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

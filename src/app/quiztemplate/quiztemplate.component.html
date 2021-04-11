@@ -57,11 +57,23 @@
             <div class="row row_sec"> 
                 
                 <div class="col-md-7 col_video"> 
-                    <div class="video">
-                        {{currentQuestion.url}}
-                        <video controls (click)="toggleVideo()" #videoPlayer (ended)="onVideoEnded()">
-                            <source [src]="currentQuestion.url" type="video/mp4" />
-                        </video>
+                    <div class="video">                       
+
+                        <div class="video-player-wrapper">
+                           
+                            <vg-player (onPlayerReady)="videoPlayerInit($event)">
+                                <vg-overlay-play></vg-overlay-play>
+                                <vg-buffering></vg-buffering>                                               
+                             
+                          
+                              <video [vgMedia]="media" #media id="singleVideo" [src]="currentQuestion.url"  preload="auto" crossorigin>
+                    
+                              </video>
+
+                            </vg-player>
+                          
+                          </div>
+
                     </div>
                 </div>
 

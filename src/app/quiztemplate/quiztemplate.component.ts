@@ -29,6 +29,7 @@ export class QuiztemplateComponent implements OnInit  {
   questionDisplay=true;
   BASE_IMAGE_URL = 'https://content.jwplatform.com/v2/media/';
   BASE_VIDEO_URL = 'https://cdn.jwplayer.com/videos/';
+  videoData:any;
 //https://cdn.jwplayer.com/v2/media/gi2pb1VW
   
 
@@ -61,6 +62,23 @@ constructor(private activatedRoute: ActivatedRoute) {
     
     
   }
+
+
+  videoPlayerInit(data) {
+    this.videoData = data;
+
+   // this.videoData.getDefaultMedia().subscriptions.loadedMetadata.subscribe(this.initVdo.bind(this));
+    this.videoData.getDefaultMedia().subscriptions.ended.subscribe(this.onVideoEnded.bind(this));
+    this.videoData.getDefaultMedia().subscriptions.pause.subscribe(this.initVdo.bind(this));
+  }
+
+  
+
+  initVdo() {
+    console.log("video pause");
+    this.videoData.play();
+  }
+
 
   /***
    * Call Quiz Template 
@@ -163,15 +181,21 @@ constructor(private activatedRoute: ActivatedRoute) {
   }
 
   onVideoEnded(){
-    console.log('video ended');
+    console.log("video end ");
+    //this.videoData.pause();
+    console.log(this.videoData);
     this.questionDisplay=false;
-    console.log('questionDisplay true');
+    console.log("questionDisplay "+this.questionDisplay);
     this.moveToNextAsPerTemplate(); 
   }
 
   nextQuestion(index:number){
-    console.log(index);
+    console.log(index); 
+    
+    this.react_time =this.timer; // Because everytime counter run so it shourld be same as timer
+
     this.questionDisplay=true;
+    console.log("questionDisplay "+this.questionDisplay);
     let currentIndexValue=index + 1;  // increase the value everytime
 
     if(currentIndexValue < this.questions.length){
@@ -272,5 +296,9 @@ constructor(private activatedRoute: ActivatedRoute) {
      console.log(this.currentQuestion.currentIndex);
      this.nextQuestion(this.currentQuestion.currentIndex);
    }
+
+
+  
+  
 
 }
