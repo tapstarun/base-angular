@@ -30,6 +30,10 @@ export class QuiztemplateComponent implements OnInit  {
   BASE_IMAGE_URL = 'https://content.jwplatform.com/v2/media/';
   BASE_VIDEO_URL = 'https://cdn.jwplayer.com/videos/';
   videoData:any;
+  showThumbs=false;
+  rightThumbs=false;
+  ShowVideo=true;
+  storeResultArray=[];
 //https://cdn.jwplayer.com/v2/media/gi2pb1VW
   
 
@@ -181,6 +185,7 @@ constructor(private activatedRoute: ActivatedRoute) {
   }
 
   onVideoEnded(){
+    this.ShowVideo=false;
     console.log("video end ");
     //this.videoData.pause();
     console.log(this.videoData);
@@ -190,6 +195,7 @@ constructor(private activatedRoute: ActivatedRoute) {
   }
 
   nextQuestion(index:number){
+    this.showThumbs=false;
     console.log(index); 
     
     this.react_time =this.timer; // Because everytime counter run so it shourld be same as timer
@@ -204,12 +210,18 @@ constructor(private activatedRoute: ActivatedRoute) {
       this.currentQuestion.currentIndex = currentIndexValue;
       this.currentQuestion.totalQuestion = this.questions.length;     
     }
-    
+    this.ShowVideo=true;
   }
 
   result(){
     
     this.resultPage=true;
+  }
+
+  findDataInQuestionObject(answners,type){
+    let correctAnswerValue:string;
+    
+    return false;
   }
 
 
@@ -225,12 +237,11 @@ constructor(private activatedRoute: ActivatedRoute) {
       let ansObj=answners[key];  
       if(typeof ansObj == 'object'){             
         if (ansObj['correct'] == 1) {
-          correctAnswer=ansObj['answer'];
-          
+           correctAnswer=ansObj['answer'];          
         }
       }
     });
-
+    //let correctAnswer=this.findDataInQuestionObject(answners,'answer');
       if(selected){
         // If in case user select the options
 
@@ -280,7 +291,20 @@ constructor(private activatedRoute: ActivatedRoute) {
    }
 
 
+   showThumb(){
+    if(this.accuracy){
+      this.rightThumbs=true;
+    }else{
+        this.rightThumbs=false;
+    }
+     this.showThumbs=true;
+   }
+
    storeDataInStats(storeData:any){
+
+    // showThumbsup and down
+       this.showThumb();
+    
 
      let data={
       'question_id':this.currentQuestion.id,
@@ -292,12 +316,42 @@ constructor(private activatedRoute: ActivatedRoute) {
       'accuracy':this.accuracy,
       'action':'statistic_data'
      };
+    
+
+     let userAnswered={
+      'userAns':this.getLabelFromQuestion(storeData.user_answer),
+      'correctAns':this.getLabelFromQuestion(this.currentQuestion.correct_answer),
+      'ans':this.accuracy
+     };
+     this.storeResultArray.push(userAnswered);
+
+     //storeResultArray[]=
      console.log(data);
-     console.log(this.currentQuestion.currentIndex);
-     this.nextQuestion(this.currentQuestion.currentIndex);
+     console.log('user option sected');
+     console.log(this.storeResultArray);
+     // settimeout for 1 sec so user can see thumbs up or down
+     setTimeout(()=>this.nextQuestion(this.currentQuestion.currentIndex),1000);
    }
 
-
+   getLabelFromQuestion(id:number){
+    let correctAnsLabel:string;
+    let answners=this.currentQuestion.answers;       
+     Object.keys(answners).forEach(key => {          
+      let ansObj=answners[key];  
+      if(typeof ansObj == 'object'){                  
+        Object.keys(ansObj).forEach(k => { 
+            if(typeof ansObj == 'object'){ 
+             
+              if(ansObj[k]['id']==id){                
+                console.log(ansObj[k]['answer']);
+                correctAnsLabel=ansObj[k]['answer'];
+              }
+            }
+          })        
+      }
+    });
+    return correctAnsLabel;   
+   }
   
   
 
