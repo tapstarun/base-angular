@@ -1,5 +1,11 @@
 <div class="container-fluid">
-    <div class="quiz" *ngIf="quizData">
+    <div class="mobile-portrait">
+                <figure>            
+                    <img src="https://appliedvisionbaseball.com/wp-content/uploads/2019/10/new-rotate-150x150.png"><br>
+                    <span>Please rotate your device!</span>
+                </figure>
+           </div>
+    <div class="quiz" *ngIf="quizData"> 
         
         <!-- First page of quiz -->
         <div class="quiz-firstPage" *ngIf="showFirstPage">
@@ -22,6 +28,7 @@
                                 <source src="{{currentQuestion.url}}}" type="video/mp4" />
                             </video>
                         </div>
+                        
                     </div>
 
                     <div class="col-md-5 col_video"> 
@@ -53,10 +60,15 @@
 
 
         <div *ngIf="showNormalQuiz">
-           
+           <!-- <div class="mobile-portrait">
+                <figure>            
+                    <img src="https://appliedvisionbaseball.com/wp-content/uploads/2019/10/new-rotate-150x150.png"><br>
+                    <span>Please rotate your device!</span>
+                </figure>
+           </div> -->
             <div class="row row_sec"> 
                 
-                <div class="col-md-7 col_video"> 
+                <div class="col-md-7 col-sm-7 col_video left-side-hide1"> 
                     <div class="video">                       
 
                         <div class="video-player-wrapper">
@@ -71,13 +83,25 @@
                               </video>
 
                             </vg-player>
-                          
+                          <!-- thumbs-sec -->
+                            <div class="thumbs-sec">
+                                <div class="thumbs-up">
+                                    <figure>
+                                        <img src="https://appliedvisionbaseball.com/wp-content/uploads/2020/03/newredthump.png">
+                                    </figure>
+                                </div>
+                               <!--  <div class="thumbs-down">
+                                    <figure>
+                                        <img src="https://appliedvisionbaseball.com/wp-content/uploads/2020/03/newgreenthump.png">
+                                    </figure>
+                                </div> -->
+                            </div>
+                            <!-- thumbs-sec end -->
                           </div>
-
                     </div>
                 </div>
 
-                <div class="col-md-5 col_video " [ngClass]="questionDisplay?'col-add_after':''"> 
+                <div class="col-md-5 col-sm-5 col_video " [ngClass]="questionDisplay?'col-add_after':''"> 
                     <div class="video_card">
                         <div class="video_top_content">
                         <div>
