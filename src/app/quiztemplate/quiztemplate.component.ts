@@ -35,6 +35,8 @@ export class QuiztemplateComponent implements OnInit  {
   ShowVideo=true;
   storeResultArray=[];
   hightlightButtonId:number;
+  correctThumbIcon='https://appliedvisionbaseball.com/wp-content/uploads/2020/03/newredthump.png';
+  wrongThumbIcon='https://appliedvisionbaseball.com/wp-content/uploads/2020/03/newgreenthump.png';
 //https://cdn.jwplayer.com/v2/media/gi2pb1VW
   
 
@@ -61,9 +63,9 @@ constructor(private activatedRoute: ActivatedRoute) {
 
     if(this.questions.length > 0){
      
-      this.currentQuestion = this.questions[8];
+      this.currentQuestion = this.questions[0];
      
-      this.currentQuestion.currentIndex = 8; 
+      this.currentQuestion.currentIndex = 0; 
       this.currentQuestion.totalQuestion = this.questions.length;
     }
     
@@ -120,14 +122,13 @@ constructor(private activatedRoute: ActivatedRoute) {
   }
   
   getReactionTime(){
-    console.log(this.timeOutRunining);
-    
+        
     if(this.timeOutRunining!=undefined){
         this.react_time=this.react_time-1;
-          console.log(this.react_time);
+         // console.log(this.react_time);
         if(this.react_time==0){
           clearTimeout(this.timeOutRunining);
-          
+          this.accuracy=false; // If timeout then accuracy fail;
           let storeData={       
             'user_answer':0        
           };
@@ -173,7 +174,8 @@ constructor(private activatedRoute: ActivatedRoute) {
      this.timeOutRunining=setTimeout(()=>{             
       this.getReactionTime();
       console.log('first timeout');
-    }, 1000);    
+    }, 1000);   
+
   }
 
     /****
@@ -194,11 +196,10 @@ constructor(private activatedRoute: ActivatedRoute) {
     //this.videoData.getDefaultMedia().currentTime = 0;
     this.ShowVideo=false;
     this.currentQuestion.url='';
-    console.log("video end ");
-    //this.videoData.pause();
+    
     console.log(this.videoData);
     this.questionDisplay=false;
-    console.log("questionDisplay "+this.questionDisplay);
+    
     this.moveToNextAsPerTemplate(); 
   }
 
@@ -212,15 +213,14 @@ constructor(private activatedRoute: ActivatedRoute) {
     this.questionDisplay=true;
     
     let currentIndexValue=index + 1;  // increase the value everytime
-    console.log("currentIndexValue "+currentIndexValue);
-    console.log("this.questions.length "+this.questions.length);
+    
     if(currentIndexValue < this.questions.length){
      
       this.currentQuestion = this.questions[currentIndexValue];    
       this.currentQuestion.currentIndex = currentIndexValue;
       this.currentQuestion.totalQuestion = this.questions.length;       
     }else{
-      console.log('Go to Result page ');
+     // console.log('Go to Result page ');
       //this.currentQuestion = {};
       this.result();
     }
@@ -239,11 +239,7 @@ constructor(private activatedRoute: ActivatedRoute) {
     this.resultPage=true;
   }
 
-  findDataInQuestionObject(answners,type){
-    let correctAnswerValue:string;
-    
-    return false;
-  }
+ 
 
 
   /***
@@ -253,22 +249,25 @@ constructor(private activatedRoute: ActivatedRoute) {
    // clearTimeout(this.timeOutRunining);
     let correctAnswer:string;
     let userAns:string;
-    let answners=this.currentQuestion.answers[0];        
+    let answners=this.currentQuestion.answers[0];
+    let checkUser:string;        
     Object.keys(answners).forEach(key => {          
       let ansObj=answners[key];  
       if(typeof ansObj == 'object'){             
         if (ansObj['correct'] == 1) {
+           userAns=ansObj['id'];   
            correctAnswer=ansObj['answer'];          
         }
       }
     });
-    //let correctAnswer=this.findDataInQuestionObject(answners,'answer');
+    
       if(selected){
         // If in case user select the options
-
+        console.log(correctAnswer,selected);
         this.accuracy = false; // If in case answer incorrect
         if(correctAnswer=='Yes'){         
           this.accuracy = true;
+          checkUser=userAns;
         }
       
       }else{ 
@@ -282,7 +281,7 @@ constructor(private activatedRoute: ActivatedRoute) {
       }
 
       let storeData={        
-        'user_answer':userAns,
+        'user_answer':checkUser,
         
       };
 
@@ -297,6 +296,7 @@ constructor(private activatedRoute: ActivatedRoute) {
    *normalQuizAnswer option selected
    */
    normalQuizAnswer(userAns:number){
+
     console.log(" normalQuizAnswer function calling");
       this.accuracy=false;
       console.log(this.timeOutRunining);
@@ -305,6 +305,7 @@ constructor(private activatedRoute: ActivatedRoute) {
         this.accuracy=true;
       }
       
+      console.log("when user click "+this.accuracy);
       let storeData={       
         'user_answer':userAns        
       };
@@ -323,6 +324,10 @@ constructor(private activatedRoute: ActivatedRoute) {
      this.showThumbs=true;
    }
 
+
+   /*****
+    * Store Data in DB 
+    */
    storeDataInStats(storeData:any){
     console.log(" storeDataInStats function calling");
     this.hightlightButtonId=this.currentQuestion.correct_answer;
@@ -358,18 +363,23 @@ constructor(private activatedRoute: ActivatedRoute) {
      setTimeout(()=>this.nextQuestion(this.currentQuestion.currentIndex),1000);
    }
 
+
+   /***
+    * Get Label of question by id so you can show in pitch by pitch sequese
+    */
    getLabelFromQuestion(id:number){
     let correctAnsLabel:string;
     let answners=this.currentQuestion.answers;       
      Object.keys(answners).forEach(key => {          
       let ansObj=answners[key];  
-      if(typeof ansObj == 'object'){                  
+      if(typeof ansObj == 'object'){  
+                     
         Object.keys(ansObj).forEach(k => { 
             if(typeof ansObj == 'object'){ 
              
               if(ansObj[k]['id']==id){                
                 console.log(ansObj[k]['answer']);
-                correctAnsLabel=ansObj[k]['answer'];
+                correctAnsLabel=ansObj['label']+'-'+ansObj[k]['answer'];
               }
             }
           })        

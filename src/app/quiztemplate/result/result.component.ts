@@ -14,15 +14,27 @@ export class ResultComponent implements OnInit{
 
     constructor(public dialog: MatDialog) {}
 
-    ngOnInit(){
-        console.log('result page call ');
-        console.log(this.resultPageData);
-    }
-
+    ngOnInit(){}
+    
+    
+    /***
+     * Code for pitch by pitch sequence 
+     */
     openBreakDown(){
-        console.log("after button clicked ");
-        this.showBreakDown=true;
         
+        this.showBreakDown=true;
+        let totalQuestion=this.resultPageData.length;
+        let correctQuestion=0;
+
+        this.resultPageData.forEach(element => {
+            if(element['ans']){
+                correctQuestion++;
+            }
+        });
+
+        this.resultPageData.correctQuestion=correctQuestion;
+        this.resultPageData.totalQuestion=totalQuestion;
+        console.log(this.resultPageData);
         const dialogRef = this.dialog.open(PitchComponent,{
             data: this.resultPageData
           });
@@ -30,5 +42,9 @@ export class ResultComponent implements OnInit{
         dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result}`);
         });
+    }
+
+    refresh(): void {
+        window.location.reload();
     }
 }

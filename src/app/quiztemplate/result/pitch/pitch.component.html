@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Your Score</h1>
 <div mat-dialog-content>
     <div class="col-md-12">
-        <div class="scoreDiv">6/10 </div>
+        <div class="scoreDiv">{{data.correctQuestion}}/{{data.totalQuestion}} </div>
      </div>
      <div class="col-xs-6">
         <ul >
@@ -10,7 +10,7 @@
            </li>
            
            <li [ngClass]="d.ans?'greenCheck':'redCheck'" *ngFor="let d of data">
-              {{d.userAns}}
+              {{d.userAns=='undefined'?'Not answered!':d.userAns}}
            </li>           
         </ul>
      </div>

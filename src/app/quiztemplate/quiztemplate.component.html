@@ -22,13 +22,38 @@
         <div *ngIf="showSwing">
            
                 <div class="row row_sec"> 
-                    <div class="col-md-7 col_video"> 
-                        <div class="video">
-                            <video controls (click)="toggleVideo()" #videoPlayer>
-                                <source src="{{currentQuestion.url}}}" type="video/mp4" />
-                            </video>
-                        </div>
+                    <div class="col-md-7 col-sm-7 col_video" [ngClass]="!ShowVideo?'left-side-hide':''"> 
+                        <div class="video">                       
+    
+                            <div class="video-player-wrapper">
+                               
+                                <vg-player (onPlayerReady)="videoPlayerInit($event)" *ngIf="currentQuestion.url!=''">
+                                    <vg-overlay-play ></vg-overlay-play>
+                                    <vg-buffering></vg-buffering>                                               
+                                 
+                              
+                                  <video [vgMedia]="media" #media id="singleVideo" [src]="currentQuestion.url"  crossorigin>
                         
+                                  </video>
+    
+                                </vg-player>
+
+                              <!-- thumbs-sec -->
+                                <div class="thumbs-sec" *ngIf="showThumbs">
+                                    <div class="thumbs-up" *ngIf="rightThumbs">
+                                        <figure>
+                                            <img [src]="correctThumbIcon">
+                                        </figure>
+                                    </div>
+                                    <div class="thumbs-down" *ngIf="!rightThumbs">
+                                        <figure>
+                                            <img [src]="wrongThumbIcon">
+                                        </figure>
+                                    </div>
+                                </div>
+                                <!-- thumbs-sec end -->
+                              </div>
+                        </div>
                     </div>
 
                     <div class="col-md-5 col_video"> 
@@ -52,6 +77,7 @@
                             <a href="javascript:void(0);" class="report_button">Report Issue</a>
                         </div>
                     </div>
+
                 </div>
         
             
@@ -83,20 +109,22 @@
                               </video>
 
                             </vg-player>
-                          <!-- thumbs-sec -->
+
+                            <!-- thumbs-sec -->
                             <div class="thumbs-sec" *ngIf="showThumbs">
                                 <div class="thumbs-up" *ngIf="rightThumbs">
                                     <figure>
-                                        <img src="https://appliedvisionbaseball.com/wp-content/uploads/2020/03/newredthump.png">
+                                        <img [src]="correctThumbIcon">
                                     </figure>
                                 </div>
                                 <div class="thumbs-down" *ngIf="!rightThumbs">
                                     <figure>
-                                        <img src="https://appliedvisionbaseball.com/wp-content/uploads/2020/03/newgreenthump.png">
+                                        <img [src]="wrongThumbIcon">
                                     </figure>
                                 </div>
                             </div>
                             <!-- thumbs-sec end -->
+
                           </div>
                     </div>
                 </div>

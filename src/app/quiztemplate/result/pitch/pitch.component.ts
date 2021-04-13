@@ -4,7 +4,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export interface DialogData {
   ans:boolean,
   userAns:string,
-  correctAns:string
+  correctAns:string,
+  totalQuestion:number,
+  correctQuestion:number
 }
 @Component({
   selector: 'app-pitch',
