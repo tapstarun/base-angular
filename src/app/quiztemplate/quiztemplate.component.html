@@ -73,12 +73,12 @@
 
                         <div class="video-player-wrapper">
                            
-                            <vg-player (onPlayerReady)="videoPlayerInit($event)">
-                                <vg-overlay-play></vg-overlay-play>
+                            <vg-player (onPlayerReady)="videoPlayerInit($event)" *ngIf="currentQuestion.url!=''">
+                                <vg-overlay-play ></vg-overlay-play>
                                 <vg-buffering></vg-buffering>                                               
                              
                           
-                              <video [vgMedia]="media" #media id="singleVideo" [src]="currentQuestion.url"  preload="auto" crossorigin>
+                              <video [vgMedia]="media" #media id="singleVideo" [src]="currentQuestion.url"  crossorigin>
                     
                               </video>
 
@@ -120,8 +120,8 @@
                                
                             <p class="text-center" >{{quizans.label}}</p>
                             <div class="normal_quiz-btn">
-                                <button type="button" class="btn quiz-one" (click)="normalQuizAnswer(quizans.answer1.id);">{{quizans.answer1.answer}}</button>
-                                <button type="button" class="btn quiz-two" (click)="normalQuizAnswer(quizans.answer2.id);">{{quizans.answer2.answer}}</button>
+                                <button type="button" class="btn quiz-one" [ngClass]="hightlightButtonId==quizans.answer1.id?'btn-color-yellow':''" (click)="normalQuizAnswer(quizans.answer1.id);">{{quizans.answer1.answer}}</button>
+                                <button type="button" class="btn quiz-two" [ngClass]="hightlightButtonId==quizans.answer2.id?'btn-color-yellow':''" (click)="normalQuizAnswer(quizans.answer2.id);">{{quizans.answer2.answer}}</button>
                             </div>
                              </div>   
                          </div>                     
@@ -183,7 +183,7 @@
 
 
         <div *ngIf="resultPage">
-result page
+            <app-result [resultPageData]="storeResultArray"></app-result>
         </div>
 
     </div>    

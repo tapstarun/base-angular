@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Your Score</h1>
+<div mat-dialog-content>
+    <div class="col-md-12">
+        <div class="scoreDiv">6/10 </div>
+     </div>
+     <div class="col-xs-6">
+        <ul >
+           <li>
+              <h2>Your Answer</h2>
+           </li>
+           
+           <li [ngClass]="d.ans?'greenCheck':'redCheck'" *ngFor="let d of data">
+              {{d.userAns}}
+           </li>           
+        </ul>
+     </div>
+     <div class="col-xs-6">
+        <ul>
+           <li>
+              <h2>Correct Answer</h2>
+           </li>
+           <li *ngFor="let d of data">
+            {{d.correctAns}}
+         </li> 
+        </ul>
+     </div>
+</div>

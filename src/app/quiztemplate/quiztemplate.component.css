@@ -189,12 +189,7 @@
 }
 /*showSingleLineQuiz end*/
 
-/*210412*/
-.normal_quiz-btn button:first-child:hover {
-    background: orange!important;
-    border-color: green;
-    box-shadow: 0 0 40px rgb(0 0 0 / 32%);
-}
+
 /*.normal_quiz-btn button:last-child {
     background: #7ed957;
 }*/
@@ -252,12 +247,20 @@
     transform: translate(-50%, -50%);
     width: 100%;
 }
+
+.btn-color-yellow {
+    background-color: orange!important;
+    border: 2px solid green;
+}
+
+
 /*responsive*/
 @media(max-width: 639px){
 .mobile-portrait {
     display: block!important;
 }
 }
+
 /*responsive end*/ 
 
 /*210412 end*/

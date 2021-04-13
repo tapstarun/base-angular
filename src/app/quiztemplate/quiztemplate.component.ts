@@ -34,6 +34,7 @@ export class QuiztemplateComponent implements OnInit  {
   rightThumbs=false;
   ShowVideo=true;
   storeResultArray=[];
+  hightlightButtonId:number;
 //https://cdn.jwplayer.com/v2/media/gi2pb1VW
   
 
@@ -47,6 +48,8 @@ constructor(private activatedRoute: ActivatedRoute) {
   
 
   ngOnInit(): void {
+
+    console.log(" ngOnInit function calling");
     this.quizData = JSON.parse(localStorage.getItem("quiz"));
     this.quiz_Type = this.quizData.quiz_theme;
     this.questions =  this.quizData.question_ids.map(ques=>{      
@@ -58,27 +61,28 @@ constructor(private activatedRoute: ActivatedRoute) {
 
     if(this.questions.length > 0){
      
-      this.currentQuestion = this.questions[0];
+      this.currentQuestion = this.questions[8];
      
-      this.currentQuestion.currentIndex = 0;
+      this.currentQuestion.currentIndex = 8; 
       this.currentQuestion.totalQuestion = this.questions.length;
     }
     
-    
+   // this.result();
   }
 
 
   videoPlayerInit(data) {
     this.videoData = data;
-
-   // this.videoData.getDefaultMedia().subscriptions.loadedMetadata.subscribe(this.initVdo.bind(this));
-    this.videoData.getDefaultMedia().subscriptions.ended.subscribe(this.onVideoEnded.bind(this));
+    console.log(" videoPlayerInit function calling");
+    //this.videoData.getDefaultMedia().subscriptions.loadedMetadata.subscribe(this.initVdo.bind(this));
     this.videoData.getDefaultMedia().subscriptions.pause.subscribe(this.initVdo.bind(this));
+    this.videoData.getDefaultMedia().subscriptions.ended.subscribe(this.onVideoEnded.bind(this));
   }
 
   
 
-  initVdo() {
+  initVdo(){
+    console.log(" initVdo function calling");
     console.log("video pause");
     this.videoData.play();
   }
@@ -89,7 +93,7 @@ constructor(private activatedRoute: ActivatedRoute) {
    */
   quizTemplate(quiz:string){
     this.showFirstPage=false;
-
+   
     switch (quiz) {
       case 'theme_swinger':
          this.showSwing=true;
@@ -175,17 +179,21 @@ constructor(private activatedRoute: ActivatedRoute) {
     /****
    * Video control from here
    */
-  toggleVideo(event:any){
+  // toggleVideo(event:any){
   
-    if(!this.videoPlayed){
-      this.videoPlayed=true;
-      this.videoPlayer.nativeElement?.play();
-    }    
+  //   if(!this.videoPlayed){
+  //     this.videoPlayed=true;
+  //     this.videoPlayer.nativeElement?.play();
+  //   }    
 
-  }
+  // }
 
   onVideoEnded(){
+    console.log(" onVideoEnded function calling");
+    console.log(this.currentQuestion);
+    //this.videoData.getDefaultMedia().currentTime = 0;
     this.ShowVideo=false;
+    this.currentQuestion.url='';
     console.log("video end ");
     //this.videoData.pause();
     console.log(this.videoData);
@@ -195,26 +203,39 @@ constructor(private activatedRoute: ActivatedRoute) {
   }
 
   nextQuestion(index:number){
+    console.log(" nextQuestion function calling");
     this.showThumbs=false;
     console.log(index); 
     
     this.react_time =this.timer; // Because everytime counter run so it shourld be same as timer
 
     this.questionDisplay=true;
-    console.log("questionDisplay "+this.questionDisplay);
+    
     let currentIndexValue=index + 1;  // increase the value everytime
-
+    console.log("currentIndexValue "+currentIndexValue);
+    console.log("this.questions.length "+this.questions.length);
     if(currentIndexValue < this.questions.length){
      
-      this.currentQuestion = this.questions[currentIndexValue];
+      this.currentQuestion = this.questions[currentIndexValue];    
       this.currentQuestion.currentIndex = currentIndexValue;
-      this.currentQuestion.totalQuestion = this.questions.length;     
+      this.currentQuestion.totalQuestion = this.questions.length;       
+    }else{
+      console.log('Go to Result page ');
+      //this.currentQuestion = {};
+      this.result();
     }
-    this.ShowVideo=true;
-  }
-
-  result(){
     
+
+    this.ShowVideo=true;
+    this.hightlightButtonId=0; // dont show any button highlighted
+  }
+ 
+  result(){
+    console.log(" result function calling");
+    this.showFirstPage=false;
+    this.showSwing=false;
+    this.showNormalQuiz=false;
+    this.showSingleLineQuiz=false;
     this.resultPage=true;
   }
 
@@ -276,6 +297,7 @@ constructor(private activatedRoute: ActivatedRoute) {
    *normalQuizAnswer option selected
    */
    normalQuizAnswer(userAns:number){
+    console.log(" normalQuizAnswer function calling");
       this.accuracy=false;
       console.log(this.timeOutRunining);
       clearTimeout(this.timeOutRunining);
@@ -292,6 +314,7 @@ constructor(private activatedRoute: ActivatedRoute) {
 
 
    showThumb(){
+    console.log(" showThumb function calling");
     if(this.accuracy){
       this.rightThumbs=true;
     }else{
@@ -301,6 +324,8 @@ constructor(private activatedRoute: ActivatedRoute) {
    }
 
    storeDataInStats(storeData:any){
+    console.log(" storeDataInStats function calling");
+    this.hightlightButtonId=this.currentQuestion.correct_answer;
 
     // showThumbsup and down
        this.showThumb();
@@ -317,7 +342,7 @@ constructor(private activatedRoute: ActivatedRoute) {
       'action':'statistic_data'
      };
     
-
+     
      let userAnswered={
       'userAns':this.getLabelFromQuestion(storeData.user_answer),
       'correctAns':this.getLabelFromQuestion(this.currentQuestion.correct_answer),
