@@ -24,6 +24,7 @@ import { QuiztemplateComponent } from './quiztemplate/quiztemplate.component';
 import { QuestionComponent } from './quiztemplate/questions/questions.component';  
 import { ResultComponent } from './quiztemplate/result/result.component';  
 import { PitchComponent } from './quiztemplate/result/pitch/pitch.component';
+import { VideosComponent } from './quiztemplate/videos/videos.component';
 
 
 
@@ -36,7 +37,8 @@ import { PitchComponent } from './quiztemplate/result/pitch/pitch.component';
     QuiztemplateComponent,
     QuestionComponent,
     ResultComponent,
-    PitchComponent
+    PitchComponent,
+    VideosComponent
     
   ],
   imports: [

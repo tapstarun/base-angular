@@ -1,5 +1,6 @@
 import { Component, Input, OnInit,Inject } from "@angular/core";
 import { MatDialog } from '@angular/material/dialog';
+import { QuizService } from "src/app/services/quiz.service";
 import { PitchComponent } from './pitch/pitch.component';
 
 
@@ -11,10 +12,16 @@ import { PitchComponent } from './pitch/pitch.component';
 export class ResultComponent implements OnInit{
     @Input() resultPageData:any;
     showBreakDown=false;
+    consucativeData="";
+    constructor(public dialog: MatDialog,
+        private quizService:QuizService
+        ) {}
 
-    constructor(public dialog: MatDialog) {}
-
-    ngOnInit(){}
+    ngOnInit(){
+       this.quizService.getConsutiveData().subscribe(res=>{
+            console.log(res);
+        });
+    }
     
     
     /***

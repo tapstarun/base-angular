@@ -35,8 +35,7 @@ export class QuiztemplateComponent implements OnInit  {
   ShowVideo=true;
   storeResultArray=[];
   hightlightButtonId:number;
-  correctThumbIcon='https://appliedvisionbaseball.com/wp-content/uploads/2020/03/newredthump.png';
-  wrongThumbIcon='https://appliedvisionbaseball.com/wp-content/uploads/2020/03/newgreenthump.png';
+  
 //https://cdn.jwplayer.com/v2/media/gi2pb1VW
   
 
@@ -63,33 +62,29 @@ constructor(private activatedRoute: ActivatedRoute) {
 
     if(this.questions.length > 0){
      
-      this.currentQuestion = this.questions[0];
+      this.currentQuestion = this.questions[8];
      
-      this.currentQuestion.currentIndex = 0; 
+      this.currentQuestion.currentIndex = 8 ; 
       this.currentQuestion.totalQuestion = this.questions.length;
     }
-    
+   
    // this.result();
   }
 
 
-  videoPlayerInit(data) {
-    this.videoData = data;
-    console.log(" videoPlayerInit function calling");
-    //this.videoData.getDefaultMedia().subscriptions.loadedMetadata.subscribe(this.initVdo.bind(this));
-    this.videoData.getDefaultMedia().subscriptions.pause.subscribe(this.initVdo.bind(this));
-    this.videoData.getDefaultMedia().subscriptions.ended.subscribe(this.onVideoEnded.bind(this));
+  videoEnded(events){
+
+    console.log(" onVideoEnded function calling");    
+    //events.getDefaultMedia().currentTime = 0;
+
+    this.ShowVideo=false;
+    this.currentQuestion.url='';
+    
+    console.log(events);
+    this.questionDisplay=false;
+    
+    this.moveToNextAsPerTemplate(); 
   }
-
-  
-
-  initVdo(){
-    console.log(" initVdo function calling");
-    console.log("video pause");
-    this.videoData.play();
-  }
-
-
   /***
    * Call Quiz Template 
    */
