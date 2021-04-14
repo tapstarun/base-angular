@@ -151,11 +151,16 @@ constructor(private activatedRoute: ActivatedRoute) {
               break;
           }
 
+
         }else{
+          let setTimeoutTimer=1000;
+          if(this.quiz_Type=='theme_swinger'){
+            setTimeoutTimer=500;
+          }
           this.timeOutRunining=setTimeout(()=>{             
               this.getReactionTime();
               console.log('else timeout');
-            }, 1000);
+            }, setTimeoutTimer);
         }
         console.log('timer finished');
     }
@@ -171,10 +176,16 @@ constructor(private activatedRoute: ActivatedRoute) {
      * 
      * Call a function for reaction time
      */
+    
+     let setTimeoutTimer=1000;
+     if(this.quiz_Type=='theme_swinger'){
+       setTimeoutTimer=500;
+     }
+
      this.timeOutRunining=setTimeout(()=>{             
       this.getReactionTime();
       console.log('first timeout');
-    }, 1000);   
+    }, setTimeoutTimer);   
 
   }
 
@@ -348,26 +359,60 @@ constructor(private activatedRoute: ActivatedRoute) {
      };
     
      
-     let userAnswered={
-      'userAns':this.getLabelFromQuestion(storeData.user_answer),
-      'correctAns':this.getLabelFromQuestion(this.currentQuestion.correct_answer),
-      'ans':this.accuracy
-     };
-     this.storeResultArray.push(userAnswered);
-
-     //storeResultArray[]=
-     console.log(data);
-     console.log('user option sected');
-     console.log(this.storeResultArray);
+    this.storeDataForResultTemplateWise(storeData.user_answer); // Template wise store data 
+     
+     
      // settimeout for 1 sec so user can see thumbs up or down
      setTimeout(()=>this.nextQuestion(this.currentQuestion.currentIndex),1000);
+
    }
 
+
+   storeDataForResultTemplateWise(user_answer){
+    let userAnswered={};
+    
+    switch (this.quiz_Type) {
+
+      case 'theme_swinger':
+        
+        let currCorrectQues= this.getLabelFromQuestion(this.currentQuestion.correct_answer).split('-');
+        
+        let userAns:string;
+        if(currCorrectQues[1]=="No"){
+          userAns=this.accuracy?'Didnt Swing':'YOU SWUNG';
+        }else{
+          userAns=this.accuracy?'YOU SWUNG':'Didnt Swing';
+        }
+
+        userAnswered={
+          'userAns':userAns,
+          'correctAns':this.getLabelFromQuestion(this.currentQuestion.correct_answer),
+          'ans':this.accuracy
+         };
+
+         
+        break;
+
+      default:
+
+        userAnswered={
+          'userAns':this.getLabelFromQuestion(user_answer),
+          'correctAns':this.getLabelFromQuestion(this.currentQuestion.correct_answer),
+          'ans':this.accuracy
+         };        
+        break;
+    }
+
+    this.storeResultArray.push(userAnswered);
+    console.log(this.storeResultArray);
+    
+   }
 
    /***
     * Get Label of question by id so you can show in pitch by pitch sequese
     */
    getLabelFromQuestion(id:number){
+    
     let correctAnsLabel:string;
     let answners=this.currentQuestion.answers;       
      Object.keys(answners).forEach(key => {          
@@ -377,14 +422,15 @@ constructor(private activatedRoute: ActivatedRoute) {
         Object.keys(ansObj).forEach(k => { 
             if(typeof ansObj == 'object'){ 
              
-              if(ansObj[k]['id']==id){                
-                console.log(ansObj[k]['answer']);
-                correctAnsLabel=ansObj['label']+'-'+ansObj[k]['answer'];
+              if(ansObj[k]['id']==id){              
+                correctAnsLabel=ansObj['label']+'-'+ansObj[k]['answer'];                 
               }
             }
           })        
       }
     });
+
+    
     return correctAnsLabel;   
    }
   
