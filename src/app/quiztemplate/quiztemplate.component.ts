@@ -1,11 +1,12 @@
-import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
+import { Component, OnInit,ViewChild,ElementRef,ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
   selector: 'app-quiztemplate',
   templateUrl: './quiztemplate.component.html',
-  styleUrls: ['./quiztemplate.component.css']
+  styleUrls: ['./quiztemplate.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class QuiztemplateComponent implements OnInit  {
   

@@ -1,20 +1,14 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-
-
-import { QuizComponent } from './quiz/quiz.component';
-import { QuiztemplateComponent } from './quiztemplate/quiztemplate.component';
-import { ResultComponent } from './quiztemplate/result/result.component';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path:'quiztemplate',component:QuiztemplateComponent},
-  {path:'result',component:ResultComponent},
-  {path:'quiz',component:QuizComponent},
-  {path:'',redirectTo:'quiz', pathMatch: 'full'}
+  { path:'quiztemplate',loadChildren:()=>import('./quiztemplate/quiztemplate.module').then(m=>m.QuiztemplateModule)},
+  {path:'quiz',loadChildren:()=>import('./quiz/quiz.module').then(m=>m.QuizModule)},
+  {path:'',redirectTo:'quiz', pathMatch: 'full'},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{preloadingStrategy:PreloadAllModules})],
   exports: [RouterModule]
 })
 

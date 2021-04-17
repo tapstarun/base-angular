@@ -10,7 +10,6 @@ export class VideosComponent implements OnInit {
 @Input() videoData:any;
 @Input() howThumbs:boolean;
 @Input() rightThumbs:boolean;
-@Input() ShowVideo:boolean;
 @Input() url:string;
 @Input() showThumbs:boolean;
 @Output() videoEnded= new EventEmitter<string>();
