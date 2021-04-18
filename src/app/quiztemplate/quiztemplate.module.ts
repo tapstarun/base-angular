@@ -15,7 +15,7 @@ import { QuiztemplateComponent } from "./quiztemplate.component";
 import { PitchComponent } from "./result/pitch/pitch.component";
 import { ResultComponent } from "./result/result.component";
 import { VideosComponent } from "./videos/videos.component";
-import { QuiztemplateRoutingModule } from "./quiztemplate-routing.Module";
+import { QuiztemplateRoutingModule } from "./quiztemplate-routing.module";
 
 
 @NgModule({

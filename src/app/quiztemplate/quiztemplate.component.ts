@@ -1,6 +1,6 @@
 import { Component, OnInit,ViewChild,ElementRef,ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import { QuizTemplateModel } from './quiztemplate-model';
 
 @Component({
   selector: 'app-quiztemplate',
@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class QuiztemplateComponent implements OnInit  {
   
   @ViewChild('videoPlayer') videoPlayer: ElementRef;
-  
+ // quiz:QuizTemplateModel;
   videoPlayed=false;
   quizData:any;
   showFirstPage=true;
@@ -22,14 +22,15 @@ export class QuiztemplateComponent implements OnInit  {
   questions:any[];
   currentQuestion:any;
   url:string;
-  quiz_Type:string;
+  quizType:string;
   accuracy:boolean;
   timer=3;
-  react_time=3;
+  reactTime=3;
   timeOutRunining:any;
   questionDisplay=true;
   BASE_IMAGE_URL = 'https://content.jwplatform.com/v2/media/';
   BASE_VIDEO_URL = 'https://cdn.jwplayer.com/videos/';
+  portateModeImage='/assets/baseball-icons/new-rotate-150x150.png';
   videoData:any;
   showThumbs=false;
   rightThumbs=false;
@@ -53,7 +54,7 @@ constructor(private activatedRoute: ActivatedRoute) {
 
     console.log(" ngOnInit function calling");
     this.quizData = JSON.parse(localStorage.getItem("quiz"));
-    this.quiz_Type = this.quizData.quiz_theme;
+    this.quizType = this.quizData.quiz_theme;
     this.questions =  this.quizData.question_ids.map(ques=>{      
       this.url=this.BASE_VIDEO_URL+ques.url+"-eqAMKrlW.mp4"; // for high quality videos
       return {...ques,url:this.url};
@@ -113,23 +114,23 @@ constructor(private activatedRoute: ActivatedRoute) {
 
   playQuiz():void{
     
-    this.quizTemplate(this.quiz_Type);
+    this.quizTemplate(this.quizType);
 
   }
   
   getReactionTime(){
         
     if(this.timeOutRunining!=undefined){
-        this.react_time=this.react_time-1;
-         // console.log(this.react_time);
-        if(this.react_time==0){
+        this.reactTime=this.reactTime-1;
+         // console.log(this.reactTime);
+        if(this.reactTime==0){
           clearTimeout(this.timeOutRunining);
           this.accuracy=false; // If timeout then accuracy fail;
           let storeData={       
             'user_answer':0        
           };
           // // Store the data in db
-          switch (this.quiz_Type) {
+          switch (this.quizType) {
 
             case 'theme_swinger':
               this.optionSelect(false);// Pass argu false because none of the person select the value
@@ -150,7 +151,7 @@ constructor(private activatedRoute: ActivatedRoute) {
 
         }else{
           let setTimeoutTimer=1000;
-          if(this.quiz_Type=='theme_swinger'){
+          if(this.quizType=='theme_swinger'){
             setTimeoutTimer=500;
           }
           this.timeOutRunining=setTimeout(()=>{             
@@ -174,7 +175,7 @@ constructor(private activatedRoute: ActivatedRoute) {
      */
     
      let setTimeoutTimer=1000;
-     if(this.quiz_Type=='theme_swinger'){
+     if(this.quizType=='theme_swinger'){
        setTimeoutTimer=500;
      }
 
@@ -215,7 +216,7 @@ constructor(private activatedRoute: ActivatedRoute) {
     this.showThumbs=false;
     console.log(index); 
     
-    this.react_time =this.timer; // Because everytime counter run so it shourld be same as timer
+    this.reactTime =this.timer; // Because everytime counter run so it shourld be same as timer
 
     this.questionDisplay=true;
     
@@ -349,7 +350,7 @@ constructor(private activatedRoute: ActivatedRoute) {
       'correct_ans':this.currentQuestion.correct_answer,
       'user_answer':storeData.user_answer,
       'pitch_type':this.currentQuestion.pitch_type,
-      'react_time':this.react_time,
+      'react_time':this.reactTime,
       'accuracy':this.accuracy,
       'action':'statistic_data'
      };
@@ -367,7 +368,7 @@ constructor(private activatedRoute: ActivatedRoute) {
    storeDataForResultTemplateWise(user_answer){
     let userAnswered={};
     
-    switch (this.quiz_Type) {
+    switch (this.quizType) {
 
       case 'theme_swinger':
         

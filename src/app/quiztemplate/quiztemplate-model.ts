@@ -1,0 +1,27 @@
+export class QuizTemplateModel{
+    quizData:any;
+    timeOutRunining:any;
+    videoData:any;
+    currentQuestion:any;
+    questions:any[];
+    storeResultArray:any[];
+    questionDisplay:boolean;
+    videoPlayed:boolean;
+    showFirstPage:boolean;
+    showThumbs:boolean;
+    rightThumbs:boolean;
+    showSwing:boolean;
+    showNormalQuiz:boolean;
+    showSingleLineQuiz:boolean;
+    accuracy:boolean;
+    resultPage:boolean;
+    ShowVideo:boolean;
+    react_time:number;
+    hightlightButtonId:number;
+    timer:number;
+    BASE_IMAGE_URL:string;
+    BASE_VIDEO_URL:string;
+    portateModeImage:string;
+    url:string;
+    quiz_Type:string;
+}
