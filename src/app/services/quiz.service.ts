@@ -20,7 +20,7 @@ export class QuizService{
         const header={
             'Access-Control-Allow-Origin': '*'
         };
-        return this.httpService.get('/api/wp-admin/admin-ajax.php?action=get_level_data_dev&post_id=3879&user_id=477&level=3',params,header);
+        return this.httpService.get('/api/wp-admin/admin-ajax.php?action=get_level_data_dev&post_id=1258&user_id=477&level=3',params,header);
     }
 
     getConsutiveData(){

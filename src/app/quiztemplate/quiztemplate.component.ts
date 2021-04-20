@@ -6,7 +6,7 @@ import { QuizTemplateModel } from './quiztemplate-model';
   selector: 'app-quiztemplate',
   templateUrl: './quiztemplate.component.html',
   styleUrls: ['./quiztemplate.component.css'],
-  encapsulation: ViewEncapsulation.None
+  //encapsulation: ViewEncapsulation.None
 })
 export class QuiztemplateComponent implements OnInit  {
   
