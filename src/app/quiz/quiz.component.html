@@ -1,11 +1,74 @@
-<div class="container" *ngIf="quizStart">
+<header class="main-header">
+	<div class="container">
+		<div class="main-header_content">
+			<img src="https://appliedvisionbaseball.com/wp-content/uploads/2019/10/Copy-of-APPLIED-VISION.png" srcset="https://appliedvisionbaseball.com/wp-content/uploads/2019/10/Copy-of-APPLIED-VISION.png 1x, https://appliedvisionbaseball.com/wp-content/uploads/2019/10/Copy-of-APPLIED-VISION.png 2x" title="Applied Vision Baseball" alt="Applied Vision Baseball">
+			<span><i class="fas fa-arrow-left"></i>icon</span>
+		</div>
+	</div> 
+</header>
+<!-- banner -->
+<section class="banner-sec">
+	<div class="container">
+		<div class="banner_content text-center">
+			<h2>LHP / 5'11 / 170 LBS</h2>
+			<p>Hides pitches well. Natural tail to four-seam, makes it looks like 2-seam. Occasional change-up. Throws a lot of strikes. Comes right at the hitter. Slider breaks hard. Good from the stretch.</p>
+		</div>
+	</div>
+</section>
+<!-- banner end -->
+
+<!-- hiro-video-sec code-->
+<section class="hiro-video-sec">
+	<div class="container">
+		<div class="hiro-video_content">
+			<!-- row -->
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-6 col-12">
+					<div class="hiro-video_card">
+						<figure>
+							<img src='https://appliedvisionbaseball.com/wp-content/uploads/2020/09/11.png' (click)="startQuiz(0)">
+						</figure>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-6 col-12">
+					<div class="hiro-video_card">
+						<figure>
+							<img src='https://appliedvisionbaseball.com/wp-content/uploads/2020/09/11.png' (click)="startQuiz(0)">
+						</figure>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-6 col-12">
+					<div class="hiro-video_card">
+						<figure>
+							<img src='https://appliedvisionbaseball.com/wp-content/uploads/2020/09/11.png' (click)="startQuiz(0)">
+						</figure>
+					</div>
+				</div>
+			</div>
+			<!-- row end -->
+		</div>
+	</div>
+</section>
+<!-- hiro-video-sec end code-->
+
+<!-- fotter section code -->
+<footer class="main-footer">
+	<div class="container">
+		<div class="main-footer_content text-center">
+			<img src="https://appliedvisionbaseball.com/wp-content/uploads/2019/10/Copy-of-APPLIED-VISION-1.png" srcset="https://appliedvisionbaseball.com/wp-content/uploads/2019/10/Copy-of-APPLIED-VISION-1.png 1x, https://appliedvisionbaseball.com/wp-content/uploads/2019/10/Copy-of-APPLIED-VISION-1.png 2x" title="Applied Vision Baseball" alt="Applied Vision Baseball">	
+			<span>
+				<p>©2010-2020 Art of Baseball DBA Applied Vision Baseball. All Rights Reserved. Site Map. Privacy Policy</p>
+			</span>
+		</div>
+	</div>
+</footer>
+<!-- fotter section end code -->
+
+<!-- <div class="container" *ngIf="quizStart">
     <div class="row">
         <pre>{{sliderData.content}}</pre>
         
         <img src='https://appliedvisionbaseball.com/wp-content/uploads/2020/09/11.png' (click)="startQuiz(0)">
         
-
     </div>
-</div>
-
-
+</div> -->

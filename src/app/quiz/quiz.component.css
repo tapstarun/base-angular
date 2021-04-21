@@ -1,0 +1,84 @@
+/*header css*/
+.main-header {
+    background-color: #3e8ae6;
+}
+.main-header_content img {
+    height: 75px;
+    width: 100px;
+    object-fit: scale-down;
+}
+.main-header_content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/*header end css*/
+
+/*banner-sec css*/
+.banner-sec{
+	position: relative;
+	background-image: url('https://appliedvisionbaseball.com/wp-content/uploads/2020/08/24-1.png');
+	background-position: center;
+	background-size: cover;
+}
+.banner-sec:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+    background: rgb(0 0 0 / 73%);
+    z-index: 9;
+}
+.banner_content {
+    width: 70%;
+    margin: 0 auto;
+    color: #fff;
+    padding: 170px 0;
+    z-index: 99;
+    position: relative;
+}
+.banner_content.text-center h2 {
+    font-size: 18px;
+    font-weight: 600;
+}
+.banner_content p {
+    font-size: 17px;
+    line-height: 40px;
+    font-weight: 500;
+}
+/*banne-sec end css*/
+
+/*hiro-video section css*/
+.hiro-video-sec {
+    background-color: #1e1e1e;
+    padding: 100px 0;
+}
+.hiro-video_card img {
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;	
+}
+/*hiro-video section end css*/
+/*footer*/
+.main-footer {
+    background: #3e8ae6;
+}
+.main-footer_content {
+    padding: 70px 0;
+}
+.main-footer_content img {
+    margin-bottom: 30px;
+}
+.main-footer_content img {
+    width: 100%;
+    max-width: 20%;
+    object-fit: scale-down;
+}
+.main-footer_content span p {
+    font-size: 13px;
+    line-height: 13px;
+    color: #000;
+}
+/*footer end*/
