@@ -1,13 +1,14 @@
 <div class="container">
-    <form action="" method="post" [formGroup]="form">
-        <div class="form-group">
-            <input type="email" class="form-control" [formControlName]="email">
+    <h1>Login/Signup</h1>
+    <form  method="post" [formGroup]="authForm" (ngSubmit)="submitForm()">
+        <div class="form-group col-md-6">
+            <input type="email" class="form-control" formControlName="email" placeholder="Email">
         </div>
-        <div class="form-group">
-            <input type="password" class="form-control" [formControlName]="password">
+        <div class="form-group col-md-6">
+            <input type="password" class="form-control" formControlName="password" placeholder="Password">
         </div>
-        <div class="form-group">
-            <button class="btn btn-primary">Login</button> | <button class="btn btn-primary">Signup</button>
+        <div class="form-group col-md-6">
+            <button class="btn btn-primary" type="submit">{{ isLogin? 'Login': 'Signup'}}</button> | <button class="btn btn-primary" (click)="switchAuth()">Switch To {{ isLogin ? 'Signup':  'Login'}}</button>
         </div>
 
     </form>

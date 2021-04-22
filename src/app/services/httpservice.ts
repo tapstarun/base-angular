@@ -8,7 +8,7 @@ export class HttpService{
 constructor(private http:HttpClient){}
 
 // Method for get request
-get(url:string,getParams:any|null,header:any){
+getData(url:string,getParams:any|null,header:any){
     let params = new HttpParams();
     const headers = new HttpHeaders();
    
@@ -31,7 +31,7 @@ get(url:string,getParams:any|null,header:any){
 }
 
 //Method for Post Request
-    post(url:string,getParams:any|null,header:any){
+    postData(url:string,getParams:any|null,header:any){
         let headers={};
         if(header){
             headers=header;
