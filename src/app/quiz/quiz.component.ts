@@ -13,12 +13,13 @@ export class QuizComponent implements OnInit {
   loader=false;
   sliderData={};
   sliderItem={};
-  
+  quizDataReceived:boolean;
 
 
   constructor(private quizService:QuizService,private router: Router,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.quizDataReceived=false;
     this.getQuizSlider();
   }
   
@@ -28,6 +29,7 @@ export class QuizComponent implements OnInit {
   getQuizSlider(): any{
     this.loader=true;
     this.quizService.getQuizData().subscribe(sliderDataAPi=>{
+      this.quizDataReceived=true;
       this.sliderData=sliderDataAPi;
       this.sliderItem=sliderDataAPi['image'];
        console.log(this.sliderData);   

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,8 +16,9 @@ import { environment } from '../environments/environment';
 import { AuthComponent } from './auth/auth.component';
 import { AuthModule } from './auth/auth.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthIntercetorService } from './auth/auth-intercetor.service';
 
-
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,12 @@ import { ReactiveFormsModule } from '@angular/forms';
       registrationStrategy: 'registerWhenStable:30000'
     })
   ],
-  providers: [],
+  providers: [
+    { provide:HTTP_INTERCEPTORS,
+      useClass:AuthIntercetorService,
+      multi:true,
+    }
+  ],
   bootstrap: [AppComponent]
   
 })

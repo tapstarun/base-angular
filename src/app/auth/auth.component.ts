@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, NgForm } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -9,9 +9,11 @@ import { AuthService } from './auth.service';
 })
 export class AuthComponent implements OnInit {
   isLogin=true;
+  error:string;
+  
   authForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl('jvinod0302@gmail.com ',[Validators.email,Validators.required]),
+    password: new FormControl('Informatics@123',Validators.required),
   });
 
 
@@ -23,11 +25,25 @@ export class AuthComponent implements OnInit {
     
   }
 
+   // convenience getter for easy access to form fields
+   get authFormControls() { return this.authForm.controls; }
+
   switchAuth(){
     this.isLogin=!this.isLogin;
   }
 
   submitForm(){
-    this.authService.signupForm(this.authForm.value);
+    
+    if(!this.authForm.valid){
+    return ;
+    }
+      console.log(this.authForm);
+      this.authService.login(this.authForm.value).subscribe(res=>{
+      console.log(res);
+       },errorMessage=>{
+         this.error=errorMessage;
+         console.log({errorMessage});
+       });
+   
   }
 }
