@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -12,12 +13,14 @@ export class AuthComponent implements OnInit {
   error:string;
   
   authForm = new FormGroup({
-    email: new FormControl('jvinod0302@gmail.com ',[Validators.email,Validators.required]),
-    password: new FormControl('Informatics@123',Validators.required),
+    email: new FormControl('jvinod0302@gmail.com ',[Validators.email]),
+    password: new FormControl('Informatics@123'),
   });
 
 
-  constructor(private authService:AuthService) {
+  constructor(
+    private authService:AuthService,
+    private router:Router) {
     this.isLogin=true;
    }
 
@@ -37,13 +40,17 @@ export class AuthComponent implements OnInit {
     if(!this.authForm.valid){
     return ;
     }
-      console.log(this.authForm);
-      this.authService.login(this.authForm.value).subscribe(res=>{
-      console.log(res);
-       },errorMessage=>{
-         this.error=errorMessage;
-         console.log({errorMessage});
-       });
+    
+    this.authService.login(this.authForm.value).subscribe(res=>{
+      
+      if(res['data'].status){
+        this.router.navigate(['/quiz']);
+      }
+
+      },errorMessage=>{
+        this.error=errorMessage;
+        console.log({errorMessage});
+      });
    
   }
 }
