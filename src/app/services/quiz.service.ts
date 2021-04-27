@@ -29,4 +29,8 @@ export class QuizService{
         return this.httpService.postData('api/',params,header);
     
     }
+
+    storeQuizData(params){        
+         return this.httpService.postData('api/',params,[]);
+    }
 }

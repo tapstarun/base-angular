@@ -12,14 +12,15 @@ import { PitchComponent } from './pitch/pitch.component';
 export class ResultComponent implements OnInit{
     @Input() resultPageData:any;
     showBreakDown=false;
+    consecutiveDataFromApi:any;
     consucativeData="";
     constructor(public dialog: MatDialog,
         private quizService:QuizService
         ) {}
 
     ngOnInit(){
-       this.quizService.getConsutiveData().subscribe(res=>{
-            console.log(res);
+       this.quizService.getConsutiveData().subscribe((res:{status:boolean,data:any})=>{
+           this.consecutiveDataFromApi=res.data;
         });
     }
     

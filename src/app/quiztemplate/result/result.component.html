@@ -12,19 +12,19 @@
                 <button type="button" (click)="refresh()"><i class="fas fa-redo-alt"></i>Repeat Pitch Sequence</button>
                 <button type="button">Choose New Drill</button>
             </div>
-            <div class="selection-main">
+            <div class="selection-main" *ngIf="consecutiveDataFromApi">
                 <div class="selection_left">
                     <div class="selection_left-content">
-                        <p>3</p>
+                        <p>{{consecutiveDataFromApi.counter}}</p>
                         <p class="text-center">Day <br> Streak!</p>
                     </div>
                 </div>
                 <div class="selection_right">
                     <div class="selection_right-content">
-                        <h2>CONGRATS! YOU HAVE A 3 DAY CONSECTUVE STREAK!</h2>
+                        <h2>CONGRATS! YOU HAVE A  {{consecutiveDataFromApi.counter}} DAY CONSECTUVE STREAK!</h2>
                         <ul class="selection-list">
                             <li>
-                                <div class="selection_card">
+                                <div class="selection_card" [ngClass]="consecutiveDataFromApi.tenday?'selection_circle_fill':''">
                                     <div class="selection_circle">
                                         10
                                     </div>
@@ -34,32 +34,32 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="selection_card">
+                                <div class="selection_card" [ngClass]="consecutiveDataFromApi.twenday?'selection_circle_fill':''">
                                     <div class="selection_circle">
-                                        10
+                                        20
                                     </div>
                                     <div class="selection_card-content">
-                                        <p class="text-center">10 Days <br> milestone </p>
+                                        <p class="text-center">20 Days <br> milestone </p>
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="selection_card">
-                                    <div class="selection_circle">
-                                        10
+                                    <div class="selection_circle" [ngClass]="consecutiveDataFromApi.fiftyday?'selection_circle_fill':''">
+                                        50
                                     </div>
                                     <div class="selection_card-content">
-                                        <p class="text-center">10 Days <br> milestone </p>
+                                        <p class="text-center">50 Days <br> milestone </p>
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="selection_card">
-                                    <div class="selection_circle">
-                                        10
+                                    <div class="selection_circle" [ngClass]="consecutiveDataFromApi.hundday?'selection_circle_fill':''">
+                                        100
                                     </div>
                                     <div class="selection_card-content">
-                                        <p class="text-center">10 Days <br> milestone </p>
+                                        <p class="text-center">100 Days <br> milestone </p>
                                     </div>
                                 </div>
                             </li>

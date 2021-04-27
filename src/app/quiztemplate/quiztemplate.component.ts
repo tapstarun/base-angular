@@ -1,5 +1,6 @@
 import { Component, OnInit,ViewChild,ElementRef,ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { QuizService } from '../services/quiz.service';
 import { QuizTemplateModel } from './quiztemplate-model';
 
 @Component({
@@ -37,11 +38,13 @@ export class QuiztemplateComponent implements OnInit  {
   ShowVideo=true;
   storeResultArray=[];
   hightlightButtonId:number;
+  correctQuestionSound="../../../assets/audio/correct.mp3";
+  incorrectQuestionSound="../../../assets/audio/incorrect.mp3";
   
 //https://cdn.jwplayer.com/v2/media/gi2pb1VW
   
 
-constructor(private activatedRoute: ActivatedRoute) { 
+constructor(private activatedRoute: ActivatedRoute,private quizService:QuizService) { 
     this.quizData = {} as any;
     this.currentQuestion = {} as any;
     this.questions = new Array<any>();
@@ -51,7 +54,7 @@ constructor(private activatedRoute: ActivatedRoute) {
   
 
   ngOnInit(): void {
-
+    
     console.log(" ngOnInit function calling");
     this.quizData = JSON.parse(localStorage.getItem("quiz"));
     this.quizType = this.quizData.quiz_theme;
@@ -64,9 +67,9 @@ constructor(private activatedRoute: ActivatedRoute) {
 
     if(this.questions.length > 0){
      
-      this.currentQuestion = this.questions[8];
+      this.currentQuestion = this.questions[9];
      
-      this.currentQuestion.currentIndex = 8 ; 
+      this.currentQuestion.currentIndex = 9 ; 
       this.currentQuestion.totalQuestion = this.questions.length;
     }
    
@@ -326,8 +329,10 @@ constructor(private activatedRoute: ActivatedRoute) {
     console.log(" showThumb function calling");
     if(this.accuracy){
       this.rightThumbs=true;
+      this.playAudio(this.correctQuestionSound);
     }else{
         this.rightThumbs=false;
+        this.playAudio(this.incorrectQuestionSound);
     }
      this.showThumbs=true;
    }
@@ -358,7 +363,7 @@ constructor(private activatedRoute: ActivatedRoute) {
      
     this.storeDataForResultTemplateWise(storeData.user_answer); // Template wise store data 
      
-     
+    this.quizService.storeQuizData(data);
      // settimeout for 1 sec so user can see thumbs up or down
      setTimeout(()=>this.nextQuestion(this.currentQuestion.currentIndex),1000);
 
@@ -431,6 +436,12 @@ constructor(private activatedRoute: ActivatedRoute) {
     return correctAnsLabel;   
    }
   
+   playAudio(src:string){
+    let audio = new Audio();
+    audio.src =src; 
+    audio.load();
+    audio.play();
+  }
   
 
 }
