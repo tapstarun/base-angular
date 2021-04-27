@@ -1,11 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule,Routes } from "@angular/router";
+import { AuthGuard } from "../auth/auth.guard";
 
 import { QuizComponent } from "./quiz.component";
 
 const route: Routes =[
-    {path:'',component:QuizComponent}
+    {path:'',component:QuizComponent,canActivate:[AuthGuard]}
 ];
 @NgModule({
     declarations:[QuizComponent],

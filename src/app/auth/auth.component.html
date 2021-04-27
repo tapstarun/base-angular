@@ -1,4 +1,6 @@
 <div class="container">
+    <button (click)="onLogout()">Loggout</button>
+    <hr>
     <h1>Login/Signup</h1>
     <form  method="post" [formGroup]="authForm" (ngSubmit)="submitForm()">
         <div class="form-group col-md-6">

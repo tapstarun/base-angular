@@ -41,16 +41,20 @@ export class AuthComponent implements OnInit {
     return ;
     }
     
-    this.authService.login(this.authForm.value).subscribe(res=>{
+    this.authService.login(this.authForm.value).subscribe((res:any)=>{
       
-      if(res['data'].status){
-        this.router.navigate(['/quiz']);
-      }
+        if(res.status){
+          this.router.navigate(['/quiz']);
+        }
 
       },errorMessage=>{
         this.error=errorMessage;
         console.log({errorMessage});
       });
    
+  }
+
+  onLogout(){
+    this.authService.logout();
   }
 }
