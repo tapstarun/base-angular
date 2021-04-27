@@ -22,17 +22,17 @@ export class AuthService{
         return this.httpService.postData('/api',newData,{Headers:header})
         .pipe(
             catchError(this.handleError),
-            tap(resData=>{
+            tap((resData:any)=>{
                console.log('tap');
                const expireToken=100000;
                 const expirationDate=new Date(new Date().getTime() + expireToken);
 
                const user= new AuthModel(
-                   resData['data'].auth_token,
+                   resData.data.auth_token,
                    expirationDate,
-                   resData['data'].userEmail,
-                   resData['data'].user_id,
-                   resData['data'].user_name
+                   resData.data.userEmail,
+                   resData.data.user_id,
+                   resData.data.user_name
                 );
                 localStorage.setItem('userData',JSON.stringify(user));
                 this.user.next(user);

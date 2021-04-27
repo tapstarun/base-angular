@@ -17,6 +17,7 @@ import { AuthComponent } from './auth/auth.component';
 import { AuthModule } from './auth/auth.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthIntercetorService } from './auth/auth-intercetor.service';
+import { MemberComponent } from './member/member.component';
 
  
 @NgModule({
@@ -24,7 +25,8 @@ import { AuthIntercetorService } from './auth/auth-intercetor.service';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    AuthComponent,     
+    AuthComponent,
+    MemberComponent,     
   ],
   imports: [
     BrowserModule,
