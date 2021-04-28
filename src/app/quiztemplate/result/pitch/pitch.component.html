@@ -1,27 +1,30 @@
-<h1 mat-dialog-title>Your Score</h1>
-<div mat-dialog-content>
-    <div class="col-md-12">
-        <div class="scoreDiv">{{data.correctQuestion}}/{{data.totalQuestion}} </div>
-     </div>
-     <div class="col-xs-6">
-        <ul >
-           <li>
-              <h2>Your Answer</h2>
-           </li>
-           
-           <li [ngClass]="d.ans?'greenCheck':'redCheck'" *ngFor="let d of data">
-              {{d.userAns=='undefined'?'Not answered!':d.userAns}}
-           </li>           
-        </ul>
-     </div>
-     <div class="col-xs-6">
-        <ul>
-           <li>
-              <h2>Correct Answer</h2>
-           </li>
-           <li *ngFor="let d of data">
-            {{d.correctAns}}
-         </li> 
-        </ul>
-     </div>
+<div class="modal-sec">
+  <div class="modal-header">
+   <h1 mat-dialog-title class="modal-title w-100 text-center">Your Score</h1>
+   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+  <div mat-dialog-content class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+          <div class="scoreDiv text-center">{{data.correctQuestion}}/{{data.totalQuestion}} </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <ul >
+            <li><h2>Your Answer</h2></li>
+            <li [ngClass]="d.ans?'greenCheck':'redCheck'" *ngFor="let d of data">{{d.userAns=='undefined'?'Not answered!':d.userAns}}</li>               
+          </ul>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <ul>
+            <li><h2>Correct Answer</h2></li>
+            <li *ngFor="let d of data">{{d.correctAns}}</li>            
+          </ul>
+       </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  </div>
 </div>

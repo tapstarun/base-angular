@@ -22,7 +22,7 @@
         <div *ngIf="showSwing">
            
                 <div class="row row_sec"> 
-                    <div class="col-md-7 col-sm-7 col-6 col_video" [ngClass]="!ShowVideo?'left-side-hide':''"> 
+                    <div class="col-md-7 col-sm-7 col-6 col_video showPlayButton" [ngClass]="!ShowVideo?'left-side-hide':''"> 
                         <app-videos  [url]="currentQuestion.url" [showThumbs]="showThumbs" [rightThumbs]="rightThumbs" (videoEnded)="videoEnded($event)"></app-videos>
                     </div>
                     <div class="col-md-5 col-sm-5 col-6 col_video"> 

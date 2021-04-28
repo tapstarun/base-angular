@@ -60,15 +60,11 @@
 .col_video {
     height: 100vh;
 }
-.video video {
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
-    outline: none;
+.video_card p:first-child {
+    font-size: 22px;
+    line-height: 22px;
 }
-.video {
-    height: 100%;
-}
+
 .video_top_content {
     display: flex;
     justify-content: space-between;
@@ -76,17 +72,7 @@
     border-bottom: 1px solid #717171;
     margin-top: 17px;
 }
-.video_btn {
-    color: #fff;
-    background: #3e8ae6;
-    font-size: 16px;
-    padding: 10px 20px;
-    line-height: 20px;
-}
-.video_card p:first-child {
-    font-size: 22px;
-    line-height: 22px;
-}
+
 .video_box {
     position: relative;
     /* height: 100%; */
@@ -117,6 +103,7 @@
     align-items: center;
     text-decoration: none;
 }
+
 /* normal_quiz-btn */
 .normal_quiz-btn button {
     font-size: 15px;
@@ -195,7 +182,7 @@
 }*/
 /*left-side video hide css*/
 
-.left-side-hide:after {
+.left-side-hide:after, {
     position: absolute;
     content: "";
     top: 0;
@@ -203,6 +190,20 @@
     height: 100%;
     width: 100%;
     background: #000;
+}
+.showPlayButton:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    background-image: url('src/assets/icons/play.jpg');
+    background-repeat: no-repeat;
+    background-size: 200px;
+    background-position: center;
+    z-index: 99;
 }
 /*left-side video hide end css*/
 .thumbs-sec {
