@@ -1,0 +1,127 @@
+/*banner css*/
+.banner_content figure {
+    width: 100%;
+    height: 930px;
+    margin: 0;
+}
+.banner_content figure iframe {
+    width: 100%;
+    height: 100%;
+}
+/*banner end css*/
+
+/*main tab section css*/
+.bg-color33 {
+	background-color: #333333;
+}
+.main-tab-sec {
+    background: #333333;
+    color: #fff;
+    padding-top: 100px;
+}
+.main-tab_content h2{
+	font-size: 15px;
+    font-weight: 500;
+}
+.customOptions img{
+	width: 100%;
+	height: 210px;
+	object-fit: cover;
+}
+/*main tab section end css*/
+
+/*YOUR USER STATS CSS*/
+.hr-bottom {
+	background-color: #555;
+}
+.your-user-sec.bg-color33 {
+    padding: 100px 0;
+}
+.your-user-sec h2 {
+    color: #fff;
+}
+.your-user_card {
+    background: #525252;
+    border-radius: 10px;
+    text-align: center;
+    padding: 30px 20px;
+    margin-bottom: 30px;
+    color: #fff;
+}
+.your-user_card a {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: 0 0!important;
+    height: 170px;
+    width: 170px;
+    border: 5px solid #266cbf;
+    border-radius: 50%;
+    margin: 0 auto;
+    color: #fff;
+}
+.your-user_card p {
+    font-size: 25px!important;
+    color: #fff;
+    font-weight: 300;
+    margin: 0;
+    margin-top: 10px;
+    word-break: break-word;
+    line-height: 30px;
+}
+/*YOUR USER STATS END CSS*/
+
+/*CURRENT STREAK CSS*/
+li{
+	list-style: none;
+}
+.current-streak_content ul {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
+.current-streak_content ul li {
+    width: 18.5%;
+    background: #525252;
+    border-radius: 10px;
+    text-align: center;
+    padding: 30px 20px;
+    margin-bottom: 30px;
+}
+.current-streak_content ul li figure {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin:0 auto;
+}
+.current-streak_content ul li figure img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.current-streak_content ul li p {
+    font-size: 24px!important;
+    color: #fff;
+    font-weight: 400;
+    margin: 0;
+    margin-top: 10px;
+    word-break: break-word;
+    line-height: 30px;
+}
+.current-streak_content .bodyforsessionCompleted-data{
+	margin-top: 20px;
+    font-weight: 300;
+}
+/*CURRENT STREAK END CSS*/
+
+/*MOST SESSIONS COMPLETED CSS*/
+.margin-div {
+    margin: 27px 0;
+}
+/*MOST SESSIONS COMPLETED END CSS*/

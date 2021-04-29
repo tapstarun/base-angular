@@ -1,0 +1,21 @@
+/*footer*/
+.main-footer {
+    background: #3e8ae6;
+}
+.main-footer_content {
+    padding: 70px 0;
+}
+.main-footer_content img {
+    margin-bottom: 30px;
+}
+.main-footer_content img {
+    width: 100%;
+    max-width: 20%;
+    object-fit: scale-down;
+}
+.main-footer_content span p {
+    font-size: 13px;
+    line-height: 13px;
+    color: #000;
+}
+/*footer end*/

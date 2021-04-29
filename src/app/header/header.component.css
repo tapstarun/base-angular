@@ -1,0 +1,25 @@
+.main-header {
+    background: #3e8ae6;
+    padding: 10px 0;
+}
+.main-header .navbar-brand img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: scale-down;
+}
+.main-header .navbar-nav li a {
+    color: #fff;
+    font-size: 13px;
+    line-height: 13px;
+    padding: 15px 11px;
+    text-transform: uppercase;
+}
+.main-header .dropdown-menu.show a.dropdown-item {
+    color: #000!important;
+}
+.nav-item .dropdown .dropdown-toggle {
+    color: #fff;
+    font-size: 15px;
+    line-height: 29px;
+}
