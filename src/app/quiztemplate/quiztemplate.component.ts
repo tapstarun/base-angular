@@ -7,7 +7,7 @@ import { QuizTemplateModel } from './quiztemplate-model';
   selector: 'app-quiztemplate',
   templateUrl: './quiztemplate.component.html',
   styleUrls: ['./quiztemplate.component.css'],
-  //encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None
 })
 export class QuiztemplateComponent implements OnInit  {
   
@@ -67,9 +67,9 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
 
     if(this.questions.length > 0){
      
-      this.currentQuestion = this.questions[9];
+      this.currentQuestion = this.questions[0];
      
-      this.currentQuestion.currentIndex = 9 ; 
+      this.currentQuestion.currentIndex = 0 ; 
       this.currentQuestion.totalQuestion = this.questions.length;
     }
    

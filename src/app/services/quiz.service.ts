@@ -9,14 +9,8 @@ export class QuizService{
 
     constructor(private httpService:HttpService){}
 
-    getQuizData=()=>{
-        console.log('quiz serviec call');
-        const params={
-            action:'get_level_data_dev',
-            post_id:3879,//1258/
-            user_id:477,
-            level:3
-        };
+    getQuizData=(params:any)=>{
+       
         const header={
             'Access-Control-Allow-Origin': '*'
         };

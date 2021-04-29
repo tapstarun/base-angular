@@ -1,5 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit, Inject} from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
 
 export interface DialogData {
   ans:boolean,
@@ -15,9 +16,13 @@ export interface DialogData {
 })
 export class PitchComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData,public dialogref: MatDialogRef<PitchComponent>) {}
 
   ngOnInit(): void {
+  }
+
+  closePopup(){
+    this.dialogref.close();
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit,Inject } from "@angular/core";
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { QuizService } from "src/app/services/quiz.service";
 import { PitchComponent } from './pitch/pitch.component';
 
@@ -22,6 +22,8 @@ export class ResultComponent implements OnInit{
        this.quizService.getConsutiveData().subscribe((res:{status:boolean,data:any})=>{
            this.consecutiveDataFromApi=res.data;
         });
+
+        
     }
     
     
@@ -55,4 +57,6 @@ export class ResultComponent implements OnInit{
     refresh(): void {
         window.location.reload();
     }
+
+   
 }
