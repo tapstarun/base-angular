@@ -59,11 +59,11 @@
           
             <div class="row row_sec"> 
                 
-                <div class="col-md-7 col-sm-7 col-6 col_video" [ngClass]="!ShowVideo?'left-side-hide':''"> 
+                <div class="col-md-9 col-sm-9 col-6 col_video" [ngClass]="!ShowVideo?'left-side-hide':''"> 
                     <app-videos  [url]="currentQuestion.url" [showThumbs]="showThumbs" [rightThumbs]="rightThumbs" (videoEnded)="videoEnded($event)"></app-videos>
                 </div>
 
-                <div class="col-md-5 col-sm-5 col-6 col_video " [ngClass]="questionDisplay?'col-add_after':''"> 
+                <div class="col-md-3 col-sm-3 col-6 col_video " [ngClass]="questionDisplay?'col-add_after':''"> 
                     <div class="video_card">
                         <div class="video_top_content">
                         <div>
@@ -89,7 +89,11 @@
                          </div>                     
                         <!-- showNormalQuiz end -->
                         <!-- Timer -->
-
+                        <div class="timeProgressBar">
+                            <p class="text-center">Time</p>
+                            <app-progress-bar [progress]="50"></app-progress-bar>
+                            <p class="text-center">3</p>
+                        </div>
                         <!-- Timer end-->
                     </div>
                     <div class="report-btn">

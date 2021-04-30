@@ -1,7 +1,9 @@
-import { Component, OnInit,ViewChild,ElementRef,ViewEncapsulation } from '@angular/core';
+import { Component, OnInit,ViewChild,ElementRef,ViewEncapsulation, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuizService } from '../services/quiz.service';
 import { QuizTemplateModel } from './quiztemplate-model';
+import {ProgressBarMode} from '@angular/material/progress-bar';
+
 
 @Component({
   selector: 'app-quiztemplate',
@@ -11,6 +13,7 @@ import { QuizTemplateModel } from './quiztemplate-model';
 })
 export class QuiztemplateComponent implements OnInit  {
   
+  value=50;
   @ViewChild('videoPlayer') videoPlayer: ElementRef;
  // quiz:QuizTemplateModel;
   videoPlayed=false;
