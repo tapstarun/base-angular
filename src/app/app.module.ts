@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -40,7 +39,6 @@ import { MemberComponent } from './member/member.component';
     AuthModule,
     ReactiveFormsModule,
     CarouselModule,
-    MatProgressBarModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

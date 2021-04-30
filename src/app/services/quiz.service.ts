@@ -18,7 +18,7 @@ export class QuizService{
     }
 
     getConsutiveData(){
-        const params={action:'userConseDaysStoreApi'};
+        const params={action:'userConseDaysStoreApi',user_id:477};
         const header={};
         return this.httpService.postData('api/',params,header);
     
