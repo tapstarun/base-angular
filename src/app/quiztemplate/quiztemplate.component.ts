@@ -1,8 +1,6 @@
-import { Component, OnInit,ViewChild,ElementRef,ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit,ViewChild,ElementRef,ViewEncapsulation, Input, OnChanges, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuizService } from '../services/quiz.service';
-import { QuizTemplateModel } from './quiztemplate-model';
-import {ProgressBarMode} from '@angular/material/progress-bar';
 
 
 @Component({
@@ -11,11 +9,15 @@ import {ProgressBarMode} from '@angular/material/progress-bar';
   styleUrls: ['./quiztemplate.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class QuiztemplateComponent implements OnInit  {
+export class QuiztemplateComponent implements OnInit,OnDestroy  {
   
-  value=50;
+  
+  
+  
+
   @ViewChild('videoPlayer') videoPlayer: ElementRef;
  // quiz:QuizTemplateModel;
+  showPlayButton=true;
   videoPlayed=false;
   quizData:any;
   showFirstPage=true;
@@ -32,6 +34,7 @@ export class QuiztemplateComponent implements OnInit  {
   reactTime=3;
   timeOutRunining:any;
   questionDisplay=true;
+  swingButtonWork=true;
   BASE_IMAGE_URL = 'https://content.jwplatform.com/v2/media/';
   BASE_VIDEO_URL = 'https://cdn.jwplayer.com/videos/';
   portateModeImage='/assets/baseball-icons/new-rotate-150x150.png';
@@ -43,7 +46,7 @@ export class QuiztemplateComponent implements OnInit  {
   hightlightButtonId:number;
   correctQuestionSound="../../../assets/audio/correct.mp3";
   incorrectQuestionSound="../../../assets/audio/incorrect.mp3";
-  
+  progress=this.reactTime;
 //https://cdn.jwplayer.com/v2/media/gi2pb1VW
   
 
@@ -57,8 +60,7 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
   
 
   ngOnInit(): void {
-    
-    console.log(" ngOnInit function calling");
+   
     this.quizData = JSON.parse(localStorage.getItem("quiz"));
     this.quizType = this.quizData.quiz_theme;
     this.questions =  this.quizData.question_ids.map(ques=>{      
@@ -81,14 +83,11 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
 
 
   videoEnded(events){
-
-    console.log(" onVideoEnded function calling");    
-    //events.getDefaultMedia().currentTime = 0;
-
+ //events.getDefaultMedia().currentTime = 0;
+    console.log('video ended');
     this.ShowVideo=false;
     this.currentQuestion.url='';
     
-    console.log(events);
     this.questionDisplay=false;
     
     this.moveToNextAsPerTemplate(); 
@@ -119,17 +118,21 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
   }
 
   playQuiz():void{
-    
+   
     this.quizTemplate(this.quizType);
 
   }
   
   getReactionTime(){
-        
+     
     if(this.timeOutRunining!=undefined){
         this.reactTime=this.reactTime-1;
-         // console.log(this.reactTime);
+        
+        this.progressBarUpdate();
+      
         if(this.reactTime==0){
+          this.questionDisplay=true;
+          this.swingButtonWork=false;
           clearTimeout(this.timeOutRunining);
           this.accuracy=false; // If timeout then accuracy fail;
           let storeData={       
@@ -162,10 +165,10 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
           }
           this.timeOutRunining=setTimeout(()=>{             
               this.getReactionTime();
-              console.log('else timeout');
+             
             }, setTimeoutTimer);
         }
-        console.log('timer finished');
+       
     }
   }
 
@@ -173,8 +176,7 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
    * 
    * Call function as per the quiz template
    */
-  moveToNextAsPerTemplate():any{
-    console.log(" moveToNextAsPerTemplate function calling");
+  moveToNextAsPerTemplate():any{   
     /***
      * 
      * Call a function for reaction time
@@ -186,32 +188,22 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
      }
 
      this.timeOutRunining=setTimeout(()=>{             
-      this.getReactionTime();
-      console.log('first timeout');
+      console.log('Timer start from here');
+      this.getReactionTime();      
     }, setTimeoutTimer);   
 
   }
 
-    /****
-   * Video control from here
+ 
+  /***
+   * Once Video Ended
    */
-  // toggleVideo(event:any){
-  
-  //   if(!this.videoPlayed){
-  //     this.videoPlayed=true;
-  //     this.videoPlayer.nativeElement?.play();
-  //   }    
-
-  // }
-
   onVideoEnded(){
     console.log(" onVideoEnded function calling");
-    console.log(this.currentQuestion);
+  
     //this.videoData.getDefaultMedia().currentTime = 0;
     this.ShowVideo=false;
-    this.currentQuestion.url='';
-    
-    console.log(this.videoData);
+    this.currentQuestion.url='';   
     this.questionDisplay=false;
     
     this.moveToNextAsPerTemplate(); 
@@ -220,11 +212,12 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
   nextQuestion(index:number){
     console.log(" nextQuestion function calling");
     this.showThumbs=false;
-    console.log(index); 
+    this.playButton(true);  
+    this.swingButtonWork=true;
     
     this.reactTime =this.timer; // Because everytime counter run so it shourld be same as timer
 
-    this.questionDisplay=true;
+    
     
     let currentIndexValue=index + 1;  // increase the value everytime
     
@@ -234,8 +227,7 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
       this.currentQuestion.currentIndex = currentIndexValue;
       this.currentQuestion.totalQuestion = this.questions.length;       
     }else{
-     // console.log('Go to Result page ');
-      //this.currentQuestion = {};
+     
       this.result();
     }
     
@@ -245,7 +237,7 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
   }
  
   result(){
-    console.log(" result function calling");
+   
     this.showFirstPage=false;
     this.showSwing=false;
     this.showNormalQuiz=false;
@@ -260,11 +252,15 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
    * When Swing option selected
    */
   optionSelect(selected:boolean){
-   // clearTimeout(this.timeOutRunining);
+    this.swingButtonWork=false;
+    this.questionDisplay=true;
+   clearTimeout(this.timeOutRunining);
+  
     let correctAnswer:string;
     let userAns:string;
     let answners=this.currentQuestion.answers[0];
-    let checkUser:string;        
+    let checkUser:string;  
+
     Object.keys(answners).forEach(key => {          
       let ansObj=answners[key];  
       if(typeof ansObj == 'object'){             
@@ -277,7 +273,7 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
     
       if(selected){
         // If in case user select the options
-        console.log(correctAnswer,selected);
+        
         this.accuracy = false; // If in case answer incorrect
         if(correctAnswer=='Yes'){         
           this.accuracy = true;
@@ -301,7 +297,7 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
 
       this.storeDataInStats(storeData); // Store the data in db
       
-      console.log(this.accuracy);
+      
   }
 
 
@@ -310,16 +306,16 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
    *normalQuizAnswer option selected
    */
    normalQuizAnswer(userAns:number){
-
-    console.log(" normalQuizAnswer function calling");
+    this.questionDisplay=true;
+   
       this.accuracy=false;
-      console.log(this.timeOutRunining);
+     
       clearTimeout(this.timeOutRunining);
       if(userAns===this.currentQuestion.correct_answer){
         this.accuracy=true;
       }
       
-      console.log("when user click "+this.accuracy);
+     
       let storeData={       
         'user_answer':userAns        
       };
@@ -329,7 +325,7 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
 
 
    showThumb(){
-    console.log(" showThumb function calling");
+    this.questionDisplay=true;
     if(this.accuracy){
       this.rightThumbs=true;
       this.playAudio(this.correctQuestionSound);
@@ -345,7 +341,7 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
     * Store Data in DB 
     */
    storeDataInStats(storeData:any){
-    console.log(" storeDataInStats function calling");
+   
     this.hightlightButtonId=this.currentQuestion.correct_answer;
 
     // showThumbsup and down
@@ -409,7 +405,7 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
     }
 
     this.storeResultArray.push(userAnswered);
-    console.log(this.storeResultArray);
+   
     
    }
 
@@ -447,4 +443,40 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
   }
   
 
+  progressBarUpdate(){
+    //if we don't have progress, set it to 0.
+   
+    if(!this.reactTime) {
+     this.progress = 0;
+     }
+     
+     if(this.reactTime==3) {
+      this.progress = 100;
+      }
+   //if we don't have a total aka no requirement, it's 100%.
+  //  if(this.timer === 0) {
+  //    this.timer = this.progress;
+  //   } else if(!this.timer) {
+  //     this.timer = 100;
+  //   }
+   //if the progress is greater than the total, it's also 100%.
+   if(this.reactTime > this.timer) {
+     this.progress = 100;
+     console.log(this.reactTime);
+     console.log(this.timer);
+    // this.timer = 100;
+   }
+   this.progress = (this.reactTime / this.timer) * 100;
+   console.log(this.progress);
+  }
+
+  playButton(event){
+   
+    this.showPlayButton=event;
+  }
+  
+  
+  ngOnDestroy(){
+    clearTimeout(this.timeOutRunining);
+  }
 }

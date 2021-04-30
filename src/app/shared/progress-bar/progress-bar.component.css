@@ -6,7 +6,7 @@
     width: 0;
  }
  .progress-bar.green {
-    background-color: green;
+    background-color: #3e89e6 ;
  }
  .progress-bar.yellow {
     background-color: yellow;

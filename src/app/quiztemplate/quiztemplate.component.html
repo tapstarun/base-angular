@@ -21,12 +21,13 @@
 
         <div *ngIf="showSwing">
            
-                <div class="row row_sec"> 
-                    <!-- showPlayButton -->
-                    <div class="col-md-7 col-sm-7 col-6 col_video" [ngClass]="!ShowVideo?'left-side-hide':''"> 
-                        <app-videos  [url]="currentQuestion.url" [showThumbs]="showThumbs" [rightThumbs]="rightThumbs" (videoEnded)="videoEnded($event)"></app-videos>
+                <div class="row row_sec "> 
+                  
+                    <div class="col-md-7 col-sm-7 col-6 col_video" [ngClass]="!ShowVideo?'left-side-hide':''" [ngClass]="showPlayButton?'showPlayButton':''"> 
+                        <app-videos  [url]="currentQuestion.url" [showThumbs]="showThumbs" [rightThumbs]="rightThumbs" (videoEnded)="videoEnded($event)" (videoPlay)="playButton($event)"></app-videos>
                     </div>
-                    <div class="col-md-5 col-sm-5 col-6 col_video"> 
+                    
+                    <div class="col-md-5 col-sm-5 col-6 col_video_button"> 
                         <div class="video_card">
                             <div class="video_top_content">
                             <div>
@@ -40,7 +41,8 @@
                         </div>
                         
                         <div class="video_box">
-                            <a href="javascript:void(0);" (click)="optionSelect(1);">SWING!</a>
+                            {{swingButtonWork}}
+                            <a href="javascript:void(0);" (click)="swingButtonWork?optionSelect(1):false" disabled >SWING!</a>
                         </div>
 
                         <div class="report-btn">
@@ -59,11 +61,11 @@
           
             <div class="row row_sec"> 
                 
-                <div class="col-md-9 col-sm-9 col-6 col_video" [ngClass]="!ShowVideo?'left-side-hide':''"> 
-                    <app-videos  [url]="currentQuestion.url" [showThumbs]="showThumbs" [rightThumbs]="rightThumbs" (videoEnded)="videoEnded($event)"></app-videos>
+                <div class="col-md-9 col-sm-9 col-6 col_video" [ngClass]="!ShowVideo?'left-side-hide':''" [ngClass]="showPlayButton?'showPlayButton':''"> 
+                    <app-videos  [url]="currentQuestion.url" [showThumbs]="showThumbs" [rightThumbs]="rightThumbs" (videoEnded)="videoEnded($event)" (videoPlay)="playButton($event)"></app-videos>
                 </div>
 
-                <div class="col-md-3 col-sm-3 col-6 col_video " [ngClass]="questionDisplay?'col-add_after':''"> 
+                <div class="col-md-3 col-sm-3 col-6 col_video_button " [ngClass]="questionDisplay?'col-add_after':''"> 
                     <div class="video_card">
                         <div class="video_top_content">
                         <div>
@@ -91,8 +93,8 @@
                         <!-- Timer -->
                         <div class="timeProgressBar">
                             <p class="text-center">Time</p>
-                            <app-progress-bar [progress]="50"></app-progress-bar>
-                            <p class="text-center">3</p>
+                            <app-progress-bar [progress]="progress" [total]="timer"></app-progress-bar>
+                            <p class="text-center">{{reactTime}}</p>
                         </div>
                         <!-- Timer end-->
                     </div>
@@ -109,11 +111,11 @@
            
         <div class="row row_sec"> 
             
-            <div class="col-md-7 col-sm-7 col_video" [ngClass]="!ShowVideo?'left-side-hide':''"> 
-                <app-videos  [url]="currentQuestion.url" [showThumbs]="showThumbs" [rightThumbs]="rightThumbs" (videoEnded)="videoEnded($event)"></app-videos>
+            <div class="col-md-7 col-sm-7 col_video" [ngClass]="!ShowVideo?'left-side-hide':''" [ngClass]="showPlayButton?'showPlayButton':''"> 
+                <app-videos  [url]="currentQuestion.url" [showThumbs]="showThumbs" [rightThumbs]="rightThumbs" (videoEnded)="videoEnded($event)" (videoPlay)="playButton($event)"></app-videos>
             </div>
 
-            <div class="col-md-5 col_video"> 
+            <div class="col-md-5 col_video_button"> 
                 <div class="video_card">
                     <div class="video_top_content">
                     <div>

@@ -13,6 +13,7 @@ export class VideosComponent implements OnInit {
 @Input() url:string;
 @Input() showThumbs:boolean;
 @Output() videoEnded= new EventEmitter<string>();
+@Output() videoPlay= new EventEmitter<boolean>();
 data:any;
 
 
@@ -26,8 +27,8 @@ wrongThumbIcon='https://appliedvisionbaseball.com/wp-content/uploads/2020/03/new
 
   videoPlayerInit(data) {
     this.videoData = data;
-    console.log(" videoPlayerInit function calling");
-    //this.videoData.getDefaultMedia().subscriptions.loadedMetadata.subscribe(this.initVdo.bind(this));
+     //this.videoData.getDefaultMedia().subscriptions.loadedMetadata.subscribe(this.initVdo.bind(this));
+    this.videoData.getDefaultMedia().subscriptions.play.subscribe(this.playVideo.bind(this));
     this.videoData.getDefaultMedia().subscriptions.pause.subscribe(this.initVdo.bind(this));
     this.videoData.getDefaultMedia().subscriptions.ended.subscribe(this.onVideoEnded.bind(this));
   }
@@ -35,9 +36,10 @@ wrongThumbIcon='https://appliedvisionbaseball.com/wp-content/uploads/2020/03/new
   
 
   initVdo(){
-    console.log(" initVdo function calling");
-    console.log("video pause");
     this.videoData.play();
+  }
+  playVideo(){
+    this.videoPlay.emit(false);
   }
 
   onVideoEnded(){

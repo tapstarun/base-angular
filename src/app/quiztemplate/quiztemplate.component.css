@@ -63,6 +63,10 @@
     height: 100vh;
     padding: 0px;
 }
+.col_video_button{
+    height: 100vh;
+    padding: 15px;
+}
 .col-add_after {
     padding: 15px;
 }
@@ -205,7 +209,7 @@
     height: 100%;
     width: 100%;
     background: #000;
-    background-image: url('src/assets/icons/play.jpg');
+    background-image: url('src/assets/icons/play2.png');
     background-repeat: no-repeat;
     background-size: 200px;
     background-position: center;
