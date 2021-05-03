@@ -46,22 +46,38 @@ export class QuizComponent implements OnInit {
       // this.quizStart=true;
      });
 
-      params={
-        action:'get_level_data_dev',
-        post_id:1258,//3879/
-        user_id:477,
-        level:3
-      };
+    //   params={
+    //     action:'get_level_data_dev',
+    //     post_id:1258,//3879/
+    //     user_id:477,
+    //     level:3
+    //   };
 
-    this.quizService.getQuizData(params).subscribe((sliderDataAPi:any)=>{
-      this.quizDataReceived=true;
+    // this.quizService.getQuizData(params).subscribe((sliderDataAPi:any)=>{
+    //   this.quizDataReceived=true;
       
-      this.sliderItem1=sliderDataAPi.image;
+    //   this.sliderItem1=sliderDataAPi.image;
        
-      this.loader=false;
-      this.quizStart=true;
-    });
+    //   this.loader=false;
+    //   this.quizStart=true;
+    // });
 
+
+    params={
+      action:'get_level_data_dev',
+      post_id:4160,//4160/
+      user_id:477,
+      level:3
+    };
+
+  this.quizService.getQuizData(params).subscribe((sliderDataAPi:any)=>{
+    this.quizDataReceived=true;
+    
+    this.sliderItem1=sliderDataAPi.image;
+     console.log(sliderDataAPi);
+    this.loader=false;
+    this.quizStart=true;
+  });
 
 
   }
@@ -72,7 +88,7 @@ export class QuizComponent implements OnInit {
        quizData=JSON.stringify(this.sliderItem[index]); 
       
     }else{
-       quizData=JSON.stringify(this.sliderItem1[index]);
+       quizData=JSON.stringify(this.sliderItem1[3]);
     }
     localStorage.setItem('quiz', quizData);
     
