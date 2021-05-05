@@ -394,6 +394,15 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
          
         break;
 
+      case 'theme_singlecolumnbutton':
+        
+        userAnswered={
+          'userAns':this.getLabelFromQuestionForSingleLine(user_answer),
+          'correctAns':this.getLabelFromQuestionForSingleLine(this.currentQuestion.correct_answer),
+          'ans':this.accuracy
+         };        
+        break;
+
       default:
 
         userAnswered={
@@ -428,6 +437,30 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
               }
             }
           })        
+      }
+    });
+
+    
+    return correctAnsLabel;   
+   }
+
+   getLabelFromQuestionForSingleLine(id:number){
+    
+    let correctAnsLabel:string;
+    let answners=this.currentQuestion.answers.answer;       
+     Object.keys(answners).forEach(key => {          
+      let ansObj=answners[key]; 
+      
+      if(typeof ansObj == 'object'){  
+                     
+      
+            if(typeof ansObj == 'object'){ 
+              
+              if(ansObj['id']==id){              
+                correctAnsLabel=ansObj['answer'];                 
+              }
+            }
+              
       }
     });
 

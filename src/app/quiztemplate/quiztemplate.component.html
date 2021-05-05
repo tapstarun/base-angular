@@ -119,19 +119,23 @@
                 <div class="video_card">
                     <div class="video_top_content">
                     <div>
-                        <p>1/10</p>
+                        <p>{{currentQuestion.currentIndex+1}}/{{currentQuestion.totalQuestion}}</p>
                         <p>Pitch Count</p>
                     </div>
-                    <div>
+                    <!-- <div>
                         <a href="javascript:void(0);" class="btn video_btn">Next</a>
-                    </div>
+                    </div> -->
                 </div>
                 </div>
                 <!-- showSingleLineQuiz start-->
                 <div class="showSingleLineQuiz-box">
-                    <button type="button" class="singleline_btn">FAST BALL</button>
-                    <button type="button" class="singleline_btn">CURVEBALL</button>
-                    <button type="button" class="singleline_btn">CHANGE-UP</button>
+                    <button type="button" class="singleline_btn" 
+                    *ngFor="let quizans of currentQuestion.answers.answer" 
+                    [ngClass]="hightlightButtonId==quizans.id?'btn-color-yellow':''" 
+                    (click)="normalQuizAnswer(quizans.id);">
+                        {{quizans.answer}}                      
+                    </button>
+                    
                 </div>
                 <!-- showSingleLineQuiz end -->
                 
