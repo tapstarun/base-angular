@@ -125,3 +125,77 @@ li{
     margin: 27px 0;
 }
 /*MOST SESSIONS COMPLETED END CSS*/
+
+
+/*RESPONSIVE CSS*/
+@media(max-width: 1199px){
+.current-streak_content ul li {
+    width: 21.5%;
+    padding: 20px 20px;
+    margin: 15px;
+}
+.your-user_card a {
+    font-size: 30px;
+    line-height: 35px;
+}
+.your-user_card p {
+    font-size: 18px!important;
+    line-height: 26px;
+}
+.current-streak_content ul li p {
+    font-size: 18px!important;
+    line-height: 25px;
+}
+.banner_content figure {
+    height: 700px;
+}
+}
+
+@media(max-width: 991px){
+.current-streak_content ul {
+    justify-content: space-around;
+}
+.current-streak_content ul li {
+    width: 28.5%;
+}
+.banner_content figure {
+    height: 600px;
+}
+}
+
+@media(max-width: 767px){
+.current-streak_content ul li {
+    width: 43.5%;
+}
+.banner_content figure {
+    height: 400px;
+}
+.main-tab-sec{
+    padding-top: 65px;
+}
+.your-user-sec.bg-color33 {
+    padding: 65px 0;
+}
+}
+
+@media(max-width: 575px){
+.your-user-sec h2 {
+    text-align: center;
+}
+.main-tab-sec{
+    padding-top: 50px;
+}
+.your-user-sec.bg-color33 {
+    padding: 50px 0;
+}
+}
+
+@media (max-width: 500px){
+.current-streak_content ul li {
+    width: 100%;
+}
+.current-streak_content ul li {
+    margin: 15px 0;
+}
+}
+/*RESPOSIVE END CSS*/
