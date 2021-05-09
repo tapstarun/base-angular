@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Router,ActivatedRoute} from '@angular/router';
-
+import {Router, ActivatedRoute, ParamMap} from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 import { QuizService } from '../services/quiz.service';
-
+import { environment } from '../../environments/environment';
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
@@ -11,19 +11,52 @@ import { QuizService } from '../services/quiz.service';
 export class QuizComponent implements OnInit {
   quizStart=false;
   loader=false;
-  sliderData={};
+  sliderData:any;
   sliderItem={};
   sliderItem1={};
   quizDataReceived:boolean;
-
-
-  constructor(private quizService:QuizService,private router: Router,private route:ActivatedRoute) { }
+  quizSlug:string;
+  url=environment.Url;
+  constructor(  
+    private quizService:QuizService,
+    private router: Router,
+    private route:ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
+    this.quizSlug=this.route.snapshot.paramMap.get('slug');
+
     this.quizDataReceived=false;
     this.getQuizSlider();
   }
   
+
+  quizSliderOption: any = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    margin:10,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 3
+      }
+    },
+  }
+
+
   /***
    * Get Quiz data for slider so we can get the quiz
    */
@@ -32,18 +65,20 @@ export class QuizComponent implements OnInit {
    
     let params={
         action:'get_level_data_dev',
-        post_id:3879,//1258/
-        user_id:477,
-        level:3
+        slug:this.quizSlug,//1258/
+        user_id:477       
     };
 
     this.quizService.getQuizData(params).subscribe((sliderDataAPi:any)=>{
-      // this.quizDataReceived=true;
+      console.log(sliderDataAPi);
+      
+       this.quizDataReceived=true;
        this.sliderData=sliderDataAPi;
        this.sliderItem=sliderDataAPi.image;
      
-      // this.loader=false;
-      // this.quizStart=true;
+     
+       this.loader=false;
+       this.quizStart=true;
      });
 
     //   params={
@@ -63,33 +98,28 @@ export class QuizComponent implements OnInit {
     // });
 
 
-    params={
-      action:'get_level_data_dev',
-      post_id:4160,//4160/
-      user_id:477,
-      level:3
-    };
+  //   params={
+  //     action:'get_level_data_dev',
+  //     post_id:4160,//4160/
+  //     user_id:477,
+  //     level:3
+  //   };
 
-  this.quizService.getQuizData(params).subscribe((sliderDataAPi:any)=>{
-    this.quizDataReceived=true;
+  // this.quizService.getQuizData(params).subscribe((sliderDataAPi:any)=>{
+  //   this.quizDataReceived=true;
     
-    this.sliderItem1=sliderDataAPi.image;
-     console.log(sliderDataAPi);
-    this.loader=false;
-    this.quizStart=true;
-  });
+  //   this.sliderItem1=sliderDataAPi.image;
+  //    console.log(sliderDataAPi);
+  //   this.loader=false;
+  //   this.quizStart=true;
+  // });
 
 
   }
 
-  startQuiz(index:number):any{ 
+  startQuiz(index:number):any{         
     let quizData:any;  
-    if(index==0){
-       quizData=JSON.stringify(this.sliderItem[index]); 
-      
-    }else{
-       quizData=JSON.stringify(this.sliderItem1[3]);
-    }
+    quizData=JSON.stringify(this.sliderItem[index]); 
     localStorage.setItem('quiz', quizData);
     
     this.router.navigate(['quiztemplate'] );

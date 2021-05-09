@@ -9,9 +9,10 @@
 <!-- banner -->
 <section class="banner-sec">
 	<div class="container">
-		<div class="banner_content text-center">
-			<h2>LHP / 5'11 / 170 LBS</h2>
-			<p>Hides pitches well. Natural tail to four-seam, makes it looks like 2-seam. Occasional change-up. Throws a lot of strikes. Comes right at the hitter. Slider breaks hard. Good from the stretch.</p>
+		<div class="banner_content text-center" *ngIf="sliderData" >
+			<h2 >{{sliderData.title}}</h2>
+    
+	 <p>{{sliderData.content}}</p>
 		</div>
 	</div>
 </section>
@@ -23,41 +24,20 @@
 		<div class="hiro-video_content">
 			<!-- row -->
 			<div class="row" *ngIf="quizDataReceived">
-				<div class="col-lg-4 col-md-4 col-sm-6 col-12">
+
+
+
+				<div class="col-lg-4 col-md-4 col-sm-6 col-12" *ngFor="let data of sliderItem;let i = index ">
 					<div class="hiro-video_card">
 						<figure>
-							<img src='https://appliedvisionbaseball.com/wp-content/uploads/2020/09/11.png' (click)="startQuiz(0)">
+							<img src='{{url+data.url}}' (click)="startQuiz(i)">
 						</figure>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-4 col-sm-6 col-12">
-					<div class="hiro-video_card">
-						<figure>
-							<img src='https://appliedvisionbaseball.com/wp-content/uploads/2020/09/11.png' (click)="startQuiz(1)">
-						</figure>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-6 col-12">
-					<div class="hiro-video_card">
-						<figure>
-							<img src='https://appliedvisionbaseball.com/wp-content/uploads/2020/09/11.png' (click)="startQuiz(2)">
-						</figure>
-					</div>
-				</div>
+				
 			</div>
 			<!-- row end -->
 		</div>
 	</div>
 </section>
 <!-- hiro-video-sec end code-->
-
-
-
-<!-- <div class="container" *ngIf="quizStart">
-    <div class="row">
-        <pre>{{sliderData.content}}</pre>
-        
-        <img src='https://appliedvisionbaseball.com/wp-content/uploads/2020/09/11.png' (click)="startQuiz(0)">
-        
-    </div>
-</div> -->

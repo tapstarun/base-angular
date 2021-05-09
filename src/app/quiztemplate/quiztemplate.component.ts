@@ -68,7 +68,7 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
       return {...ques,url:this.url};
     });
 
-    console.log(this.questions);
+    console.log(this.quizData);
 
     if(this.questions.length > 0){
      

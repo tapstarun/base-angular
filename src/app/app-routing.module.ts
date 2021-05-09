@@ -6,7 +6,7 @@ const routes: Routes = [
   {path:'quiz',loadChildren:()=>import('./quiz/quiz.module').then(m=>m.QuizModule)},
   {path:'auth',loadChildren:()=>import('./auth/auth.module').then(m=>m.AuthModule)},
   {path:'member',component:MemberComponent},
-  {path:'',redirectTo:'quiz', pathMatch: 'full'},
+  {path:'',redirectTo:'member', pathMatch: 'full'},
 ];
 
 @NgModule({

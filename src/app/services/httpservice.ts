@@ -1,7 +1,8 @@
 import { HttpClient,HttpParams,HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import {environment} from '../../environments/environment';
-
+import { catchError, tap } from 'rxjs/operators';
+import { throwError } from "rxjs";
 
 @Injectable({
     providedIn:'root'
@@ -10,7 +11,8 @@ export class HttpService{
 constructor(private http:HttpClient){}
 
 // Method for get request
-getData(url:string,getParams:any|null,header:any){
+getData(getParams:any|null,header:any){
+   
     let params = new HttpParams();
    
     const headers = new HttpHeaders();
@@ -29,12 +31,12 @@ getData(url:string,getParams:any|null,header:any){
             headers.set(key,header[key]);
         });
     } 
-    
-    return this.http.get(environment.API_URL,{headers:headers,params:params});
+  
+    return this.http.get(environment.API_URL,{headers:headers,params:params}).pipe(catchError(this.handleError));;
 }
 
 //Method for Post Request
-    postData(url:string,getParams:any|null,header:any){
+    postData(getParams:any|null,header:any){
         let headers={};
         if(header){
             headers=header;
@@ -42,10 +44,22 @@ getData(url:string,getParams:any|null,header:any){
         const header1={
             'Access-Control-Allow-Origin':'*'
         };
-        return this.http.post(environment.API_URL,[],{headers:header1,params:getParams});
+        return this.http.post(environment.API_URL,[],{headers:header1,params:getParams})
+        .pipe(catchError(this.handleError));
     }
 
-
+    // only used in this file for now for the error handling
+    private handleError(errRes){
+            
+        let errorMessage="An Error Occured";
+        
+        if(!errRes.status){
+            errorMessage= errRes.data.error;
+            console.log(errRes);
+            return throwError(errorMessage);
+        }
+        
+    }
     // method for put request
 
     put(url:string,getParams:any,header:any){

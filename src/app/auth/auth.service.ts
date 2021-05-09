@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpService } from "../services/httpservice";
-import { catchError, tap } from 'rxjs/operators';
-import { BehaviorSubject, Subject, throwError } from 'rxjs';
+import {  tap } from 'rxjs/operators';
+import { BehaviorSubject} from 'rxjs';
 import { AuthModel } from "./auth.model";
 import { Router } from "@angular/router";
 
@@ -19,9 +19,8 @@ export class AuthService{
 
         const header={'Access-Control-Allow-Origin':'*'};
 
-        return this.httpService.postData('/api',newData,{Headers:header})
-        .pipe(
-            catchError(this.handleError),
+        return this.httpService.postData(newData,{Headers:header})
+        .pipe(           
             tap((resData:any)=>{
                console.log('tap');
                const expireToken=100000;
@@ -92,16 +91,5 @@ export class AuthService{
         },expiredIn);
     }
 
-    // only used in this file for now for the error handling
-    private handleError(errRes){
-        
-        let errorMessage="An Error Occured";
-        
-        if(!errRes.status){
-            errorMessage= errRes.data.error;
-            console.log(errRes);
-            return throwError(errorMessage);
-        }
-        
-    }
+    
 }

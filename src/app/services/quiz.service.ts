@@ -14,17 +14,17 @@ export class QuizService{
         const header={
             'Access-Control-Allow-Origin': '*'
         };
-        return this.httpService.getData('/api/',params,header);
+        return this.httpService.getData(params,header);
     }
 
     getConsutiveData(){
         const params={action:'userConseDaysStoreApi',user_id:477};
         const header={};
-        return this.httpService.getData('api/',params,header);
+        return this.httpService.getData(params,header);
     
     }
 
     storeQuizData(params){        
-         return this.httpService.postData('api/',params,[]);
+         return this.httpService.postData(params,[]);
     }
 }
