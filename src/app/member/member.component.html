@@ -1,3 +1,4 @@
+
 <div *ngIf="showMemberPage">
 <!-- banner section code -->
 <section class="banner-sec" *ngIf="memberPageData.video_url!=''">
@@ -18,7 +19,7 @@
 		<div class="main-tab_content">
 			<h2>Main Tabs</h2>
 			<!-- carousel start -->
-			<owl-carousel-o [options]="customOptions">
+			<owl-carousel-o [options]="ThreeInARowSlider">
 			    <ng-template carouselSlide *ngFor="let data of mainTab">
 			    	<a href="{{data.url}}" target="_blank">
 			    	<img src="{{url+data.img_url}}" class="attachment-medium size-medium" alt="" loading="lazy" sizes="(max-width: 300px) 100vw, 300px">
@@ -105,7 +106,7 @@
 		<div class="tutorials_content margin-div" *ngIf="tutorialTab!=null">
 			<h2>Tutorials</h2>
 			<!-- owl-carousel  -->
-		    <owl-carousel-o [options]="tutorials_slider">
+		    <owl-carousel-o [options]="fourInARowSlider">
 				<ng-template carouselSlide *ngFor="let data of tutorialTab">
 			    	<a href="javascript:void(0)">
 			    	<img src="{{url+data.img_url}}" class="attachment-medium size-medium" alt="" loading="lazy" sizes="(max-width: 300px) 100vw, 300px">
@@ -120,7 +121,7 @@
 		<div class="pitchers_content margin-div">
 			<h2>Most Popular Pitchers</h2>
 			<!-- owl-carousel  -->
-		    <owl-carousel-o [options]="pitchers_slider">
+		    <owl-carousel-o [options]="fourInARowSlider">
 				<ng-template carouselSlide *ngFor="let data of mostPopularTab">
 			    	<a (click)="playQuiz(data.slug)">
 			    	<img src="{{url+data.img_url}}" class="attachment-medium size-medium" alt="" loading="lazy" sizes="(max-width: 300px) 100vw, 300px">
@@ -135,33 +136,14 @@
 		<div class="swing-trigger_content margin-div">
 			<h2>Swing Trigger Drills [Popular] </h2>
 			<!-- owl-carousel  -->
-		    <owl-carousel-o [options]="swing_trigger_slider">
-			    <ng-template carouselSlide>
-			    	<a href="javascript:void(0);">
-			    	<img src="https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-300x169.png" class="attachment-medium size-medium" alt="" loading="lazy" srcset="https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-300x169.png 300w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-1024x576.png 1024w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-768x432.png 768w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-1536x864.png 1536w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-383x215.png 383w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-50x28.png 50w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-100x56.png 100w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2.png 2000w" sizes="(max-width: 300px) 100vw, 300px">
-			    	</a>
-				</ng-template>
-				 <ng-template carouselSlide>
-				 	<a href="javascript:void(0);">
-			    	<img src="https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-300x169.png" class="attachment-medium size-medium" alt="" loading="lazy" srcset="https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-300x169.png 300w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-1024x576.png 1024w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-768x432.png 768w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-1536x864.png 1536w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-383x215.png 383w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-50x28.png 50w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-100x56.png 100w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2.png 2000w" sizes="(max-width: 300px) 100vw, 300px">
-			    	</a>
-				</ng-template>
-				<ng-template carouselSlide>
-					<a href="javascript:void(0);">
-			    	<img src="https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-300x169.png" class="attachment-medium size-medium" alt="" loading="lazy" srcset="https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-300x169.png 300w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-1024x576.png 1024w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-768x432.png 768w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-1536x864.png 1536w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-383x215.png 383w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-50x28.png 50w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-100x56.png 100w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2.png 2000w" sizes="(max-width: 300px) 100vw, 300px">
-			    	</a>
-				</ng-template>
-				<ng-template carouselSlide>
-					<a href="javascript:void(0);">
-			    	<img src="https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-300x169.png" class="attachment-medium size-medium" alt="" loading="lazy" srcset="https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-300x169.png 300w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-1024x576.png 1024w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-768x432.png 768w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-1536x864.png 1536w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-383x215.png 383w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-50x28.png 50w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-100x56.png 100w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2.png 2000w" sizes="(max-width: 300px) 100vw, 300px">
-			    	</a>
-				</ng-template>
-				<ng-template carouselSlide>
-					<a href="javascript:void(0);">
-			    	<img src="https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-300x169.png" class="attachment-medium size-medium" alt="" loading="lazy" srcset="https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-300x169.png 300w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-1024x576.png 1024w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-768x432.png 768w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-1536x864.png 1536w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-383x215.png 383w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-50x28.png 50w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2-100x56.png 100w, https://appliedvisionbaseball.com/wp-content/uploads/2020/08/2-2.png 2000w" sizes="(max-width: 300px) 100vw, 300px">
-			    	</a>
-				</ng-template>
-		  	</owl-carousel-o>
+		    
+			<owl-carousel-o [options]="fourInARowSlider">
+					<ng-template carouselSlide *ngFor="let data of swingTab">
+						<a (click)="playQuiz(data.slug)">
+						<img src="{{url+data.img_url}}" class="attachment-medium size-medium" alt="" loading="lazy" sizes="(max-width: 300px) 100vw, 300px">
+						</a>
+					</ng-template>
+			</owl-carousel-o>
 			<!-- owl-carousel END  -->
 		</div>
 		<!-- Swing Trigger Drills END CODE -->
@@ -170,7 +152,7 @@
 		<div class="specialized-drill_content margin-div">
 			<h2>Specialized Drills </h2>
 			<!-- owl-carousel  -->
-		    <owl-carousel-o [options]="pitchers_slider">
+		    <owl-carousel-o [options]="fourInARowSlider">
 			    <ng-template carouselSlide>
 			    	<a href="javascript:void(0);">
 			    	<img src="https://appliedvisionbaseball.com/wp-content/uploads/2019/12/11-300x169.png" class="attachment-medium size-medium" alt="" loading="lazy" srcset="https://appliedvisionbaseball.com/wp-content/uploads/2019/12/11-300x169.png 300w, https://appliedvisionbaseball.com/wp-content/uploads/2019/12/11-768x432.png 768w, https://appliedvisionbaseball.com/wp-content/uploads/2019/12/11-1024x576.png 1024w, https://appliedvisionbaseball.com/wp-content/uploads/2019/12/11-383x215.png 383w, https://appliedvisionbaseball.com/wp-content/uploads/2019/12/11.png 1280w" sizes="(max-width: 300px) 100vw, 300px">
@@ -205,7 +187,7 @@
 		<div class="pro-level_content margin-div">
 			<h2>Pro Level </h2>
 			<!-- owl-carousel  -->
-		    <owl-carousel-o [options]="pro_level_slider">
+		    <owl-carousel-o [options]="fiveRowSlider">
 			    <ng-template carouselSlide>
 			    	<a href="javascript:void(0);">
 			    	<img src="https://appliedvisionbaseball.com/wp-content/uploads/2019/11/2-5-300x169.png" class="attachment-medium size-medium" alt="" loading="lazy" srcset="https://appliedvisionbaseball.com/wp-content/uploads/2019/11/2-5-300x169.png 300w, https://appliedvisionbaseball.com/wp-content/uploads/2019/11/2-5-768x432.png 768w, https://appliedvisionbaseball.com/wp-content/uploads/2019/11/2-5-1024x576.png 1024w, https://appliedvisionbaseball.com/wp-content/uploads/2019/11/2-5-383x215.png 383w, https://appliedvisionbaseball.com/wp-content/uploads/2019/11/2-5.png 1280w" sizes="(max-width: 300px) 100vw, 300px"></a>
@@ -274,7 +256,7 @@
 		<div class="youth-level_content margin-div">
 			<h2>Youth Level Pitchers</h2>
 			<!-- owl-carousel  -->
-		    <owl-carousel-o [options]="youth_level_slider">
+		    <owl-carousel-o [options]="fiveRowSlider">
 			    <ng-template carouselSlide>
 			    	<a href="javascript:void(0);">
 			    	<img width="300" height="169" src="https://appliedvisionbaseball.com/wp-content/uploads/2020/01/1-13-300x169.png" class="attachment-medium size-medium" alt="" loading="lazy" srcset="https://appliedvisionbaseball.com/wp-content/uploads/2020/01/1-13-300x169.png 300w, https://appliedvisionbaseball.com/wp-content/uploads/2020/01/1-13-1024x576.png 1024w, https://appliedvisionbaseball.com/wp-content/uploads/2020/01/1-13-768x432.png 768w, https://appliedvisionbaseball.com/wp-content/uploads/2020/01/1-13-383x215.png 383w, https://appliedvisionbaseball.com/wp-content/uploads/2020/01/1-13.png 1280w" sizes="(max-width: 300px) 100vw, 300px">
@@ -314,7 +296,7 @@
 		<div class="recognition-training_content margin-div">
 			<h2>Spin, Speed  Recognition Training</h2>
 			<!-- owl-carousel  -->
-		    <owl-carousel-o [options]="recognition_training_slider">
+		    <owl-carousel-o [options]="fourInARowSlider">
 			    <ng-template carouselSlide>
 			    	<a href="javascript:void(0);">
 			    	<img width="300" height="169" src="https://appliedvisionbaseball.com/wp-content/uploads/2020/03/3-300x169.png" class="attachment-medium size-medium" alt="" loading="lazy" srcset="https://appliedvisionbaseball.com/wp-content/uploads/2020/03/3-300x169.png 300w, https://appliedvisionbaseball.com/wp-content/uploads/2020/03/3-1024x576.png 1024w, https://appliedvisionbaseball.com/wp-content/uploads/2020/03/3-768x432.png 768w, https://appliedvisionbaseball.com/wp-content/uploads/2020/03/3-383x215.png 383w, https://appliedvisionbaseball.com/wp-content/uploads/2020/03/3-50x28.png 50w, https://appliedvisionbaseball.com/wp-content/uploads/2020/03/3-100x56.png 100w, https://appliedvisionbaseball.com/wp-content/uploads/2020/03/3.png 1280w" sizes="(max-width: 300px) 100vw, 300px">
@@ -354,7 +336,7 @@
 		<div class="hitting-drills_content margin-div" *ngIf="hitDrillTab!=null">
 			<h2>Courses & Hitting Drills </h2>
 			<!-- owl-carousel  -->
-		    <owl-carousel-o [options]="hitting_drills_slider">
+		    <owl-carousel-o [options]="fourInARowSlider">
 			    <ng-template carouselSlide *ngFor="let data of hitDrillTab">
 			    	<a href="{{data.url}}" target="_blank">
 			    	<img src="{{url+data.img_url}}" class="attachment-medium size-medium" alt="" loading="lazy" sizes="(max-width: 300px) 100vw, 300px">
@@ -369,3 +351,5 @@
 <!-- YOUR USER STATS END CODE -->
 
 </div>
+
+ <app-loader [showloader]="showloader"></app-loader>

@@ -16,7 +16,7 @@ import { PitchComponent } from "./result/pitch/pitch.component";
 import { ResultComponent } from "./result/result.component";
 import { VideosComponent } from "./videos/videos.component";
 import { QuiztemplateRoutingModule } from "./quiztemplate-routing.module";
-import { ProgressBarComponent } from "../shared/progress-bar/progress-bar.component";
+import { SharedModule } from "../shared/shared.module";
 
 
 @NgModule({
@@ -25,8 +25,7 @@ import { ProgressBarComponent } from "../shared/progress-bar/progress-bar.compon
         QuestionComponent,
         ResultComponent,
         PitchComponent,
-        VideosComponent,
-        ProgressBarComponent
+        VideosComponent
     ], 
     imports:[
         VgCoreModule,
@@ -37,6 +36,7 @@ import { ProgressBarComponent } from "../shared/progress-bar/progress-bar.compon
         CommonModule,       
         QuiztemplateRoutingModule,
         MatDialogModule,
+        SharedModule
     ],
     entryComponents:[ResultComponent]
 })

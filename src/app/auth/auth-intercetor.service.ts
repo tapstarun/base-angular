@@ -12,12 +12,12 @@ export class AuthIntercetorService implements HttpInterceptor{
        
         return this.authService.user.pipe(take(1),exhaustMap(User=>{
             if(User!=null){
-                console.log('interceptor '+User.token);
+                
                 const modifiedHeader=req.clone(
                  {headers:new HttpHeaders().set('auth',User.token)}
                 //{params:new HttpParams().set('auth',User.token)}
                 );
-                console.log(modifiedHeader);
+               
            }
        
             return next.handle(req);

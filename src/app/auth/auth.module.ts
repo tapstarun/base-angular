@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { ReactiveFormsModule , FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { AuthRoutingModule } from "./auth-routing.module";
-
+    
 @NgModule({
     declarations:[
         
@@ -14,7 +14,7 @@ import { AuthRoutingModule } from "./auth-routing.module";
         RouterModule,
         FormsModule,
         ReactiveFormsModule,
-        
+
     ],
     exports:[]
 })

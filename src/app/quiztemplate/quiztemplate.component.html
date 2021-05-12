@@ -1,3 +1,4 @@
+
 <div class="container-fluid">
     <div class="mobile-portrait">
                 <figure>            
@@ -115,7 +116,7 @@
                 <app-videos  [url]="currentQuestion.url" [showThumbs]="showThumbs" [rightThumbs]="rightThumbs" (videoEnded)="videoEnded($event)" (videoPlay)="playButton($event)"></app-videos>
             </div>
 
-            <div class="col-md-5 col_video_button"> 
+            <div class="col-md-5 col_video_button" [ngClass]="questionDisplay?'col-add_after':''"> 
                 <div class="video_card">
                     <div class="video_top_content">
                     <div>

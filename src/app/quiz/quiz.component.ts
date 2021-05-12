@@ -17,11 +17,15 @@ export class QuizComponent implements OnInit {
   quizDataReceived:boolean;
   quizSlug:string;
   url=environment.Url;
+  showloader:boolean;
+ 
   constructor(  
     private quizService:QuizService,
     private router: Router,
     private route:ActivatedRoute
-    ) { }
+    ) {
+      this.showloader=true;
+    }
 
   ngOnInit(): void {
     this.quizSlug=this.route.snapshot.paramMap.get('slug');
@@ -70,6 +74,7 @@ export class QuizComponent implements OnInit {
     };
 
     this.quizService.getQuizData(params).subscribe((sliderDataAPi:any)=>{
+      
       console.log(sliderDataAPi);
       
        this.quizDataReceived=true;
@@ -79,40 +84,9 @@ export class QuizComponent implements OnInit {
      
        this.loader=false;
        this.quizStart=true;
+       this.showloader=false;
      });
-
-    //   params={
-    //     action:'get_level_data_dev',
-    //     post_id:1258,//3879/
-    //     user_id:477,
-    //     level:3
-    //   };
-
-    // this.quizService.getQuizData(params).subscribe((sliderDataAPi:any)=>{
-    //   this.quizDataReceived=true;
-      
-    //   this.sliderItem1=sliderDataAPi.image;
-       
-    //   this.loader=false;
-    //   this.quizStart=true;
-    // });
-
-
-  //   params={
-  //     action:'get_level_data_dev',
-  //     post_id:4160,//4160/
-  //     user_id:477,
-  //     level:3
-  //   };
-
-  // this.quizService.getQuizData(params).subscribe((sliderDataAPi:any)=>{
-  //   this.quizDataReceived=true;
     
-  //   this.sliderItem1=sliderDataAPi.image;
-  //    console.log(sliderDataAPi);
-  //   this.loader=false;
-  //   this.quizStart=true;
-  // });
 
 
   }

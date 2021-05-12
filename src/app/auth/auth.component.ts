@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder  } from '@angular/forms';
+
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 
@@ -14,13 +15,19 @@ export class AuthComponent implements OnInit {
   
   authForm = new FormGroup({
     email: new FormControl('jvinod0302@gmail.com ',[Validators.email]),
-    password: new FormControl('Informatics@123'),
+       password: new FormControl('Informatics@123'),
   });
+  
+  
 
+  logo='../../assets/icons/logo.png';
+  
 
   constructor(
     private authService:AuthService,
-    private router:Router) {
+    private router:Router,
+   
+    ) {
     this.isLogin=true;
    }
 
@@ -28,7 +35,7 @@ export class AuthComponent implements OnInit {
     
   }
 
-   // convenience getter for easy access to form fields
+   //convenience getter for easy access to form fields
    get authFormControls() { return this.authForm.controls; }
 
   switchAuth(){
@@ -44,7 +51,7 @@ export class AuthComponent implements OnInit {
     this.authService.login(this.authForm.value).subscribe((res:any)=>{
       
         if(res.status){
-          this.router.navigate(['/quiz']);
+          this.router.navigate(['/member']);
         }
 
       },errorMessage=>{

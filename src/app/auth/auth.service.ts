@@ -31,7 +31,8 @@ export class AuthService{
                    expirationDate,
                    resData.data.userEmail,
                    resData.data.user_id,
-                   resData.data.user_name
+                   resData.data.user_name,
+                   resData.level
                 );
                 localStorage.setItem('userData',JSON.stringify(user));
                 this.user.next(user);
@@ -49,6 +50,7 @@ export class AuthService{
             userEmail:string;
             userId:number;
             userName:string;
+            level:number;
         } = JSON.parse(localStorage.getItem('userData'));
         if(!userData){
             return ;
@@ -59,7 +61,8 @@ export class AuthService{
             new Date(userData.tokenExpirationDate),
             userData.userEmail,
             userData.userId,
-            userData.userName
+            userData.userName,
+            userData.level
          ); 
         
          if(loadedUser.token){
@@ -81,6 +84,7 @@ export class AuthService{
         }
         this.loggoutTimer=null;
         console.log('logout');
+        this.router.navigate(['/auth']);
     }
 
     autoLogout(expiredIn:number){

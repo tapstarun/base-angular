@@ -5,6 +5,7 @@ export class AuthModel{
     public userEmail:string,
     private userId:number,
     public userName:string,
+    public level:number
     ){}
     
     

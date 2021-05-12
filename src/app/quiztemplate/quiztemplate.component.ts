@@ -47,6 +47,7 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
   correctQuestionSound="../../../assets/audio/correct.mp3";
   incorrectQuestionSound="../../../assets/audio/incorrect.mp3";
   progress=this.reactTime;
+
 //https://cdn.jwplayer.com/v2/media/gi2pb1VW
   
 
@@ -54,7 +55,7 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
     this.quizData = {} as any;
     this.currentQuestion = {} as any;
     this.questions = new Array<any>();
-    
+ 
   }
 
   

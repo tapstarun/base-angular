@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from '../../environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { FormGroup, FormControl, Validators, FormBuilder  } from '@angular/forms';
 import { MemberService } from './member.service';
 
 @Component({
@@ -11,6 +11,13 @@ import { MemberService } from './member.service';
   styleUrls: ['./member.component.css']
 })
 export class MemberComponent implements OnInit {
+
+	
+	authForm = new FormGroup({
+		firstName: new FormControl(''),
+		lastName: new FormControl(''),
+	  });
+	  get authFormControls() { return this.authForm.controls; }	  
   showMemberPage:boolean;
   memberPageData:any;
   videoUrl:any;
@@ -20,12 +27,15 @@ export class MemberComponent implements OnInit {
   mostPopularTab:any;
   swingTab:any;
   url=environment.Url;
+  showloader:boolean;
   constructor(
 	  private memberService:MemberService,
 	  private sanitizer:DomSanitizer,
 	  private router:Router,
-	  private route:ActivatedRoute
+	  private route:ActivatedRoute,
+	  
 	) { 
+		this.showloader=false;
 	  this.showMemberPage=false;
 	 
   	}
@@ -35,8 +45,9 @@ export class MemberComponent implements OnInit {
 	}
 
   memberPageSetting(){
-
+	this.showloader=true;
 	this.memberService.getMemberPageData(477).subscribe((res:any)=>{
+		this.showloader=false;
 		this.memberPageData=res.data;
 		this.showMemberPage=true;
 		
@@ -77,8 +88,8 @@ export class MemberComponent implements OnInit {
  playQuiz(quizId:string){
 	this.router.navigate(['quiz',quizId]);
  }
-
-  customOptions: any = {
+ 
+ ThreeInARowSlider: any = {
     loop: true,
     mouseDrag: true,
     touchDrag: false,
@@ -104,34 +115,11 @@ export class MemberComponent implements OnInit {
   }
 
 
-  tutorials_slider: any = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: false,
-    pullDrag: false,
-    dots: false,
-    margin:10,
-    navSpeed: 700,
-    navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 2
-      },
-      740: {
-        items: 3
-      },
-      940: {
-        items: 4
-      }
-    },
-  }
+
 
 
 //==========================================================
-  	pitchers_slider: any = {
+  	fourInARowSlider: any = {
 	    loop: true,
 	    mouseDrag: true,
 	    touchDrag: false,
@@ -155,35 +143,11 @@ export class MemberComponent implements OnInit {
 	      }
 	    },
   	}
+
+
 //===================================================
-  
-    	swing_trigger_slider: any = {
-	    loop: true,
-	    mouseDrag: true,
-	    touchDrag: false,
-	    pullDrag: false,
-	    dots: false,
-	    margin:10,
-	    navSpeed: 700,
-	    navText: ['', ''],
-	    responsive: {
-	      0: {
-	        items: 1
-	      },
-	      400: {
-	        items: 2
-	      },
-	      740: {
-	        items: 3
-	      },
-	      940: {
-	        items: 4
-	      }
-	    },
-  	}
-//===================================================
-    
-    	pro_level_slider: any = {
+
+fiveRowSlider: any = {
 	    loop: true,
 	    mouseDrag: true,
 	    touchDrag: false,
@@ -207,108 +171,6 @@ export class MemberComponent implements OnInit {
 	      }
 	    },
   	}
-//===================================================
 
-college_slider: any = {
-	    loop: true,
-	    mouseDrag: true,
-	    touchDrag: false,
-	    pullDrag: false,
-	    dots: false,
-	    margin:10,
-	    navSpeed: 700,
-	    navText: ['', ''],
-	    responsive: {
-	      0: {
-	        items: 1
-	      },
-	      400: {
-	        items: 2
-	      },
-	      740: {
-	        items: 3
-	      },
-	      940: {
-	        items: 5
-	      }
-	    },
-  	}
-//===================================================
 
-youth_level_slider: any = {
-	    loop: true,
-	    mouseDrag: true,
-	    touchDrag: false,
-	    pullDrag: false,
-	    dots: false,
-	    margin:10,
-	    navSpeed: 700,
-	    navText: ['', ''],
-	    responsive: {
-	      0: {
-	        items: 1
-	      },
-	      400: {
-	        items: 2
-	      },
-	      740: {
-	        items: 3
-	      },
-	      940: {
-	        items: 5
-	      }
-	    },
-  	}
-//===================================================
-
-recognition_training_slider: any = {
-	    loop: true,
-	    mouseDrag: true,
-	    touchDrag: false,
-	    pullDrag: false,
-	    dots: false,
-	    margin:10,
-	    navSpeed: 700,
-	    navText: ['', ''],
-	    responsive: {
-	      0: {
-	        items: 1
-	      },
-	      400: {
-	        items: 2
-	      },
-	      740: {
-	        items: 3
-	      },
-	      940: {
-	        items: 4
-	      }
-	    },
-  	}
-//===================================================
-hitting_drills_slider: any = {
-	    loop: true,
-	    mouseDrag: true,
-	    touchDrag: false,
-	    pullDrag: false,
-	    dots: false,
-	    margin:10,
-	    navSpeed: 700,
-	    navText: ['', ''],
-	    responsive: {
-	      0: {
-	        items: 1
-	      },
-	      400: {
-	        items: 2
-	      },
-	      740: {
-	        items: 3
-	      },
-	      940: {
-	        items: 3	
-	      }
-	    },
-  	}
-//===================================================
 }

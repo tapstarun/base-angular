@@ -13,8 +13,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./progress-bar.component.css']
 })
 export class ProgressBarComponent implements OnInit {
-  @Input() progress: number;
-  @Input() total: number;
+  @Input() public progress: number;
+  @Input() public total: number;
   color: string;
   constructor() { }
 
