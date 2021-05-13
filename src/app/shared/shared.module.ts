@@ -1,12 +1,18 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { NgxSpinnerModule } from "ngx-spinner";
+
 import { LoaderComponent } from "./loader/loader.component";
 import { ProgressBarComponent } from "./progress-bar/progress-bar.component";
-import { NgxSpinnerModule } from "ngx-spinner";
+
+import { HeaderComponent } from "./header/header.component";
+import { FooterComponent } from "./footer/footer.component";
 @NgModule({
     declarations:[
         ProgressBarComponent,
-        LoaderComponent
+        LoaderComponent,
+        HeaderComponent,
+        FooterComponent
     ],
     imports:[
         CommonModule,
@@ -14,7 +20,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ],
     exports:[
         ProgressBarComponent,
-        LoaderComponent
+        LoaderComponent,
+        HeaderComponent,
+        FooterComponent
     ],
 })
 export class SharedModule{}

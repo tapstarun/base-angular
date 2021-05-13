@@ -28,6 +28,7 @@ export class MemberComponent implements OnInit {
   swingTab:any;
   url=environment.Url;
   showloader:boolean;
+  quizDataForMember:any;
   constructor(
 	  private memberService:MemberService,
 	  private sanitizer:DomSanitizer,
@@ -67,18 +68,11 @@ export class MemberComponent implements OnInit {
 		})
 		 // 1224 Most Popular Pitchers
 		 
-		 this.memberService.getCarousel(1224).subscribe((carousel:any)=>{
-			this.mostPopularTab= carousel;
-			console.log(this.mostPopularTab);
+		 this.memberService.memberPageCarouselApi().subscribe((carousel:any)=>{
+			this.quizDataForMember= carousel.data;
+			console.log(this.quizDataForMember);
 		})
 
-		
-		// 3687 Swing Trigger Drills [Popular] 
-		
-
-		this.memberService.getCarousel(3687).subscribe((carousel:any)=>{
-			this.swingTab= carousel;
-		})
 	});
 
 	
@@ -122,12 +116,12 @@ export class MemberComponent implements OnInit {
   	fourInARowSlider: any = {
 	    loop: true,
 	    mouseDrag: true,
-	    touchDrag: false,
+	    touchDrag: true,
 	    pullDrag: false,
-	    dots: false,
+	    dots: true,
 	    margin:10,
 	    navSpeed: 700,
-	    navText: ['', ''],
+	    navText: ['previous', 'next'],
 	    responsive: {
 	      0: {
 	        items: 1
@@ -149,7 +143,7 @@ export class MemberComponent implements OnInit {
 
 fiveRowSlider: any = {
 	    loop: true,
-	    mouseDrag: true,
+	    mouseDrag: false,
 	    touchDrag: false,
 	    pullDrag: false,
 	    dots: false,

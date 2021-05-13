@@ -13,7 +13,7 @@
 			  <div class="collapse navbar-collapse" id="navbarNav">
 			    <ul class="navbar-nav" style="margin-left: auto;">
 			      <li class="nav-item active">
-			        <a class="nav-link" href="#">HOME</a>
+			        <a class="nav-link" (click)="onNavigateUrl('/');">HOME</a>
 			      </li>
 			      <li class="nav-item">
 			        <div class="dropdown">
@@ -21,10 +21,8 @@
 					    MEMBERS AREA
 					  </button>
 					  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					    <a class="dropdown-item" href="#">Action</a>
-					    <a class="dropdown-item" href="#">Another action</a>
-					    <a class="dropdown-item" href="#">Something else here</a>
-						<a class="dropdown-item" (click)="logout()">Logout</a>
+					    <a class="dropdown-item" routerLink='/member'>Member Home</a>					    
+						<a class="dropdown-item" (click)="logout()">Logged out</a>
 					  </div>
 					</div>
 			      </li>
@@ -34,14 +32,14 @@
 					    BLOG
 					  </button>
 					  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					    <a class="dropdown-item" href="#">Action</a>
-					    <a class="dropdown-item" href="#">Another action</a>
-					    <a class="dropdown-item" href="#">Something else here</a>
+					    <a class="dropdown-item" (click)="onNavigateUrl('blog');">Blog</a>
+					    <a class="dropdown-item" (click)="onNavigateUrl('the-ultimate-guide-to-baseball-pitch-recognition-vision-training/');">Pitch Recognition Explained</a>
+					    
 					  </div>
 					</div>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">About</a>
+			        <a class="nav-link" (click)="onNavigateUrl('about');">About</a>
 			      </li>
 			      <li class="nav-item">
 			        <div class="dropdown">
@@ -49,24 +47,22 @@
 					    PRICING
 					  </button>
 					  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					    <a class="dropdown-item" href="#">Action</a>
-					    <a class="dropdown-item" href="#">Another action</a>
-					    <a class="dropdown-item" href="#">Something else here</a>
+					    <a class="dropdown-item"  (click)="onNavigateUrl('pricing');">Pricing</a>
+					    <a class="dropdown-item"  (click)="onNavigateUrl('team-pricing');">Team Pricing</a>
+					   
 					  </div>
 					</div>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">UPGRADE / RENEW</a>
+			        <a class="nav-link" (click)="onNavigateUrl('upgrade-plan');">UPGRADE / RENEW</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">SHOP</a>
+			        <a class="nav-link" (click)="onNavigateUrlSubdomain('https://shop.appliedvisionbaseball.com/');">SHOP</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">CONTACT</a>
+			        <a class="nav-link" (click)="onNavigateUrl('contact');">CONTACT</a>
 			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">icon</a>
-			      </li>
+			      
 			    </ul>
 			  </div>
 			</nav>

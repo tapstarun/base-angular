@@ -26,5 +26,12 @@ export class MemberService{
         return this.httpService.postData(param,[]);
     }
 
+    memberPageCarouselApi(){
+        const param={
+            action:'memberPageCarouselApi'
+        };
+        return this.httpService.postData(param,[]);
+    }
+
     
 }

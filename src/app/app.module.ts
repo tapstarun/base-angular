@@ -10,10 +10,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-
 import { AuthIntercetorService } from './auth/auth-intercetor.service';
 import { AuthModule } from './auth/auth.module';
 import { AuthComponent } from './auth/auth.component';
@@ -21,8 +17,6 @@ import { AuthComponent } from './auth/auth.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
     AuthComponent
   ],
   imports: [
