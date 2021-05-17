@@ -10,6 +10,11 @@ import { QuizComponent } from "./quiz.component";
 
 const route: Routes =[
     {
+        path:'',
+        redirectTo:'auth',
+        pathMatch:'full',
+    },
+    {
         path:':slug',
         component:QuizComponent,
         canActivate:[AuthGuard]      

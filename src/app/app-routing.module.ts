@@ -7,6 +7,7 @@ const routes: Routes = [
   {path:'auth',loadChildren:()=>import('./auth/auth.module').then(m=>m.AuthModule)},
   {path:'member',loadChildren:()=>import('./member/member.module').then(m=>m.MemberModule)},
   {path:'',redirectTo:'member', pathMatch: 'full'},
+  {path:'**',loadChildren:()=>import('./fourzerofour/Fourzerofour.module').then(m=>m.FourzerofourModule)},
 ];
 
 @NgModule({

@@ -12,10 +12,10 @@ import { AuthService } from './auth.service';
 export class AuthComponent implements OnInit {
   isLogin=true;
   error:string;
-  
+  showloader:boolean=false;
   authForm = new FormGroup({
-    email: new FormControl('jvinod0302@gmail.com ',[Validators.email]),
-       password: new FormControl('Informatics@123'),
+    email: new FormControl('jvinod0302@gmail.com ',[Validators.required,Validators.email]),
+       password: new FormControl('Informatics@123',Validators.required),
   });
   
   
@@ -29,6 +29,7 @@ export class AuthComponent implements OnInit {
    
     ) {
     this.isLogin=true;
+    this.showloader=false;
    }
 
   ngOnInit(): void {
@@ -47,7 +48,7 @@ export class AuthComponent implements OnInit {
     if(!this.authForm.valid){
     return ;
     }
-    
+    this.showloader=true;
     this.authService.login(this.authForm.value).subscribe((res:any)=>{
       
         if(res.status){
