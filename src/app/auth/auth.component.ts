@@ -33,7 +33,7 @@ export class AuthComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.submitForm();
+    
   }
 
    //convenience getter for easy access to form fields
@@ -45,16 +45,12 @@ export class AuthComponent implements OnInit {
 
   submitForm(){
     
-    // if(!this.authForm.valid){
-    // return ;
-    // }
+    if(!this.authForm.valid){
+    return ;
+    }
     this.showloader=true;
-    const data={
-      'email':'jvinod0302@gmail.com',
-      'password':'Informatics'
-
-    };
-    this.authService.login(data).subscribe((res:any)=>{
+   
+    this.authService.login(this.authForm.value).subscribe((res:any)=>{
       
         if(res.status){
           this.router.navigate(['/member']);
