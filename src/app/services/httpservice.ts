@@ -37,15 +37,35 @@ getData(getParams:any|null,header:any){
 
 //Method for Post Request
     postData(getParams:any|null,header:any){
-        let headers={};
-        if(header){
-            headers=header;
-        }   
-        const header1={
-            'Access-Control-Allow-Origin':'*'
-        };
-
-        return this.http.get(environment.API_URL,{headers:header1,params:getParams}).pipe(catchError(this.handleError));;
+        let params = new HttpParams();
+   
+        const headers = new HttpHeaders();
+       
+        if(Object.keys(getParams).length>0){
+           
+            Object.keys(getParams).forEach(key => {           
+    
+                params=params.append(key,getParams[key]);
+            });
+        }  
+        
+        if(Object.keys(header).length>0){
+            
+            Object.keys(header).forEach(key => {
+                headers.set(key,header[key]);
+            });
+        } 
+      
+        return this.http.get(environment.API_URL,{headers:headers,params:params}).pipe(catchError(this.handleError));;
+        
+        // let headers={};
+        // if(header){
+        //     headers=header;
+        // }   
+        // const header1={
+        //     'Access-Control-Allow-Origin':'*'
+        // };
+        
         // return this.http.post(environment.API_URL,[],{headers:header1,params:getParams})
         // .pipe(catchError(this.handleError));
     }
