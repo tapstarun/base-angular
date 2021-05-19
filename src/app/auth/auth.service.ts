@@ -23,7 +23,7 @@ export class AuthService{
             "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization" 
         };
 
-        return this.httpService.getData(newData,{Headers:header})
+        return this.httpService.getData(newData,[])
         .pipe(           
             tap((resData:any)=>{
                console.log('tap');
