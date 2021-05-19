@@ -13,6 +13,7 @@ export class AuthComponent implements OnInit {
   isLogin=true;
   error:string;
   showloader:boolean=false;
+  showError=false;
   authForm = new FormGroup({
     email: new FormControl('jvinod0302@gmail.com ',[Validators.required,Validators.email]),
        password: new FormControl('Informatics@123',Validators.required),
@@ -44,7 +45,7 @@ export class AuthComponent implements OnInit {
   }
 
   submitForm(){
-    
+   
     if(!this.authForm.valid){
     return ;
     }
@@ -54,6 +55,9 @@ export class AuthComponent implements OnInit {
       
         if(res.status){
           this.router.navigate(['/member']);
+        }else{
+          
+          this.showError=res.msg;
         }
 
       },errorMessage=>{

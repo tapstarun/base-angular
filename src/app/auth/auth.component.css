@@ -103,6 +103,14 @@ input:focus {
 }
 /*video end*/
 
+.error {
+    color: #ff0000;
+}
+
+.ng-invalid {
+    border-color:#ff0000;
+}
+
 /*responsive*/
 @media(max-width: 991px){
 .login-card-wrp_content h5 {
@@ -126,3 +134,4 @@ input:focus {
 }
 }
 /*responsive end*/
+
