@@ -52,7 +52,7 @@ export class MemberComponent implements OnInit {
 		this.memberPageData=res.data;
 		this.showMemberPage=true;
 		
-		this.videoUrl=this.sanitizer.bypassSecurityTrustResourceUrl(this.memberPageData.video_url);
+		this.videoUrl=this.sanitizer.bypassSecurityTrustResourceUrl(this.memberPageData.web_video_url+'?rel=0&modestbranding=1&autohide=0&loop=1&showinfo=0&controls=0&autoplay=1&mute=1');
 		
 		console.log(this.memberPageData);
 

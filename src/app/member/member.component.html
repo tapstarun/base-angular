@@ -23,7 +23,7 @@
 			<owl-carousel-o [options]="ThreeInARowSlider">
 			    <ng-template carouselSlide *ngFor="let data of mainTab">
 			    	<a href="{{data.url}}" target="_blank">
-			    	<img src="{{url+data.img_url}}" class="attachment-medium size-medium" alt="" loading="lazy" sizes="(max-width: 300px) 100vw, 300px">
+			    	<img src="{{url+data.img_url}}" class="attachment-medium size-medium" alt=""  sizes="(max-width: 300px) 100vw, 300px">
 			    	</a>
 			    </ng-template>  			    	
 			    	
@@ -110,7 +110,7 @@
 		    <owl-carousel-o [options]="fourInARowSlider">
 				<ng-template carouselSlide *ngFor="let data of tutorialTab">
 			    	<a href="{{data.url}}" target="_blank">
-			    	<img src="{{url+data.img_url}}" class="attachment-medium size-medium" alt="" loading="lazy" sizes="(max-width: 300px) 100vw, 300px">
+			    	<img src="{{url+data.img_url}}" class="attachment-medium size-medium" alt=""  sizes="(max-width: 300px) 100vw, 300px">
 			    	</a>
 			    </ng-template>
 		  	</owl-carousel-o>
@@ -125,7 +125,7 @@
 		    <owl-carousel-o [options]="quizDataSlider.carouselLength==4?fourInARowSlider:fiveRowSlider">
 				<ng-template carouselSlide *ngFor="let data of quizDataSlider.data">
 			    	<a (click)="playQuiz(data.slug)">
-			    	<img src="{{url+data.img_url}}" class="attachment-medium size-medium"  alt="" loading="lazy" sizes="(max-width: 300px) 100vw, 300px">
+			    	<img src="{{url+data.img_url}}" class="attachment-medium size-medium"  alt=""  sizes="(max-width: 300px) 100vw, 300px">
 			    	</a>
 			    </ng-template>
 		  	</owl-carousel-o>
@@ -141,7 +141,7 @@
 		    <owl-carousel-o [options]="fourInARowSlider">
 			    <ng-template carouselSlide *ngFor="let data of hitDrillTab">
 			    	<a href="{{data.url}}" target="_blank">
-			    	<img src="{{url+data.img_url}}" class="attachment-medium size-medium" alt="" loading="lazy" sizes="(max-width: 300px) 100vw, 300px">
+			    	<img src="{{url+data.img_url}}" class="attachment-medium size-medium" alt=""  sizes="(max-width: 300px) 100vw, 300px">
 			    	</a>
 			    </ng-template>
 		  	</owl-carousel-o>

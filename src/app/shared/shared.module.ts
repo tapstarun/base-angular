@@ -7,6 +7,7 @@ import { ProgressBarComponent } from "./progress-bar/progress-bar.component";
 
 import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
+import { RouterModule } from "@angular/router";
 @NgModule({
     declarations:[
         ProgressBarComponent,
@@ -16,7 +17,8 @@ import { FooterComponent } from "./footer/footer.component";
     ],
     imports:[
         CommonModule,
-        NgxSpinnerModule
+        NgxSpinnerModule,
+        RouterModule
     ],
     exports:[
         ProgressBarComponent,
