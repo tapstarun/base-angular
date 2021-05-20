@@ -57,6 +57,10 @@ export class MemberComponent implements OnInit {
 		console.log(this.memberPageData);
 
 		this.memberService.getCarousel(this.memberPageData.main_tab).subscribe((carousel:any)=>{
+			
+			carousel.map(res=>{
+				console.log(res);
+			})
 			this.mainTab= carousel;
 			
 		})
@@ -91,7 +95,8 @@ export class MemberComponent implements OnInit {
     dots: false,
     margin:10,
     navSpeed: 700,
-    navText: ['', ''],
+	nav:true,
+    navText:['<i class="fa-chevron-left"></i>', '<i class="fa-chevron-right></i>"'],
     responsive: {
       0: {
         items: 1
@@ -115,13 +120,14 @@ export class MemberComponent implements OnInit {
 //==========================================================
   	fourInARowSlider: any = {
 	    loop: true,
-	    mouseDrag: true,
-	    touchDrag: true,
-	    pullDrag: false,
-	    dots: true,
-	    margin:10,
-	    navSpeed: 700,
-	    navText: ['previous', 'next'],
+		mouseDrag: true,
+		touchDrag: true,
+		pullDrag: false,
+		dots: true,
+		margin:10,
+		navSpeed: 700,
+		nav:true,
+		navText:['<i class="fa-chevron-left"></i>', '<i class="fa-chevron-right></i>"'],
 	    responsive: {
 	      0: {
 	        items: 1

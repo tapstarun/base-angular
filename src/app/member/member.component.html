@@ -7,7 +7,7 @@
 			
 			<figure>
 				
-				<iframe width="560" height="315" [src]="videoUrl" class="e2e-iframe-trusted-src" title="Member Page Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<iframe width="560" height="315" [src]="videoUrl" class="e2e-iframe-trusted-src"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			</figure>
 		</div>
 		
@@ -109,7 +109,7 @@
 			<!-- owl-carousel  -->
 		    <owl-carousel-o [options]="fourInARowSlider">
 				<ng-template carouselSlide *ngFor="let data of tutorialTab">
-			    	<a href="javascript:void(0)">
+			    	<a href="{{data.url}}" target="_blank">
 			    	<img src="{{url+data.img_url}}" class="attachment-medium size-medium" alt="" loading="lazy" sizes="(max-width: 300px) 100vw, 300px">
 			    	</a>
 			    </ng-template>

@@ -15,7 +15,7 @@ export class AuthComponent implements OnInit {
   showloader:boolean=false;
   showError=false;
   authForm = new FormGroup({
-    email: new FormControl('jvinod0302@gmail.com ',[Validators.required,Validators.email]),
+    email: new FormControl('jvinod0302@gmail.com ',[Validators.required]),
        password: new FormControl('Informatics@123',Validators.required),
   });
   
@@ -52,7 +52,7 @@ export class AuthComponent implements OnInit {
     this.showloader=true;
    
     this.authService.login(this.authForm.value).subscribe((res:any)=>{
-      
+      this.showloader=false;
         if(res.status){
           this.router.navigate(['/member']);
         }else{

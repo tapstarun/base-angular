@@ -8,7 +8,7 @@
                     <div class="login-card-wrp">
                         <div class="login-card-wrp_content">
                             <div class="login-heading">
-                                <span><img [src]="logo" alt="Logo"></span>
+                                <span><img [src]="logo" alt="Logo" width="150px"></span>
                                 <h1>Applied Vision Baseball</h1>
                             </div>
                             <!-- form -->
@@ -18,11 +18,11 @@
 
                                 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
+                                    <label for="exampleInputEmail1">Email address/Username</label>
                                     <input type="email" class="form-control" formControlName="email" placeholder="Email" id="exampleInputEmail1" aria-describedby="emailHelp">
                                     <div class="error" *ngIf="authFormControls.email.errors">
                                         <span *ngIf="authFormControls.email.touched && authFormControls.email.errors.required">Email required</span>
-                                        <span *ngIf="authFormControls.email.errors.email">Email should be in correct format</span>
+                                       
                                     </div>
                                 </div>
                                 <div class="form-group">
