@@ -1,3 +1,10 @@
+.slick-slide {
+    margin:10px;
+}
+.carousel-image{
+    width: 100%;
+}
+
 /*banner css*/
 .banner_content figure {
     width: 100%;
@@ -125,80 +132,6 @@ li{
     margin: 27px 0;
 }
 /*MOST SESSIONS COMPLETED END CSS*/
-
-
-.carousel-wrap {
-    width: 1000px;
-    margin: auto;
-    position: relative;
-  }
-  .owl-carousel .owl-nav{
-    overflow: hidden;
-    height: 0px;
-  }
-
-  .owl-theme .owl-dots .owl-dot.active span, 
-  .owl-theme .owl-dots .owl-dot:hover span {
-      background: #2caae1;
-  }
-
-
-  .owl-carousel .item {
-      text-align: center;
-  }
-  .owl-carousel .nav-btn{
-      height: 47px;
-      position: absolute;
-      width: 26px;
-      cursor: pointer;
-      top: 100px !important;
-  }
-
-  .owl-carousel .owl-prev.disabled,
-  .owl-carousel .owl-next.disabled{
-    pointer-events: none;
-    opacity: 0.2;
-  }
-
-  .owl-carousel .owl-prev{
-      background: url('../../assets/icons/left.png') no-repeat scroll 0 0;
-      left: -33px;
-  }
-  .owl-carousel .next-slide{
-      background: url('../../assets/icons/right.png') no-repeat scroll -24px 0px;
-      right: -33px;
-  }
-  .owl-carousel .owl-prev:hover{
-     background-position: 0px -53px;
-  }
-  .owl-carousel .next-slide:hover{
-    background-position: -24px -53px;
-  }
-
-  /* 210521 start here */
-  .owl-carousel .owl-prev {
-        left: 0;
-        position: absolute;
-        top: 50%;
-        transform:translateY(-50%);
-    }
-    .owl-carousel .owl-next {
-        right: 0;
-        position: absolute;
-        top:50%;
-        transform:translateY(-50%);
-    }
-    .owl-carousel .owl-prev span img,
-    .owl-carousel .owl-next span img {
-        width: 35px;
-    }
-    .owl-carousel .owl-prev,
-    .owl-carousel .owl-next {
-        background:none!important;
-    }
-    .owl-theme .owl-nav {
-        margin-top: 0 !important;
-    }
 
 /* 210521 end here */
 

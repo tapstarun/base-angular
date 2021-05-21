@@ -16,44 +16,21 @@
 
 <!-- main tab section code -->
 
-<section class="main-tab-sec bg-color33">
-	<div class="container">
-		<div class="main-tab_content">
-			<h2>Main Tabs</h2>
-			<!-- carousel start -->
-			<owl-carousel-o [options]="ThreeInARowSlider">
-				
-			    <ng-template carouselSlide>
-			    	
-			    	<img src="https://appliedvisionbaseball.com/wp-content/uploads/2020/08/6-2.png" class="attachment-medium size-medium" alt=""  sizes="(max-width: 300px) 100vw, 300px">
-			    	
-			    </ng-template>  	
-				<ng-template carouselSlide >
-			    	
-			    	<img src="https://appliedvisionbaseball.com/wp-content/uploads/2020/08/6-2.png" class="attachment-medium size-medium" alt=""  sizes="(max-width: 300px) 100vw, 300px">
-			    	
-			    </ng-template>  		    	
-			    	
-			  </owl-carousel-o>
-			<!-- carousel end -->
-		</div>
-	</div>
-</section>
 
 <section class="main-tab-sec bg-color33" *ngIf="mainTab!=null">
 	<div class="container">
 		<div class="main-tab_content">
 			<h2>Main Tabs</h2>
 			<!-- carousel start -->
-			<owl-carousel-o [options]="ThreeInARowSlider">
-				
-			    <ng-template carouselSlide *ngFor="let data of mainTab">
-			    	<a href="{{data.url}}" target="_blank">
-			    	<img src="{{url+data.img_url}}" class="attachment-medium size-medium" alt=""  sizes="(max-width: 300px) 100vw, 300px">
-			    	</a>
-			    </ng-template>  			    	
-			    	
-			  </owl-carousel-o>
+			<ngx-slick-carousel class="carousel" 
+			 #slickModal="slick-carousel" 
+			 [config]="ThreeInARowSlider">
+			<div ngxSlickItem *ngFor="let data of mainTab" class="slide">
+				<a [href]="data.url" target="_blank">
+					<img src="{{url+data.img_url}}" class="carousel-image"  alt="" >
+				</a>
+			</div>
+			</ngx-slick-carousel>
 			<!-- carousel end -->
 		</div>
 	</div>
@@ -133,13 +110,17 @@
 		<div class="tutorials_content margin-div" *ngIf="tutorialTab!=null">
 			<h2>Tutorials</h2>
 			<!-- owl-carousel  -->
-		    <owl-carousel-o [options]="fourInARowSlider">
-				<ng-template carouselSlide *ngFor="let data of tutorialTab">
-			    	<a href="{{data.url}}" target="_blank">
-			    	<img src="{{url+data.img_url}}" class="attachment-medium size-medium" alt=""  sizes="(max-width: 300px) 100vw, 300px">
-			    	</a>
-			    </ng-template>
-		  	</owl-carousel-o>
+		   
+
+			  <ngx-slick-carousel class="carousel" 
+			 #slickModal="slick-carousel" 
+			 [config]="fourInARowSlider">
+			<div ngxSlickItem *ngFor="let data of tutorialTab" class="slide">
+				<a [href]="data.url" target="_blank">
+					<img src="{{url+data.img_url}}" class="carousel-image"  alt="" >
+				</a>
+			</div>
+			</ngx-slick-carousel>
 			<!-- owl-carousel END  -->
 		</div>
 		<!-- TUTORIALS CODE -->
@@ -148,13 +129,17 @@
 		<div class="pitchers_content margin-div" *ngFor="let quizDataSlider of quizDataForMember">
 			<h2>{{quizDataSlider.title}}</h2>
 			<!-- owl-carousel  -->
-		    <owl-carousel-o [options]="quizDataSlider.carouselLength==4?fourInARowSlider:fiveRowSlider">
-				<ng-template carouselSlide *ngFor="let data of quizDataSlider.data">
-			    	<a (click)="playQuiz(data.slug)">
-			    	<img src="{{url+data.img_url}}" class="attachment-medium size-medium"  alt=""  sizes="(max-width: 300px) 100vw, 300px">
-			    	</a>
-			    </ng-template>
-		  	</owl-carousel-o>
+		    
+			<ngx-slick-carousel class="carousel" 
+			 #slickModal="slick-carousel" 
+			 [config]="quizDataSlider.data.length>4?fourInARowSlider:ThreeInARowSlider"
+			 >
+			<div ngxSlickItem *ngFor="let data of quizDataSlider.data" class="slide">
+				<a (click)="playQuiz(data.slug)">
+			    	<img src="{{url+data.img_url}}" class="carousel-image"  alt="" >
+			    </a>
+			</div>
+			</ngx-slick-carousel>
 			<!-- owl-carousel END  -->
 		</div>
 		<!-- Most Popular Pitchers END CODE -->
@@ -163,14 +148,17 @@
 		<!-- Courses & Hitting Drills CODE -->
 		<div class="hitting-drills_content margin-div" *ngIf="hitDrillTab!=null">
 			<h2>Courses & Hitting Drills </h2>
-			<!-- owl-carousel  -->
-		    <owl-carousel-o [options]="fourInARowSlider">
-			    <ng-template carouselSlide *ngFor="let data of hitDrillTab">
-			    	<a href="{{data.url}}" target="_blank">
-			    	<img src="{{url+data.img_url}}" class="attachment-medium size-medium" alt=""  sizes="(max-width: 300px) 100vw, 300px">
-			    	</a>
-			    </ng-template>
-		  	</owl-carousel-o>
+			
+			<ngx-slick-carousel class="carousel" 
+			 #slickModal="slick-carousel" 
+			 [config]="ThreeInARowSlider"
+			 >
+			<div ngxSlickItem *ngFor="let data of hitDrillTab" class="slide">
+				<a href="{{data.url}}" target="_blank">
+			    	<img src="{{url+data.img_url}}" class="carousel-image"  alt="" >
+			    </a>
+			</div>
+			</ngx-slick-carousel>
 			<!-- owl-carousel END  -->
 		</div>
 		<!-- Courses & Hitting Drills END CODE -->

@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder  } from '@angular/forms';
 import { MemberService } from './member.service';
+import { OwlOptions, SlidesOutputData } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-member',
@@ -13,6 +14,10 @@ import { MemberService } from './member.service';
 export class MemberComponent implements OnInit {
 
 	
+	 
+	  
+
+
 	authForm = new FormGroup({
 		firstName: new FormControl(''),
 		lastName: new FormControl(''),
@@ -87,91 +92,12 @@ export class MemberComponent implements OnInit {
 	this.router.navigate(['quiz',quizId]);
  }
  
- ThreeInARowSlider: any = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: false,
-    pullDrag: false,
-    dots: false,
-    margin:10,
-    navSpeed: 700,
-	nav:true,
-    navText:['<span><img src=".../../assets/icons/left-arrow2.png"></span>', '<span><img src=".../../assets/icons/right-arrow2.png"></span>'],
-    responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 2
-      },
-      740: {
-        items: 3
-      },
-      940: {
-        items: 3
-      }
-    },
-  }
-  
 
 
 
-
-
-//==========================================================
-  	fourInARowSlider: any = {
-	    loop: true,
-		mouseDrag: true,
-		touchDrag: true,
-		pullDrag: false,
-		dots: true,
-		margin:10,
-		navSpeed: 700,
-		nav:true,
-		navText:['<i class="fa-chevron-left"></i>', '<i class="fa-chevron-right></i>"'],
-	    responsive: {
-	      0: {
-	        items: 1
-	      },
-	      400: {
-	        items: 2
-	      },
-	      740: {
-	        items: 3
-	      },
-	      940: {
-	        items: 4
-	      }
-	    },
-  	}
-
-
-//===================================================
-
-fiveRowSlider: any = {
-	    loop: true,
-	    mouseDrag: false,
-	    touchDrag: false,
-	    pullDrag: false,
-	    dots: false,
-	    margin:10,
-	    navSpeed: 700,
-	    navText: ['', ''],
-	    responsive: {
-	      0: {
-	        items: 1
-	      },
-	      400: {
-	        items: 2
-	      },
-	      740: {
-	        items: 3
-	      },
-	      940: {
-	        items: 5
-	      }
-	    },
-  	}
-
-
+ ThreeInARowSlider = {"slidesToShow": 3, "slidesToScroll": 3,"infinite": true};
+ fourInARowSlider = {"slidesToShow": 4, "slidesToScroll": 4,"infinite": true};
+ fiveRowSlider = {"slidesToShow": 5, "slidesToScroll": 5};
+ 
 }
+
