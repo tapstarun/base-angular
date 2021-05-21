@@ -177,20 +177,20 @@ li{
 
   /* 210521 start here */
   .owl-carousel .owl-prev {
-        left: -4%;
+        left: 0;
         position: absolute;
         top: 50%;
-        transform:translateY(-50%)
+        transform:translateY(-50%);
     }
     .owl-carousel .owl-next {
-        right: -4%;
+        right: 0;
         position: absolute;
         top:50%;
         transform:translateY(-50%);
     }
     .owl-carousel .owl-prev span img,
     .owl-carousel .owl-next span img {
-        width: 25px;
+        width: 35px;
     }
     .owl-carousel .owl-prev,
     .owl-carousel .owl-next {
