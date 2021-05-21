@@ -96,7 +96,7 @@ export class MemberComponent implements OnInit {
     margin:10,
     navSpeed: 700,
 	nav:true,
-    navText:['<i class="fa-chevron-left"></i>', '<i class="fa-chevron-right></i>"'],
+    navText:['<span><img src=".../../assets/icons/left-arrow2.png"></span>', '<span><img src=".../../assets/icons/right-arrow2.png"></span>'],
     responsive: {
       0: {
         items: 1
@@ -112,6 +112,7 @@ export class MemberComponent implements OnInit {
       }
     },
   }
+  
 
 
 
