@@ -6,7 +6,7 @@ import { AuthGuard } from "../auth/auth.guard";
 import { SharedModule } from "../shared/shared.module";
 
 import { QuizComponent } from "./quiz.component";
-
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 const route: Routes =[
     {
@@ -28,7 +28,8 @@ const route: Routes =[
     imports:[
         RouterModule.forChild(route),
         CommonModule,
-        SharedModule
+        SharedModule,
+        SlickCarouselModule
         
     ],
 

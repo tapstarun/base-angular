@@ -29,8 +29,24 @@
 					</div>
 				</div>
 				
+				
 			</div>
 			<!-- row end -->
+			<div *ngIf="quizDataReceived">
+			<!-- owl-carousel  -->
+		   
+
+			<ngx-slick-carousel class="carousel" 
+			#slickModal="slick-carousel" 
+			[config]="fourInARowSlider">
+		   <div ngxSlickItem *ngFor="let data of sliderItem;let i = index" class="slide">
+				<figure>
+					<img src='{{url+data.url}}' (click)="startQuiz(i)">
+				</figure>
+		   </div>
+		   </ngx-slick-carousel>
+		   <!-- owl-carousel END  -->
+		   </div>
 		</div>
 	</div>
 </section>

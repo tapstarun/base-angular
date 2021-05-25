@@ -1,3 +1,9 @@
+.slick-slide {
+    margin:10px;
+}
+.carousel-image{
+    width: 100%;
+}
 /*header css*/
 .main-header {
     background-color: #3e8ae6;
