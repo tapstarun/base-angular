@@ -62,10 +62,6 @@ export class MemberComponent implements OnInit {
 		console.log(this.memberPageData);
 
 		this.memberService.getCarousel(this.memberPageData.main_tab).subscribe((carousel:any)=>{
-			
-			carousel.map(res=>{
-				console.log(res);
-			})
 			this.mainTab= carousel;
 			
 		})
