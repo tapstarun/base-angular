@@ -34,7 +34,7 @@ export class QuizComponent implements OnInit {
     this.getQuizSlider();
   }
   
-  fourInARowSlider = {"slidesToShow": 3, "slidesToScroll": 3};
+  fourInARowSlider = {"slidesToShow":4 , "slidesToScroll": 3};
   quizSliderOption: any = {
     loop: true,
     mouseDrag: true,

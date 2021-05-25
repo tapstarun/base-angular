@@ -67,3 +67,6 @@
     object-fit: scale-down;	
 }
 /*hiro-video section end css*/
+.n-carousel figure img {
+    max-width: 100%;
+}

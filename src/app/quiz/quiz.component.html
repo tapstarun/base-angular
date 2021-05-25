@@ -17,7 +17,7 @@
 	<div class="container">
 		<div class="hiro-video_content">
 			<!-- row -->
-			<div class="row" *ngIf="quizDataReceived">
+			<!-- <div class="row" *ngIf="quizDataReceived">
 
 
 
@@ -30,13 +30,13 @@
 				</div>
 				
 				
-			</div>
+			</div> -->
 			<!-- row end -->
 			<div *ngIf="quizDataReceived">
 			<!-- owl-carousel  -->
 		   
 
-			<ngx-slick-carousel class="carousel" 
+			<ngx-slick-carousel class="carousel n-carousel" 
 			#slickModal="slick-carousel" 
 			[config]="fourInARowSlider">
 		   <div ngxSlickItem *ngFor="let data of sliderItem;let i = index" class="slide">
