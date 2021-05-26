@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
+import { exhaustMap, map } from 'rxjs/operators';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,14 +11,24 @@ import { Observable } from 'rxjs';
 export class HeaderComponent implements OnInit {
   menu:any;
   isLoggedIn: Observable<boolean>;  
+  leadershipUrl='';
+  statsUrl='';
   
   url=environment.Url;
   constructor(private authService:AuthService) { 
     this.menu={};
   }
-
+  
   ngOnInit(): void {
+
+    let userData = JSON.parse(localStorage.getItem('userData'));
+    const authToken=userData.authToken;
+    this.leadershipUrl=this.url+'leadership?user='+authToken;
+    this.statsUrl=this.url+'statistic-page?user='+authToken;
     
+    
+    
+    //console.log(this.authService.user.authToken);
     // this.menu=[
     //   {
     //     'Home':
