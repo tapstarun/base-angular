@@ -360,7 +360,7 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
       'action':'statistic_data'
      };
     
-     
+     console.log(data);
     this.storeDataForResultTemplateWise(storeData.user_answer); // Template wise store data 
      
     this.quizService.storeQuizData(data);
@@ -398,7 +398,7 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
       case 'theme_singlecolumnbutton':
         
         userAnswered={
-          'userAns':this.getLabelFromQuestionForSingleLine(user_answer),
+          'userAns':user_answer==0?'Not Answered':this.getLabelFromQuestionForSingleLine(user_answer),
           'correctAns':this.getLabelFromQuestionForSingleLine(this.currentQuestion.correct_answer),
           'ans':this.accuracy
          };        
@@ -407,7 +407,7 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
       default:
 
         userAnswered={
-          'userAns':this.getLabelFromQuestion(user_answer),
+          'userAns':user_answer==0?'Not Answered':this.getLabelFromQuestion(user_answer),
           'correctAns':this.getLabelFromQuestion(this.currentQuestion.correct_answer),
           'ans':this.accuracy
          };        

@@ -1,12 +1,14 @@
 <app-header></app-header>
 <app-loader [showloader]="showloader"></app-loader>
 <!-- banner -->
-<section class="banner-sec">
-	<div class="container">
-		<div class="banner_content text-center" *ngIf="sliderData" >
-			<h2 >{{sliderData.title}}</h2>
+<section class="banner-sec" [ngStyle]="{'background-image': 'url(' + sliderData.bgImage + ')'}" *ngIf="sliderData">
+	<div class="container" >
+		
+		<div class="banner_content text-center"  >
+			
+			<h1 >{{sliderData.title}}</h1>
     
-	 <p>{{sliderData.content}}</p>
+	 			<p>{{sliderData.content}}</p>
 		</div>
 	</div>
 </section>

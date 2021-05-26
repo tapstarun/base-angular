@@ -139,7 +139,13 @@
                     
                 </div>
                 <!-- showSingleLineQuiz end -->
-                
+                   <!-- Timer -->
+                <div class="timeProgressBar">
+                    <p class="text-center">Time</p>
+                    <app-progress-bar [progress]="progress" [total]="timer"></app-progress-bar>
+                    <p class="text-center">{{reactTime}}</p>
+                </div>
+                <!-- Timer end-->
                 <div class="report-btn">
                     <a href="javascript:void(0);" class="report_button">Report Issue</a>
                 </div>
