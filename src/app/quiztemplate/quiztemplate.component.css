@@ -268,11 +268,13 @@
 }
 }
 @media(max-width: 639px){
-.mobile-portrait {
-    display: block!important;
-}
 .quiz-firstPage {
     width: 70%;
+}
+}
+@media(max-width: 537px){
+.mobile-portrait {
+    display: block!important;
 }
 }
 /*responsive end*/ 

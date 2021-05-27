@@ -23,3 +23,6 @@
     font-size: 15px;
     line-height: 29px;
 }
+header.main-header a.navbar-brand {
+    width: 100px;
+}
