@@ -23,8 +23,19 @@ export class HeaderComponent implements OnInit {
 
     let userData = JSON.parse(localStorage.getItem('userData'));
     const authToken=userData.authToken;
-    this.leadershipUrl=this.url+'leadership?user='+authToken;
-    this.statsUrl=this.url+'statistic-page?user='+authToken;
+
+    this.menu=[
+      {'title':'Your Stats','url':this.url+'statistic-page?user='+authToken},
+      {'title':'Leaderboard','url':this.url+'leadership?user='+authToken},
+      {'title':'Tutorials','url':this.url+'pitch-recognition-drills-tutorials'},
+      {'title':'Modify Billing','url':this.url+'modify-billing/'},
+      {'title':'Upgrade / Renew','url':this.url+'upgrade-plan/'}
+
+
+    ]
+    
+    
+    
     
     
     

@@ -7,6 +7,14 @@ import { AuthGuard } from "../auth/auth.guard";
 import { MemberComponent } from "./member.component";
 // Import your library
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+
+
+// Video controller 
+import {VgCoreModule} from '@videogular/ngx-videogular/core';
+import {VgControlsModule} from '@videogular/ngx-videogular/controls';
+import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
+import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
+
 const route:Routes=[
     {path:'',component:MemberComponent,canActivate:[AuthGuard] },
 ];
@@ -19,7 +27,11 @@ const route:Routes=[
         RouterModule.forChild(route),
         CommonModule,
         SharedModule,
-        SlickCarouselModule
+        SlickCarouselModule,
+        VgCoreModule,
+        VgControlsModule,
+        VgOverlayPlayModule,
+        VgBufferingModule,  
     ]
 })
 

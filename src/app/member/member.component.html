@@ -2,12 +2,21 @@
 <app-loader [showloader]="showloader"></app-loader>
 <div *ngIf="showMemberPage">
 <!-- banner section code -->
-<section class="banner-sec" *ngIf="memberPageData.video_url!=''">
+<section class="banner-sec">
 		<div class="banner_content">
 			
-			<figure>
+			<figure class="video-player-wrapper">
+
+				<vg-player (onPlayerReady)="videoPlayerInit($event)">
+					
+					<vg-buffering></vg-buffering>
 				
-				<iframe width="560" height="315" [src]="videoUrl" class="e2e-iframe-trusted-src"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					<video [vgMedia]="media" #media id="singleVideo" src="../../assets/video/video.mp4"preload="auto" crossorigin webkit-playsinline="true" playsinline="true">
+					 
+					</video>
+				  </vg-player>
+				
+				<!-- <iframe width="560" height="315" [src]="videoUrl" class="e2e-iframe-trusted-src"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 			</figure>
 		</div>
 		

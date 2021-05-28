@@ -1,3 +1,10 @@
+.quiz-content{
+    font-size: 17px;
+    color: #fff;
+}
+h1 .quiz-title{
+    font-size: 67px;
+}
 .slick-slide {
     margin:10px;
 }
@@ -38,7 +45,7 @@
     z-index: 9;
 }
 .banner_content {
-    width: 70%;
+    
     margin: 0 auto;
     color: #fff;
     padding: 170px 0;

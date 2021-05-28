@@ -21,9 +21,8 @@
 					    MEMBERS AREA
 					  </button>
 					  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					    <a class="dropdown-item" routerLink="/member"  routerLinkActive="active">Member Home</a>
-						<a class="dropdown-item" [href]="leadershipUrl" target="_blank">Leaderboard</a>					    
-						<a class="dropdown-item" [href]="statsUrl" target="_blank" >Your Stats</a>					    
+					    <a class="dropdown-item" routerLink="/member"  routerLinkActive="active">Member Home</a>				    
+						<a class="dropdown-item" [href]="m.url" target="_blank" *ngFor="let m of menu;">{{m.title}}</a>			    
 						<a class="dropdown-item" (click)="logout()">Log out</a> 
 					  </div> 
 					</div>

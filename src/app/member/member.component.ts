@@ -34,6 +34,9 @@ export class MemberComponent implements OnInit {
   url=environment.Url;
   showloader:boolean;
   quizDataForMember:any;
+  videoData:any;
+  videoPlay:any;
+  videoEnded:any;
   constructor(
 	  private memberService:MemberService,
 	  private sanitizer:DomSanitizer,
@@ -94,6 +97,23 @@ export class MemberComponent implements OnInit {
  ThreeInARowSlider = {"slidesToShow": 3, "slidesToScroll": 3,"infinite": true};
  fourInARowSlider = {"slidesToShow": 4, "slidesToScroll": 4,"infinite": true};
  fiveRowSlider = {"slidesToShow": 5, "slidesToScroll": 5};
+
  
+ videoPlayerInit(data) {
+    this.videoData = data;
+    this.videoData.getDefaultMedia().subscriptions.loadedMetadata.subscribe(this.initVdo.bind(this));
+    this.videoData.getDefaultMedia().subscriptions.pause.subscribe(this.initVdo.bind(this));
+    this.videoData.getDefaultMedia().subscriptions.ended.subscribe(this.initVdo.bind(this));
+  }
+
+  
+
+  initVdo(){
+	  console.log('Play');
+    this.videoData.play();
+  }
+
+
+
 }
 
