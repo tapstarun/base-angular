@@ -25,14 +25,16 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    width: 100%!important;
 }
 .quiz-head{
     font-size: 20px;
     line-height: 20px;
 }
-.quiz-firstPage pre{
+.quiz-firstPage pre {
     font-size: 16px;
     line-height: 18px;
+    white-space: break-spaces!important;
 }
 
 .report-btn {
@@ -80,7 +82,7 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #717171;
-    margin-top: 17px;
+    /*margin-top: 17px;*/
 }
 
 .video_box {
@@ -167,29 +169,36 @@
     flex-direction: column;
     padding: 10px;
     background: #404040;
-    height: calc(100% - 300px);
-    margin: 40px;
+    /*height: calc(100% - 300px);*/
+    margin: 5px 0;
     border-radius: 30px;
-}
+} 
 .showSingleLineQuiz-box button.singleline_btn {
     background: #1e73be;
     border: 2px solid #1e73be;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     padding: 16px;
     width: 76%;
     color: #fff;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 500;
     letter-spacing: 2px;
+    border-radius: 3px;
 }
 .showSingleLineQuiz-box button.singleline_btn:hover {
     border: 2px solid #fff;
 }
+.showSingleLineQuiz-box button:last-child {
+    margin: 0;
+}
+
+.scroll-div-wrap {
+    overflow-y: auto;
+    height: 100%;
+    padding-bottom: 30px;
+}
 /*showSingleLineQuiz end*/
 
-/*.normal_quiz-btn button:last-child {
-    background: #7ed957;
-}*/
 /*left-side video hide css*/
 
 .left-side-hide:after {
@@ -239,7 +248,7 @@
 }
 .mobile-portrait {
     display: none;
-    position: absolute;
+    position: fixed;
     text-align: center;
     left: 50%;
     top: 50%;
@@ -301,7 +310,7 @@
     padding: 7px 19px;
 }
 .report_button {
-    padding: 10px 9px;
+    padding: 6px 9px;
 }
 .timeProgressBar {
     padding: 0px 0;
@@ -312,10 +321,16 @@
     margin-top: 4px;
     margin-bottom: 5px;
 }
+.showSingleLineQuiz-box button.singleline_btn {
+     padding: 3px; 
+}  
 }
 @media (max-width: 767px){
 .normal_quiz-btn button {
     padding: 7px 9px;
+}
+.report_button {
+    padding: 4px 9px;
 }
 }
   /*210430 end*/
