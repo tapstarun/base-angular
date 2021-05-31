@@ -37,6 +37,7 @@ export class MemberComponent implements OnInit {
   videoData:any;
   videoPlay:any;
   videoEnded:any;
+  mainTabShow:false;
   constructor(
 	  private memberService:MemberService,
 	  private sanitizer:DomSanitizer,
@@ -64,10 +65,20 @@ export class MemberComponent implements OnInit {
 		
 		console.log(this.memberPageData);
 
-		this.memberService.getCarousel(this.memberPageData.main_tab).subscribe((carousel:any)=>{
-			this.mainTab= carousel;
+		this.memberService.getCarousel(this.memberPageData.main_tab).subscribe((carousel:any)=>{			
+			let userData = JSON.parse(localStorage.getItem('userData'));
+    		const authToken=userData.authToken;
+			this.mainTab=carousel.map((res:any)=>{
+				console.log(res);
+				if(res.slug=='statistic-page' || res.slug=='leadership'){
+					return {...res,url:res.url+'?user='+authToken};
+				}
+				return res;
+			})
+			console.log(this.mainTab);
 			
 		})
+		
 		this.memberService.getCarousel(this.memberPageData.tutorials).subscribe((carousel:any)=>{
 			this.tutorialTab= carousel;
 		})
