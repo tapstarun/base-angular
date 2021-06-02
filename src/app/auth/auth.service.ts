@@ -99,5 +99,8 @@ export class AuthService{
         },expiredIn);
     }
 
+    userDetails(){
+        return JSON.parse(localStorage.getItem('userData'));	
+    }
     
 }

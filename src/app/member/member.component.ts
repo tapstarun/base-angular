@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder  } from '@angular/forms';
 import { MemberService } from './member.service';
 import { OwlOptions, SlidesOutputData } from 'ngx-owl-carousel-o';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-member',
@@ -43,7 +44,7 @@ export class MemberComponent implements OnInit {
 	  private sanitizer:DomSanitizer,
 	  private router:Router,
 	  private route:ActivatedRoute,
-	  
+	  private authService:AuthService
 	) { 
 		this.showloader=false;
 	  this.showMemberPage=false;
@@ -56,7 +57,9 @@ export class MemberComponent implements OnInit {
 
   memberPageSetting(){
 	this.showloader=true;
-	this.memberService.getMemberPageData(477).subscribe((res:any)=>{
+	let userData = this.authService.userDetails();
+	
+	this.memberService.getMemberPageData(userData.userId).subscribe((res:any)=>{
 		this.showloader=false;
 		this.memberPageData=res.data;
 		this.showMemberPage=true;
@@ -66,7 +69,7 @@ export class MemberComponent implements OnInit {
 		console.log(this.memberPageData);
 
 		this.memberService.getCarousel(this.memberPageData.main_tab).subscribe((carousel:any)=>{			
-			let userData = JSON.parse(localStorage.getItem('userData'));
+			
     		const authToken=userData.authToken;
 			this.mainTab=carousel.map((res:any)=>{
 				console.log(res);

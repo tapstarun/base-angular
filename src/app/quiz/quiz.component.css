@@ -2,8 +2,9 @@
     font-size: 17px;
     color: #fff;
     white-space: initial;
-    white-space: pre-wrap
+    white-space: pre-wrap;
 }
+
 .quiz-title{
     font-weight: 600;
     font-size: 67px;

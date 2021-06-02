@@ -16,15 +16,17 @@
 			        <a class="nav-link" (click)="onNavigateUrl('/');">HOME</a>
 			      </li>
 			      <li class="nav-item">
-			        <div class="dropdown">
-					  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			        <div class="dropdown show">
+					  <button class="btn dropdown-toggle show" (mouseover)="memberHover=true" (mouseout)="memberHover=false" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					    MEMBERS AREA
 					  </button>
-					  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton show" *ngIf="memberHover">
 					    <a class="dropdown-item" routerLink="/member"  routerLinkActive="active">Member Home</a>				    
 						<a class="dropdown-item" [href]="m.url" target="_blank" *ngFor="let m of menu;">{{m.title}}</a>			    
 						<a class="dropdown-item" (click)="logout()">Log out</a> 
 					  </div> 
+
+					  
 					</div>
 			      </li>
 			      <li class="nav-item">
@@ -34,7 +36,9 @@
 					  </button>
 					  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					    <a class="dropdown-item" (click)="onNavigateUrl('blog');">Blog</a>
-					    <a class="dropdown-item" (click)="onNavigateUrl('the-ultimate-guide-to-baseball-pitch-recognition-vision-training/');">Pitch Recognition Explained</a>
+					    <a class="dropdown-item" (click)="onNavigateUrl('the-ultimate-guide-to-baseball-pitch-recognition-vision-training/');">
+						Pitch Recognition Explained
+						</a>
 					    
 					  </div>
 					</div>

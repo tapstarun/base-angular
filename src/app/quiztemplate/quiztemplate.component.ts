@@ -1,5 +1,6 @@
 import { Component, OnInit,ViewChild,ElementRef,ViewEncapsulation, Input, OnChanges, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 import { QuizService } from '../services/quiz.service';
 
 
@@ -51,7 +52,7 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
 //https://cdn.jwplayer.com/v2/media/gi2pb1VW
   
 
-constructor(private activatedRoute: ActivatedRoute,private quizService:QuizService) { 
+constructor(private activatedRoute: ActivatedRoute,private quizService:QuizService,private authService:AuthService) { 
     this.quizData = {} as any;
     this.currentQuestion = {} as any;
     this.questions = new Array<any>();
@@ -347,11 +348,11 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
 
     // showThumbsup and down
        this.showThumb();
-    
+       let userData = this.authService.userDetails();
 
      let data={
       'question_id':this.currentQuestion.id,
-      'user_id':477,
+      'user_id':userData.userId,
       'correct_ans':this.currentQuestion.correct_answer,
       'user_answer':storeData.user_answer,
       'pitch_type':this.currentQuestion.pitch_type,

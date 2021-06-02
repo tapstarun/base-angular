@@ -13,15 +13,17 @@ export class HeaderComponent implements OnInit {
   isLoggedIn: Observable<boolean>;  
   leadershipUrl='';
   statsUrl='';
+  memberHover:boolean;
   
   url=environment.Url;
   constructor(private authService:AuthService) { 
     this.menu={};
+    this.memberHover=false;
   }
   
   ngOnInit(): void {
 
-    let userData = JSON.parse(localStorage.getItem('userData'));
+    let userData = this.authService.userDetails();
     const authToken=userData.authToken;
 
     this.menu=[
@@ -35,7 +37,7 @@ export class HeaderComponent implements OnInit {
     ]
     
     
-    
+     
     
     
     
@@ -70,6 +72,9 @@ export class HeaderComponent implements OnInit {
     // ];
   }
 
+  mouseover1(){
+    console.log('hover');
+  } 
 
   logout(){
     console.log("logout");
