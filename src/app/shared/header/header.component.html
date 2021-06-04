@@ -34,36 +34,44 @@
 						</div>
 					</div>
 				</li>
-				
-			      <li class="nav-item">
-			        <div class="dropdown">
-					  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					    BLOG
-					  </button>
-					  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					    <a class="dropdown-item" (click)="onNavigateUrl('blog');">Blog</a>
-					    <a class="dropdown-item" (click)="onNavigateUrl('the-ultimate-guide-to-baseball-pitch-recognition-vision-training/');">
-						Pitch Recognition Explained
-						</a>
-					    
-					  </div>
+							     
+
+				<li class="navbar">
+					<div class="dropdown">
+						<button class="dropbtn">BLOG
+						<i class="fa fa-caret-down"></i>
+						</button>
+						<div class="dropdown-content">
+							<div class="row">
+								<div class="column">
+									<a  (click)="onNavigateUrl('blog');">Blog</a>				    
+									<a  (click)="onNavigateUrl('the-ultimate-guide-to-baseball-pitch-recognition-vision-training/');">
+										Pitch Recognition Explained</a> 
+								</div>
+							</div>
+						</div>
 					</div>
-			      </li>
+				</li>
+
 			      <li class="nav-item">
 			        <a class="nav-link" (click)="onNavigateUrl('about');">About</a>
 			      </li>
-			      <li class="nav-item">
-			        <div class="dropdown">
-					  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					    PRICING
-					  </button>
-					  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					    <a class="dropdown-item"  (click)="onNavigateUrl('pricing');">Pricing</a>
-					    <a class="dropdown-item"  (click)="onNavigateUrl('team-pricing');">Team Pricing</a>
-					   
-					  </div>
-					</div>
-			      </li>
+			      
+					<li class="navbar">
+						<div class="dropdown">
+							<button class="dropbtn">PRICING
+							<i class="fa fa-caret-down"></i>
+							</button>
+							<div class="dropdown-content">
+								<div class="row">
+									<div class="column">
+										<a   (click)="onNavigateUrl('pricing');">Pricing</a>				    
+										<a   (click)="onNavigateUrl('team-pricing');">Team Pricing</a> 
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
 			      <li class="nav-item">
 			        <a class="nav-link" (click)="onNavigateUrl('upgrade-plan');">UPGRADE / RENEW</a>
 			      </li>
