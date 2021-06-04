@@ -69,6 +69,19 @@ getData(getParams:any|null,header:any){
         // return this.http.post(environment.API_URL,[],{headers:header1,params:getParams})
         // .pipe(catchError(this.handleError));
     }
+    postDataForFile(getParams:any|null,header:any){
+        
+        let headers={};
+        if(header){
+            headers=header;
+        }   
+        const header1={
+            'Access-Control-Allow-Origin':'*'
+        };
+        
+        return this.http.post(environment.API_URL,getParams,{headers:header1})
+        .pipe(catchError(this.handleError));
+    }
 
     // only used in this file for now for the error handling
     private handleError(errRes){

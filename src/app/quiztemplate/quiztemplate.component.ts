@@ -216,7 +216,7 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
     this.showThumbs=false;
     this.playButton(true);  
     this.swingButtonWork=true;
-    
+    this.progress = 100;
     this.reactTime =this.timer; // Because everytime counter run so it shourld be same as timer
 
     

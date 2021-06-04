@@ -1,0 +1,85 @@
+<app-header></app-header>
+<app-loader [showloader]="showloader"></app-loader>
+<section>
+    <form  method="post" [formGroup]="authForm" (ngSubmit)="submitForm()">
+       
+        <div class="form-group">
+            <span *ngIf="profileImage"><img [src]="profileImage" alt="Profile Image" width="100px"></span>
+            <label for="profileimage">Profile Image</label>
+            <input type="file" class="form-control" (change)="onChange($event)"  id="profileimage">
+            
+  
+            <button (click)="onUpload()" 
+                class="btn btn-success">
+                Upload
+            </button>
+                <!--Flag variable is used here-->
+            <div class="container" *ngIf="loading">
+                <h3>Loading ...</h3>
+            </div>
+            <div class="error" *ngIf="authFormControls.username.errors">
+                <span *ngIf="authFormControls.username.touched && authFormControls.username.errors.required">username required</span>
+               
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" formControlName="username" placeholder="Email" id="username" aria-describedby="emailHelp">
+            <div class="error" *ngIf="authFormControls.username.errors">
+                <span *ngIf="authFormControls.username.touched && authFormControls.username.errors.required">username required</span>
+               
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" formControlName="email" placeholder="Email" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div class="error" *ngIf="authFormControls.email.errors">
+                <span *ngIf="authFormControls.email.touched && authFormControls.email.errors.required">Email required</span>
+               
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="firstname">First Name</label>
+            <input type="text" class="form-control" formControlName="firstname" placeholder="firstname" id="firstname" aria-describedby="emailHelp">
+            <div class="error" *ngIf="authFormControls.firstname.errors">
+                <span *ngIf="authFormControls.firstname.touched && authFormControls.firstname.errors.required">firstname required</span>
+               
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastname">Last Name</label>
+            <input type="text" class="form-control" formControlName="lastname" placeholder="lastname" id="lastname" aria-describedby="emailHelp">
+            <div class="error" *ngIf="authFormControls.lastname.errors">
+                <span *ngIf="authFormControls.lastname.touched && authFormControls.lastname.errors.required">lastname required</span>
+               
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="displayname">Display Name</label>
+            <input type="text" class="form-control" formControlName="displayname" placeholder="displayname" id="displayname" aria-describedby="emailHelp">
+            <div class="error" *ngIf="authFormControls.displayname.errors">
+                <span *ngIf="authFormControls.displayname.touched && authFormControls.displayname.errors.required">Display Name required</span>
+               
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>                                
+            <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password" placeholder="Password">
+            <div class="error" *ngIf="authFormControls.password.errors">
+                <span *ngIf="authFormControls.password.touched && authFormControls.password.errors.required">Password Required</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="confirmpassword">Confirm Password</label>                                
+            <input type="password" class="form-control" id="confirmpassword" formControlName="confirmpassword" placeholder="Confirm Password">
+            <div class="error" *ngIf="authFormControls.confirmpassword.errors">
+                <span *ngIf="authFormControls.confirmpassword.touched && authFormControls.confirmpassword.errors.required">Confirm Password Required</span>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn login-button" [disabled]="!authForm.valid || showloader">Save All Changes</button>
+    </form>
+
+</section>
+<app-footer></app-footer>

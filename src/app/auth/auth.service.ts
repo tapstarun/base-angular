@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpService } from "../services/httpservice";
 import {  tap } from 'rxjs/operators';
-import { BehaviorSubject} from 'rxjs';
+import { BehaviorSubject, Observable} from 'rxjs';
 import { AuthModel } from "./auth.model";
 import { Router } from "@angular/router";
 
@@ -16,13 +16,6 @@ export class AuthService{
 
     login(data:any){
         let newData={...data,action:'authenticate_user'};
-
-        const header={
-            'Access-Control-Allow-Origin':'*',
-            'Access-Control-Allow-Methods': "POST,GET,OPTIONS, PUT, DELETE",
-            "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization" 
-        };
-
         return this.httpService.getData(newData,[])
         .pipe(           
             tap((resData:any)=>{
@@ -33,11 +26,16 @@ export class AuthService{
                const user= new AuthModel(
                    resData.data.auth_token,
                    expirationDate,
-                   resData.data.userEmail,
+                   resData.data.user_email,
                    resData.data.user_id,
                    resData.data.user_name,
-                   resData.level
+                   resData.level,
+                   resData.data.display_name,
+                   resData.data.first_name,
+                   resData.data.last_name,
+                   resData.data.profile_image,
                 );
+                
                 localStorage.setItem('userData',JSON.stringify(user));
                 this.user.next(user);
                 // Function for autologout
@@ -55,6 +53,10 @@ export class AuthService{
             userId:number;
             userName:string;
             level:number;
+            displayName:string;
+            firstName:string;
+            lastName:string;
+            profileImage:string;
         } = JSON.parse(localStorage.getItem('userData'));
         if(!userData){
             return ;
@@ -66,7 +68,11 @@ export class AuthService{
             userData.userEmail,
             userData.userId,
             userData.userName,
-            userData.level
+            userData.level,
+            userData.displayName,
+            userData.firstName,
+            userData.lastName,
+            userData.profileImage,
          ); 
         
          if(loadedUser.token){
@@ -103,4 +109,19 @@ export class AuthService{
         return JSON.parse(localStorage.getItem('userData'));	
     }
     
+     // Returns an observable
+    upload(file):Observable<any> {
+    
+        // Create form data
+        const formData = new FormData(); 
+        
+        // Store form name as "file" with file data
+        formData.append("file", file, file.name);
+        formData.append("action", 'upload_image');
+        
+        // Make http post request over api
+        // with formData as req
+        
+        return this.httpService.postDataForFile(formData,[]);
+    }
 }

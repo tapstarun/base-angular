@@ -22,12 +22,13 @@ export class ProgressBarComponent implements OnInit {
  
 
   ngOnInit(): void {     
-    //  console.log('on init of progress bar');
+      console.log('on init of progress bar');
     this.progressBarUpdate();
   }
 
 
   progressBarUpdate(){
+    console.log('progressBarUpdate');
        //if we don't have progress, set it to 0.
        if(!this.progress) {
         this.progress = 0;

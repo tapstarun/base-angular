@@ -36,42 +36,48 @@ export class HeaderComponent implements OnInit {
 
     ]
     
-    
-     
-    
-    
-    
-    //console.log(this.authService.user.authToken);
-    // this.menu=[
-    //   {
-    //     'Home':
-    //         {'auth':0,'nav':environment.Url,'external':1,'child':{}}
-    //   },
-    //   {
-    //     'Member Area':{
-    //           'auth':0,'nav':'member','external':0,
-            
-    //         'child':[
-    //           {
-    //             'Member Home':
-    //                 {
-    //                   'auth':0,'nav':'member','external':0
-    //                 } 
-    //           },
-    //           {
-    //             'Member Home':
-    //                 {
-    //                   'auth':0,'nav':'member','external':0
-    //                 } 
-    //           },
-
-    //         ]
-    //       }
-    //   },
-
-    // ];
   }
 
+
+  category: Array<any> = [{
+    catnumber: 1,
+    nest: [
+      {
+        link: 1
+      },
+      {
+        link: 2
+      }
+
+    ]
+  },
+  {
+    catnumber: 2,
+    nest: [
+      {
+        link: 1
+      },
+      {
+        link: 2
+      },
+     
+
+    ]
+  },
+  {
+    catnumber: 3,
+    nest: [
+      {
+        link: 1
+      },
+      {
+        link: 2
+      }
+
+    ]
+  },
+  ];
+  
   mouseover1(){
     console.log('hover');
   } 
@@ -88,5 +94,18 @@ export class HeaderComponent implements OnInit {
   onNavigateUrlSubdomain(subdomain:string){
       window.location.href=subdomain;
   }
+
+
+  flag: boolean = false;
+
+  catchEvent(event) {
+    this.flag = true
+    console.log(event)
+  }
+
+  hide(event) {
+    this.flag = false;
+  }
+
 
 }

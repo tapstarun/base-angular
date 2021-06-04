@@ -5,7 +5,12 @@ export class AuthModel{
     public userEmail:string,
     private userId:number,
     public userName:string,
-    public level:number
+    public level:number,
+    public displayName:string,
+    public firstName:string,
+    public lastName:string,
+    public profileImage:string,
+
     ){}
     
     
