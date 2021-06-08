@@ -7,6 +7,7 @@ import { SharedModule } from "../shared/shared.module";
 
 import { QuizComponent } from "./quiz.component";
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { QuizResolver } from "./quiz.resolver";
 
 const route: Routes =[
     {
@@ -15,9 +16,11 @@ const route: Routes =[
         pathMatch:'full',
     },
     {
-        path:':slug',
+        path:':slug/:user',
         component:QuizComponent,
-        canActivate:[AuthGuard]      
+        resolve:{
+            cres:QuizResolver
+        }   
     }
 
 ];

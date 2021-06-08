@@ -4,6 +4,8 @@ import {  tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable} from 'rxjs';
 import { AuthModel } from "./auth.model";
 import { Router } from "@angular/router";
+import { ContentObserver } from "@angular/cdk/observers";
+import { environment } from "src/environments/environment";
 
 
 @Injectable({
@@ -94,7 +96,8 @@ export class AuthService{
         }
         this.loggoutTimer=null;
         console.log('logout');
-        this.router.navigate(['/auth']);
+        window.location.href=environment.Url+'/member-area';
+        //this.router.navigate(['/auth']);
     }
 
     autoLogout(expiredIn:number){
@@ -123,5 +126,32 @@ export class AuthService{
         // with formData as req
         
         return this.httpService.postDataForFile(formData,[]);
+    }
+
+    getUserDetails(token:string){
+       
+        
+        return this.httpService.getData({user:token,action:'getUserDetailsViaToken'},[]).subscribe((resData:any)=>{
+            if(!resData.status){
+                window.location.href=environment.Url+'/member-area';
+            }
+            const expireToken=3600000;
+            const expirationDate=new Date(new Date().getTime() + expireToken);
+            const user= new AuthModel(
+                resData.data.auth_token,
+                expirationDate,
+                resData.data.user_email,
+                resData.data.user_id,
+                resData.data.user_name,
+                resData.level,
+                resData.data.display_name,
+                resData.data.first_name,
+                resData.data.last_name,
+                resData.data.profile_image,
+             );
+             
+             localStorage.setItem('userData',JSON.stringify(user));
+             this.user.next(user);
+        });
     }
 }

@@ -3,6 +3,9 @@ import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { QuizService } from '../services/quiz.service';
 import { environment } from '../../environments/environment';
+import { AuthService } from '../auth/auth.service';
+import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
@@ -18,18 +21,22 @@ export class QuizComponent implements OnInit {
   quizSlug:string;
   url=environment.Url;
   showloader:boolean;
- 
+  token:string;
   constructor(  
     private quizService:QuizService,
     private router: Router,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private authService:AuthService,
+    private actr: ActivatedRoute
     ) {
       this.showloader=true;
+      
+
     }
 
   ngOnInit(): void {
     this.quizSlug=this.route.snapshot.paramMap.get('slug');
-
+      console.log( this.route.snapshot.data);
     this.quizDataReceived=false;
     this.getQuizSlider();
   }
@@ -66,11 +73,11 @@ export class QuizComponent implements OnInit {
    */
   getQuizSlider(): any{
     this.loader=true;
-   
+   const user=this.authService.userDetails();
     let params={
         action:'get_level_data_dev',
         slug:this.quizSlug,//1258/
-        user_id:477       
+        user_id:user.userId    
     };
 
     this.quizService.getQuizData(params).subscribe((sliderDataAPi:any)=>{

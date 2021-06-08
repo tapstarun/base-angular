@@ -7,8 +7,8 @@ import { QuiztemplateComponent } from "./quiztemplate.component";
 import { ResultComponent } from "./result/result.component";
 
 const routes:Routes =[
-    {path: '',component: QuiztemplateComponent,canActivate:[AuthGuard] },
-    {path:'result',component:ResultComponent,canActivate:[AuthGuard]},
+    {path: '',component: QuiztemplateComponent },
+    {path:'result',component:ResultComponent},
 ];
 
 @NgModule({
