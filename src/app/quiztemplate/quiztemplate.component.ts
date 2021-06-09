@@ -4,12 +4,8 @@ import {
   ViewChild,
   ElementRef,
   ViewEncapsulation, 
-  Input, 
-  OnChanges, 
-  OnDestroy, 
-  AfterViewInit,
-  ViewChildren,
-  QueryList } from '@angular/core';
+  OnDestroy,
+  } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
@@ -22,16 +18,7 @@ import { QuizService } from '../services/quiz.service';
   styleUrls: ['./quiztemplate.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class QuiztemplateComponent implements OnInit,OnDestroy, AfterViewInit  {
-  
- 
-
-  nums: Array<number> = [25, 76, 48];
-
-  @ViewChild("oneItem") oneItem: any;
-  @ViewChildren("count") count: QueryList<any>;
-
-
+export class QuiztemplateComponent implements OnInit,OnDestroy  {
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -44,40 +31,6 @@ export class QuiztemplateComponent implements OnInit,OnDestroy, AfterViewInit  {
     this.questions = new Array<any>();
  
   }
-
-  ngAfterViewInit() {
-    this.animateCount();
-  }
-
-  animateCount() {
-    let _this = this;
-
-    let single = this.oneItem.nativeElement.innerHTML;
-
-    this.counterFunc(single, this.oneItem, 7000);
-
-    this.count.forEach(item => {
-      _this.counterFunc(item.nativeElement.innerHTML, item, 2000);
-    });
-  }
-
-  counterFunc(end: number, element: any, duration: number) {
-    let range, current: number, step, timer;
-
-    range = end - 0;
-    current = 0;
-    step = Math.abs(Math.floor(duration / range));
-
-    timer = setInterval(() => {
-      current += 1;
-      element.nativeElement.textContent = current;
-      if (current == end) {
-        clearInterval(timer);
-      }
-    }, step);
-  }
-  
-  
 
   @ViewChild('videoPlayer') videoPlayer: ElementRef;
  // quiz:QuizTemplateModel;
@@ -111,7 +64,9 @@ export class QuiztemplateComponent implements OnInit,OnDestroy, AfterViewInit  {
   correctQuestionSound="../../../assets/audio/correct.mp3";
   incorrectQuestionSound="../../../assets/audio/incorrect.mp3";
   progress=this.reactTime;
-
+  responseTime=0;
+  responseTImeInterve:any;
+  clearIntervalValue=false;
 //https://cdn.jwplayer.com/v2/media/gi2pb1VW
   
 
@@ -149,7 +104,7 @@ export class QuiztemplateComponent implements OnInit,OnDestroy, AfterViewInit  {
     this.currentQuestion.url='';
     
     this.questionDisplay=false;
-    
+    this.countResponseTimeFunc();
     this.moveToNextAsPerTemplate(); 
   }
   /***
@@ -232,6 +187,23 @@ export class QuiztemplateComponent implements OnInit,OnDestroy, AfterViewInit  {
     }
   }
 
+  /****
+   * 
+   * Response time get 
+   */
+
+  countResponseTimeFunc():any{    
+    if(this.clearIntervalValue){
+        clearTimeout(this.responseTImeInterve);       
+        return;
+    }
+    
+    this.responseTime++;
+    this.responseTImeInterve=setTimeout(()=>{ 
+      this.countResponseTimeFunc();
+    },1);
+
+  }
   /***
    * 
    * Call function as per the quiz template
@@ -265,13 +237,14 @@ export class QuiztemplateComponent implements OnInit,OnDestroy, AfterViewInit  {
     this.ShowVideo=false;
     this.currentQuestion.url='';   
     this.questionDisplay=false;
-    
+    this.countResponseTimeFunc();
     this.moveToNextAsPerTemplate(); 
   }
 
   nextQuestion(index:number){
    
     this.showThumbs=false;
+    this.responseTime=0;
     this.playButton(true);  
     this.swingButtonWork=true;
     this.progress = 100;
@@ -312,6 +285,9 @@ export class QuiztemplateComponent implements OnInit,OnDestroy, AfterViewInit  {
    * When Swing option selected
    */
   optionSelect(selected:boolean){
+  
+    this.clearIntervalValue=true;
+    this.responseTime=0;
     this.swingButtonWork=false;
     this.questionDisplay=true;
    clearTimeout(this.timeOutRunining);
@@ -366,6 +342,11 @@ export class QuiztemplateComponent implements OnInit,OnDestroy, AfterViewInit  {
    *normalQuizAnswer option selected
    */
    normalQuizAnswer(userAns:number){
+    console.log(this.responseTime);
+    console.log(this.responseTImeInterve);
+    console.log('345');
+    this.clearIntervalValue=true;
+   
     this.questionDisplay=true;
    
       this.accuracy=false;
@@ -416,7 +397,8 @@ export class QuiztemplateComponent implements OnInit,OnDestroy, AfterViewInit  {
       'pitch_type':this.currentQuestion.pitch_type,
       'react_time':this.reactTime,
       'accuracy':this.accuracy,
-      'action':'statistic_data'
+      'response_time_ms':this.responseTime,
+      'action':'statistic_data_api'
      };
     
      console.log(data);
@@ -448,7 +430,8 @@ export class QuiztemplateComponent implements OnInit,OnDestroy, AfterViewInit  {
         userAnswered={
           'userAns':userAns,
           'correctAns':this.getLabelFromQuestion(this.currentQuestion.correct_answer),
-          'ans':this.accuracy
+          'ans':this.accuracy,
+          'reactionTime':this.responseTime
          };
 
          
@@ -459,7 +442,8 @@ export class QuiztemplateComponent implements OnInit,OnDestroy, AfterViewInit  {
         userAnswered={
           'userAns':user_answer==0?'Not Answered':this.getLabelFromQuestionForSingleLine(user_answer),
           'correctAns':this.getLabelFromQuestionForSingleLine(this.currentQuestion.correct_answer),
-          'ans':this.accuracy
+          'ans':this.accuracy,
+          'reactionTime':this.responseTime
          };        
         break;
 
@@ -468,7 +452,8 @@ export class QuiztemplateComponent implements OnInit,OnDestroy, AfterViewInit  {
         userAnswered={
           'userAns':user_answer==0?'Not Answered':this.getLabelFromQuestion(user_answer),
           'correctAns':this.getLabelFromQuestion(this.currentQuestion.correct_answer),
-          'ans':this.accuracy
+          'ans':this.accuracy,
+          'reactionTime':this.responseTime
          };        
         break;
     }
@@ -571,5 +556,7 @@ export class QuiztemplateComponent implements OnInit,OnDestroy, AfterViewInit  {
   
   ngOnDestroy(){
     clearTimeout(this.timeOutRunining);
+    clearTimeout(this.responseTImeInterve);
+   
   }
 }
