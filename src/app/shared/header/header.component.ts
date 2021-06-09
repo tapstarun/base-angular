@@ -29,11 +29,14 @@ export class HeaderComponent implements OnInit {
     const authToken=userData.authToken;
 
     this.menu=[
-      {'title':'Your Stats','url':this.url+'statistic-page?user='+authToken},
-      {'title':'Leaderboard','url':this.url+'leadership?user='+authToken},
+      {'title':'Members Home','url':this.url+'member-area/'},
+      {'title':'Your Stats','url':this.url+'statistic-page'},
+      {'title':'Leaderboard','url':this.url+'leadership'},
       {'title':'Tutorials','url':this.url+'pitch-recognition-drills-tutorials'},
+      {'title':'My Account','url':this.url+'my-account/'},
       {'title':'Modify Billing','url':this.url+'modify-billing/'},
-      {'title':'Upgrade / Renew','url':this.url+'upgrade-plan/'}
+      {'title':'Upgrade / Renew','url':this.url+'upgrade-plan/'},
+      {'title':'Log Out','url':this.url+'wp-login.php?action=logout'}
 
 
     ]

@@ -132,9 +132,12 @@ export class AuthService{
        
         
         return this.httpService.getData({user:token,action:'getUserDetailsViaToken'},[]).subscribe((resData:any)=>{
+            console.log(resData);
             if(!resData.status){
                 window.location.href=environment.Url+'/member-area';
+                return;
             }
+            console.log(resData);
             const expireToken=3600000;
             const expirationDate=new Date(new Date().getTime() + expireToken);
             const user= new AuthModel(
@@ -152,6 +155,7 @@ export class AuthService{
              
              localStorage.setItem('userData',JSON.stringify(user));
              this.user.next(user);
+             window.location.reload(); 
         });
     }
 }

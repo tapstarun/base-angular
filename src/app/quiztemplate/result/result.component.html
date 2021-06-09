@@ -4,13 +4,13 @@
             <div class="result_top-message">
                 <!-- <P class="text-center">icon</P> -->
                 <img class="text-center" src="https://appliedvisionbaseball.com/wp-content/uploads/2019/12/Copy-of-APPLIED-VISION-2-300x169.png" alt="">
-                <p class="text-center"><span>Good Work!<i class="fa fa-american-sign-language-interpreting fa-5x" aria-hidden="true"> </i></span></p>
+                <p class="text-center"><span>Good Work!</span></p>
                 <p class="text-center"><span>Pitch Recognition Training Complete!</span></p>
             </div>
             <div class="result_buttons text-center">
                 <button type="button" (click)="openBreakDown();">Pitch-By-Pitch Breakdown</button>
-                <button type="button" (click)="refresh()"><i class="fas fa-redo-alt"></i>Repeat Pitch Sequence</button>
-                <button type="button" routerLink="/member"  routerLinkActive="active">Choose New Drill</button>
+                <button type="button" (click)="refresh()"><i class="fa fa-redo-alt"></i><i class="ays_fa ays_fa_undo"></i>Repeat Pitch Sequence</button>
+                <button type="button" (click)="onNavigateUrl('member-area')" >Choose New Drill</button>
             </div>
             <div class="selection-main" *ngIf="consecutiveDataFromApi">
                 <div class="selection_left">

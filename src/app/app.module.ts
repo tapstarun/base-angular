@@ -14,6 +14,7 @@ import { AuthIntercetorService } from './auth/auth-intercetor.service';
 import { AuthModule } from './auth/auth.module';
 import { AuthComponent } from './auth/auth.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { AuthComponent } from './auth/auth.component';
     FormsModule,
     ReactiveFormsModule,
     AuthModule,
+  
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

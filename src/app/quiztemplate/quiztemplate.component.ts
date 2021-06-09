@@ -1,4 +1,16 @@
-import { Component, OnInit,ViewChild,ElementRef,ViewEncapsulation, Input, OnChanges, OnDestroy } from '@angular/core';
+import { 
+  Component, 
+  OnInit,
+  ViewChild,
+  ElementRef,
+  ViewEncapsulation, 
+  Input, 
+  OnChanges, 
+  OnDestroy, 
+  AfterViewInit,
+  ViewChildren,
+  QueryList } from '@angular/core';
+
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { QuizService } from '../services/quiz.service';
@@ -10,9 +22,60 @@ import { QuizService } from '../services/quiz.service';
   styleUrls: ['./quiztemplate.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class QuiztemplateComponent implements OnInit,OnDestroy  {
+export class QuiztemplateComponent implements OnInit,OnDestroy, AfterViewInit  {
   
-  
+ 
+
+  nums: Array<number> = [25, 76, 48];
+
+  @ViewChild("oneItem") oneItem: any;
+  @ViewChildren("count") count: QueryList<any>;
+
+
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private quizService:QuizService,
+    private authService:AuthService,
+    private elRef: ElementRef
+    ) { 
+    this.quizData = {} as any;
+    this.currentQuestion = {} as any;
+    this.questions = new Array<any>();
+ 
+  }
+
+  ngAfterViewInit() {
+    this.animateCount();
+  }
+
+  animateCount() {
+    let _this = this;
+
+    let single = this.oneItem.nativeElement.innerHTML;
+
+    this.counterFunc(single, this.oneItem, 7000);
+
+    this.count.forEach(item => {
+      _this.counterFunc(item.nativeElement.innerHTML, item, 2000);
+    });
+  }
+
+  counterFunc(end: number, element: any, duration: number) {
+    let range, current: number, step, timer;
+
+    range = end - 0;
+    current = 0;
+    step = Math.abs(Math.floor(duration / range));
+
+    timer = setInterval(() => {
+      current += 1;
+      element.nativeElement.textContent = current;
+      if (current == end) {
+        clearInterval(timer);
+      }
+    }, step);
+  }
   
   
 
@@ -52,12 +115,7 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
 //https://cdn.jwplayer.com/v2/media/gi2pb1VW
   
 
-constructor(private activatedRoute: ActivatedRoute,private quizService:QuizService,private authService:AuthService) { 
-    this.quizData = {} as any;
-    this.currentQuestion = {} as any;
-    this.questions = new Array<any>();
- 
-  }
+
 
   
 
@@ -212,7 +270,7 @@ constructor(private activatedRoute: ActivatedRoute,private quizService:QuizServi
   }
 
   nextQuestion(index:number){
-    console.log(" nextQuestion function calling");
+   
     this.showThumbs=false;
     this.playButton(true);  
     this.swingButtonWork=true;

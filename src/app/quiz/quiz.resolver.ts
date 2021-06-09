@@ -7,12 +7,16 @@ import { AuthService } from "../auth/auth.service";
 export class QuizResolver implements Resolve<any>{
 
         constructor(private authService:AuthService){}
-        resolve(route:ActivatedRouteSnapshot,rstate:RouterStateSnapshot): Observable<any>|Promise<any>|any{
+         resolve(route:ActivatedRouteSnapshot,rstate:RouterStateSnapshot): Observable<any>|Promise<any>|any{
             console.log('resolver Works');
             const token=route.paramMap.get('user');
-            this.authService.getUserDetails(token);
-            
-            return this.authService.userDetails();
+            console.log(this.authService.userDetails());
+            if(this.authService.userDetails()==null){
+                this.authService.getUserDetails(token);
+                
+            }
+             return;
+            //return this.authService.userDetails();
           
         }
 }

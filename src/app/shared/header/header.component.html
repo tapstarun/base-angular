@@ -26,9 +26,9 @@
 						<div class="dropdown-content">
 							<div class="row">
 								<div class="column">
-									<a  routerLink="/member"  routerLinkActive="active">Member Home</a>				    
-									<a  [href]="m.url" target="_blank" *ngFor="let m of menu;">{{m.title}}</a>			    
-									<a  (click)="logout()">Log out</a> 
+									<!-- <a  routerLink="/member"  routerLinkActive="active">Member Home</a>				     -->
+									<a  [href]="m.url"  *ngFor="let m of menu;">{{m.title}}</a>			    
+									<!-- <a  (click)="logout()">Log out</a>  -->
 								</div>
 							</div>
 						</div>
@@ -67,6 +67,7 @@
 									<div class="column">
 										<a   (click)="onNavigateUrl('pricing');">Pricing</a>				    
 										<a   (click)="onNavigateUrl('team-pricing');">Team Pricing</a> 
+										<a   (click)="onNavigateUrl('/');">Softball Pitch Recognition</a> 
 									</div>
 								</div>
 							</div>

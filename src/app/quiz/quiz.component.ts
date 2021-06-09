@@ -27,20 +27,21 @@ export class QuizComponent implements OnInit {
     private router: Router,
     private route:ActivatedRoute,
     private authService:AuthService,
-    private actr: ActivatedRoute
+    
     ) {
-      this.showloader=true;
-      
+      this.showloader=true;      
 
     }
 
   ngOnInit(): void {
     this.quizSlug=this.route.snapshot.paramMap.get('slug');
-      console.log( this.route.snapshot.data);
+    
     this.quizDataReceived=false;
+ 
     this.getQuizSlider();
   }
   
+
   fourInARowSlider = {"slidesToShow":3 , "slidesToScroll": 3,responsive: [
     {
       breakpoint: 1024,

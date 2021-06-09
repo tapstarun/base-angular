@@ -19,7 +19,7 @@ const route: Routes =[
         path:':slug/:user',
         component:QuizComponent,
         resolve:{
-            cres:QuizResolver
+            user:QuizResolver
         }   
     }
 

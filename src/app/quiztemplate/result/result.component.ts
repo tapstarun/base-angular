@@ -1,6 +1,7 @@
 import { Component, Input, OnInit,Inject } from "@angular/core";
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { QuizService } from "src/app/services/quiz.service";
+import { environment } from "src/environments/environment";
 import { PitchComponent } from './pitch/pitch.component';
 
 
@@ -14,6 +15,7 @@ export class ResultComponent implements OnInit{
     showBreakDown=false;
     consecutiveDataFromApi:any;
     consucativeData="";
+   
     constructor(public dialog: MatDialog,
         private quizService:QuizService
         ) {}
@@ -26,7 +28,10 @@ export class ResultComponent implements OnInit{
         
     }
     
+    onNavigateUrl(slug:string){
+        window.location.href=environment.Url+slug;
     
+    }
     /***
      * Code for pitch by pitch sequence 
      */

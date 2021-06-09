@@ -24,6 +24,7 @@
     "@angular/service-worker": "~11.2.5",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@videogular/ngx-videogular": "^3.0.1",
+    "angular2-counto": "^1.2.5",
     "bootstrap": "^4.6.0",
     "font-awesome": "^4.7.0",
     "jquery": "^3.6.0",

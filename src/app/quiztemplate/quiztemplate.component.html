@@ -14,6 +14,8 @@
                 <p class="quiz-head">{{quizData.quiz_title}}</p>
                 <pre class="text-white">{{quizData.quiz_description}}</pre>
             </div>
+            <app-counter-animation [digit]="83" [duration]="1000"></app-counter-animation>
+            <div counto [step]="30" [countTo]="10" [countFrom]="0" [duration]="1" (countoChange)="counto = $event" (countoEnd)="onCountoEnd()">{{counto | currency:'EUR':'symbol':'1.2-2'}}</div>
             <div class="col-md-12"> 
             <button class="quiz-btn" (click)="playQuiz();">Start</button>
             </div>
