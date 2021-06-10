@@ -90,3 +90,16 @@ h1 .quiz-title{
 .n-carousel figure img {
     max-width: 100%;
 }
+
+.banner_content.text-center.quiz-template h1.quiz-title {
+    padding-bottom: 22px;
+}
+.banner_content.text-center.quiz-template h2.quiz_sub_title {
+    margin-bottom: 0;
+}
+.banner_content.text-center.quiz-template .quiz-content {
+    line-height: 14px;
+}
+.banner_content.text-center.quiz-template {
+    padding: 60px 0;
+}

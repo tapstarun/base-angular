@@ -1,6 +1,6 @@
 .main-header {
     background: #3e8ae6;
-    padding: 10px 0;
+    /*padding: 15px 0;*/
 }
 .main-header .navbar-brand img {
     width: 100%;
@@ -12,8 +12,10 @@
     color: #fff;
     font-size: 13px;
     line-height: 13px;
-    padding: 15px 11px;
+    padding: 0px 11px;
     text-transform: uppercase;
+    font-family: 'Karla';
+
 }
 .main-header .dropdown-menu.show a.dropdown-item {
     color: #000!important;
@@ -24,15 +26,17 @@
     line-height: 29px;
 }
 header.main-header a.navbar-brand {
-    width: 85px;
+    width: 89px;
 }
 
 /*210531*/
 .main-header li.nav-item a {
-    font-size: 11px!important;
+    font-size: 13px!important;
 }
 .main-header ul.navbar-nav li .dropdown button {
-    font-size: 11px!important;
+    font-size: 13px!important;
+    padding: 15px 0;
+    letter-spacing: 0.3px;
 }
 .main-header ul.navbar-nav li .dropdown button:hover {
     color: #c9c9c9;
@@ -48,7 +52,7 @@ header.main-header a.navbar-brand {
     background: #f3f3f3!important;
 }
 .main-header ul.navbar-nav li {
-    margin: 0 3px;
+    margin: 0 7px;
 }
 .main-header ul.navbar-nav li a:hover {
     color: #c9c9c9;
@@ -93,6 +97,7 @@ header.main-header a.navbar-brand {
     left: 0;
     width: 220px;
     border-bottom: 4px solid #3e8ae6;
+    z-index: 999;
 }
 .dropdown-content .header {
     padding: 16px;
@@ -144,3 +149,31 @@ header.main-header a.navbar-brand {
     color: #000!important;
 }
 /*210604 end*/
+
+/*2100610*/
+button.dropbtn i {
+    padding-left: 8px;
+}
+nav.navbar.navbar-expand-lg {
+    padding: 2px 1rem;
+}
+header.main-header li.navbar {
+    padding-right: 18px;
+}
+
+header.main-header .container {
+    max-width: 1170px;
+}
+nav.navbar.navbar-expand-lg {
+    padding-left: 0!important;
+}
+
+nav.navbar.navbar-expand-lg {
+    height: 100px;
+    padding: 0!important;
+}
+@media(max-width: 1300px){
+    header.main-header .container {
+    max-width: 1000px;
+}
+}
