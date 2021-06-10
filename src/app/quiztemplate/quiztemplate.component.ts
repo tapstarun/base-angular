@@ -553,7 +553,11 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
     this.showPlayButton=event;
   }
   
-  
+  videoDuration(event){
+    console.log(event);
+    console.log('4 second passed');
+  }
+
   ngOnDestroy(){
     clearTimeout(this.timeOutRunining);
     clearTimeout(this.responseTImeInterve);
