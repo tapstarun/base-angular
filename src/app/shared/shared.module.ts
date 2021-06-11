@@ -8,14 +8,13 @@ import { ProgressBarComponent } from "./progress-bar/progress-bar.component";
 import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
 import { RouterModule } from "@angular/router";
-import { CounterAnimationComponent } from './counter-animation/counter-animation.component';
+
 @NgModule({
     declarations:[
         ProgressBarComponent,
         LoaderComponent,
         HeaderComponent,
-        FooterComponent,
-        CounterAnimationComponent
+        FooterComponent
     ],
     imports:[
         CommonModule,

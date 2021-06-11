@@ -3,7 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { QuizService } from "src/app/services/quiz.service";
 import { environment } from "src/environments/environment";
 import { PitchComponent } from './pitch/pitch.component';
-
+import * as AOS from 'aos';
 
 @Component({
     selector:'app-result',
@@ -25,7 +25,7 @@ export class ResultComponent implements OnInit{
            this.consecutiveDataFromApi=res.data;
         });
 
-        
+        AOS.init();
     }
     
     onNavigateUrl(slug:string){

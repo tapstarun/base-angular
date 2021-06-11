@@ -87,9 +87,9 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
 
     if(this.questions.length > 0){
      
-      this.currentQuestion = this.questions[0];
+      this.currentQuestion = this.questions[8];
      
-      this.currentQuestion.currentIndex = 0 ; 
+      this.currentQuestion.currentIndex = 8 ; 
       this.currentQuestion.totalQuestion = this.questions.length;
     }
    
