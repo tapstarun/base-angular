@@ -66,3 +66,34 @@
 }
 /*responsive end*/
 /*210428 end*/
+
+/*210611*/
+
+.scoreDiv-outer-wrap{
+    display: flex;
+    justify-content: center;
+    align-item:  center;
+}
+.scoreDiv-outer-wrap .scoreDiv {
+    width: 90px;
+    height: 90px;
+}
+.scoreDiv-outer-wrap .scoreDiv,
+.scoreDiv-outer-wrap .scoreDiv p {
+     margin: 0px!important; 
+}
+.scoreDiv-inner-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.scoreDiv-inner-wrap h6{
+    text-align: center;
+    font-size: 12px;
+}
+.scoreDiv-outer-wrap .scoreDiv-inner-wrap:first-child{
+    margin-right: 15px!important;
+}
+.cstm-scoreDiv-row .reaction-li{
+    color: #000;
+}

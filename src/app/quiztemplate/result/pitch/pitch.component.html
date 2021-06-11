@@ -6,7 +6,7 @@
     </button>
 </div>
   <div mat-dialog-content class="modal-body">
-    <div class="row">
+ <!--    <div class="row">
       <div class="col-md-12">
           <div class="scoreDiv text-center">{{data.correctQuestion}}/{{data.totalQuestion}} </div>
       </div>
@@ -22,7 +22,58 @@
             <li *ngFor="let d of data">{{d.correctAns}}</li>            
           </ul>
        </div>
+    </div> -->
+
+    <div class="row cstm-scoreDiv-row">
+      <div class="col-md-12">
+        <div class="scoreDiv-outer-wrap">
+          <div class="scoreDiv-inner-wrap">
+              <div class="scoreDiv">
+              {{data.correctQuestion}}/{{data.totalQuestion}}          
+              </div>  
+              <h6>Performance Score</h6>
+          </div>
+
+          <div class="scoreDiv-inner-wrap">
+              <div class="scoreDiv">
+                <p>.320</p>           
+              </div>
+               <h6>Average Reaction Time</h6>
+         </div>
+        </div>
+
+      </div>
+      <div class="offset-2 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <ul >
+            <li><h2>Your Answer</h2></li>
+            <li [ngClass]="d.ans?'greenCheck':'redCheck'" *ngFor="let d of data">{{d.userAns=='undefined'?'Not answered!':d.userAns}}</li>               
+          </ul>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">        
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <ul>
+              <li><h2>Correct Answer</h2></li>
+              <li *ngFor="let d of data">{{d.correctAns}}</li>            
+            </ul>
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <ul>
+              <li><h2 class="reaction-li">Reaction Time</h2></li>
+              <li>.320</li>    
+              <li>.320</li>          
+            </ul>
+          </div>
+          
+        </div>
+         
+       </div>
     </div>
+
+
+
+
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closePopup()">Close</button>
