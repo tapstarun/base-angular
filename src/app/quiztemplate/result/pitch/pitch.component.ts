@@ -7,7 +7,9 @@ export interface DialogData {
   userAns:string,
   correctAns:string,
   totalQuestion:number,
-  correctQuestion:number
+  correctQuestion:number,
+  isQuizSwing:boolean,
+  avgMsTime:number
 }
 @Component({
   selector: 'app-pitch',

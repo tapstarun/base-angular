@@ -39,6 +39,7 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
   quizData:any;
   showFirstPage=true;
   showSwing=false;
+  swingTemplate=false;
   showNormalQuiz=false;
   showSingleLineQuiz=false;
   resultPage=false;
@@ -75,28 +76,44 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
   
 
   ngOnInit(): void {
-   
-    this.quizData = JSON.parse(localStorage.getItem("quiz"));
-    this.quizType = this.quizData.quiz_theme;
-    this.questions =  this.quizData.question_ids.map(ques=>{      
-      this.url=this.BASE_VIDEO_URL+ques.url+"-eqAMKrlW.mp4"; // for high quality videos
-      return {...ques,url:this.url};
-    });
 
-    console.log(this.quizData);
-
-    if(this.questions.length > 0){
-     
-      this.currentQuestion = this.questions[8];
-     
-      this.currentQuestion.currentIndex = 8 ; 
-      this.currentQuestion.totalQuestion = this.questions.length;
-    }
+   this.initFunction();  
    
    // this.result();
   }
 
 
+  initFunction(){
+    
+    this.quizData = JSON.parse(localStorage.getItem("quiz"));
+    this.quizType = this.quizData.quiz_theme;
+
+    /***
+     * For MP4 video 
+     */
+    this.questions =  this.quizData.question_ids.map(ques=>{      
+      this.url=this.BASE_VIDEO_URL+ques.url+"-eqAMKrlW.mp4"; // for high quality videos
+      return {...ques,url:this.url};
+    });
+
+     /***
+     * start quiz from 1 question
+     */
+
+    if(this.questions.length > 0){
+     
+      this.currentQuestion = this.questions[0];
+     
+      this.currentQuestion.currentIndex = 0 ; 
+      this.currentQuestion.totalQuestion = this.questions.length;
+    }
+
+  }
+
+  /****
+   * 
+   * When Video ended then enable timer and other processs
+   */
   videoEnded(events){
  //events.getDefaultMedia().currentTime = 0;
     console.log('video ended');
@@ -107,15 +124,18 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
     this.countResponseTimeFunc();
     this.moveToNextAsPerTemplate(); 
   }
+
   /***
-   * Call Quiz Template 
+   * to get the  Quiz Template 
    */
+
   quizTemplate(quiz:string){
     this.showFirstPage=false;
    
     switch (quiz) {
       case 'theme_swinger':
          this.showSwing=true;
+         this.swingTemplate=true;
         break;
       case 'theme_baseball':
         this.showNormalQuiz=true;
@@ -132,12 +152,24 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
 
   }
 
+   /****
+   * 
+   * When click on start button then quiz template excute
+   */
+
+
   playQuiz():void{
    
     this.quizTemplate(this.quizType);
 
   }
   
+
+   /****
+   * 
+   * react time 
+   */
+
   getReactionTime(){
      
     if(this.timeOutRunining!=undefined){
@@ -146,6 +178,7 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
         this.progressBarUpdate();
       
         if(this.reactTime==0){
+          this.responseTime=0;
           this.questionDisplay=true;
           this.swingButtonWork=false;
           clearTimeout(this.timeOutRunining);
@@ -287,7 +320,7 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
   optionSelect(selected:boolean){
   
     this.clearIntervalValue=true;
-    this.responseTime=0;
+    
     this.swingButtonWork=false;
     this.questionDisplay=true;
    clearTimeout(this.timeOutRunining);
@@ -342,9 +375,7 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
    *normalQuizAnswer option selected
    */
    normalQuizAnswer(userAns:number){
-    console.log(this.responseTime);
-    console.log(this.responseTImeInterve);
-    console.log('345');
+   
     this.clearIntervalValue=true;
    
     this.questionDisplay=true;
@@ -413,7 +444,7 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
 
    storeDataForResultTemplateWise(user_answer){
     let userAnswered={};
-    
+    const reactionMS=this.responseTime/1000; // reaction time in milisecond
     switch (this.quizType) {
 
       case 'theme_swinger':
@@ -431,7 +462,7 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
           'userAns':userAns,
           'correctAns':this.getLabelFromQuestion(this.currentQuestion.correct_answer),
           'ans':this.accuracy,
-          'reactionTime':this.responseTime
+          'reactionTime':reactionMS
          };
 
          
@@ -443,7 +474,7 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
           'userAns':user_answer==0?'Not Answered':this.getLabelFromQuestionForSingleLine(user_answer),
           'correctAns':this.getLabelFromQuestionForSingleLine(this.currentQuestion.correct_answer),
           'ans':this.accuracy,
-          'reactionTime':this.responseTime
+          'reactionTime':reactionMS
          };        
         break;
 
@@ -453,7 +484,7 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
           'userAns':user_answer==0?'Not Answered':this.getLabelFromQuestion(user_answer),
           'correctAns':this.getLabelFromQuestion(this.currentQuestion.correct_answer),
           'ans':this.accuracy,
-          'reactionTime':this.responseTime
+          'reactionTime':reactionMS
          };        
         break;
     }
@@ -554,8 +585,10 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
   }
   
   videoDuration(event){
-    console.log(event);
-    console.log('4 second passed');
+    this.ShowVideo=false;
+    this.currentQuestion.url='';   
+    this.questionDisplay=false;
+    this.countResponseTimeFunc();
   }
 
   ngOnDestroy(){

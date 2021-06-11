@@ -29,12 +29,12 @@
                         <app-videos  [url]="currentQuestion.url" [showThumbs]="showThumbs" [rightThumbs]="rightThumbs" (videoEnded)="videoEnded($event)" (videoPlay)="playButton($event)" (videoDuration)="videoDuration($event)"></app-videos>
                     </div>
                     
-                    <div class="col-md-3 col-sm-4 col-6 col_video_button"> 
+                    <div class="col-md-3 col-sm-4 col-6 col_video_button" [ngClass]="questionDisplay?'col-add_after':''"> 
                         <div class="video_card">
                             <div class="video_top_content">
                             <div>
                                 <p>{{currentQuestion.currentIndex +1}}/{{currentQuestion.totalQuestion}}</p>
-                                <p>Pitch Count</p>
+                                <p>Pitch Count-{{showSwing}}</p>
                             </div>
                             <!-- <div>
                                 <a href="javascript:void(0);" class="btn video_btn">Next</a>
@@ -161,7 +161,7 @@
 
 
         <div *ngIf="resultPage">
-            <app-result [resultPageData]="storeResultArray"></app-result>
+            <app-result [resultPageData]="storeResultArray" [isQuizSwing]="swingTemplate"></app-result>
         </div>
 
     </div>    
