@@ -20,17 +20,7 @@ import { QuizService } from '../services/quiz.service';
 })
 export class QuiztemplateComponent implements OnInit,OnDestroy  {
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private quizService:QuizService,
-    private authService:AuthService,
-    private elRef: ElementRef
-    ) { 
-    this.quizData = {} as any;
-    this.currentQuestion = {} as any;
-    this.questions = new Array<any>();
- 
-  }
+  
 
   @ViewChild('videoPlayer') videoPlayer: ElementRef;
  // quiz:QuizTemplateModel;
@@ -68,12 +58,23 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
   responseTime=0;
   responseTImeInterve:any;
   clearIntervalValue=false;
+  storeQuizRelatedData:any;
 //https://cdn.jwplayer.com/v2/media/gi2pb1VW
   
 
 
 
-  
+constructor(
+  private activatedRoute: ActivatedRoute,
+  private quizService:QuizService,
+  private authService:AuthService,
+  private elRef: ElementRef
+  ) { 
+  this.quizData = {} as any;
+  this.currentQuestion = {} as any;
+  this.questions = new Array<any>();
+  this.storeQuizRelatedData={};
+}
 
   ngOnInit(): void {
 
@@ -171,7 +172,6 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
    */
 
   getReactionTime(){
-     
     if(this.timeOutRunining!=undefined){
         this.reactTime=this.reactTime-1;
         
@@ -225,7 +225,8 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
    * Response time get 
    */
 
-  countResponseTimeFunc():any{    
+  countResponseTimeFunc():any{   
+    
     if(this.clearIntervalValue){
         clearTimeout(this.responseTImeInterve);       
         return;
@@ -242,6 +243,11 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
    * Call function as per the quiz template
    */
   moveToNextAsPerTemplate():any{   
+
+    if(this.storeQuizRelatedData.userAnsweredAlready){
+      return;
+    }
+
     /***
      * 
      * Call a function for reaction time
@@ -270,7 +276,7 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
     this.ShowVideo=false;
     this.currentQuestion.url='';   
     this.questionDisplay=false;
-    this.countResponseTimeFunc();
+    //this.countResponseTimeFunc();
     this.moveToNextAsPerTemplate(); 
   }
 
@@ -282,8 +288,8 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
     this.swingButtonWork=true;
     this.progress = 100;
     this.reactTime =this.timer; // Because everytime counter run so it shourld be same as timer
-
-    
+    this.clearIntervalValue=false; // start interval for reaction time every time from the start 
+    this.storeQuizRelatedData.userAnsweredAlready=false;
     
     let currentIndexValue=index + 1;  // increase the value everytime
     
@@ -318,13 +324,14 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
    * When Swing option selected
    */
   optionSelect(selected:boolean){
-  
+    console.log('swing option select');
     this.clearIntervalValue=true;
-    
+    this.storeQuizRelatedData.userAnsweredAlready=true; // if user answer already early the timer
     this.swingButtonWork=false;
     this.questionDisplay=true;
+    console.log('Timer Clear -'+this.timeOutRunining);
    clearTimeout(this.timeOutRunining);
-  
+   console.log('Timer Clear -'+this.timeOutRunining);
     let correctAnswer:string;
     let userAns:string;
     let answners=this.currentQuestion.answers[0];
@@ -375,7 +382,7 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
    *normalQuizAnswer option selected
    */
    normalQuizAnswer(userAns:number){
-   
+    this.storeQuizRelatedData.userAnsweredAlready=true; // if user answer already early the timer
     this.clearIntervalValue=true;
    
     this.questionDisplay=true;
@@ -584,9 +591,8 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
     this.showPlayButton=event;
   }
   
-  videoDuration(event){
-    this.ShowVideo=false;
-    this.currentQuestion.url='';   
+  videoDuration(event){  
+    console.log('4 second complete for video'); 
     this.questionDisplay=false;
     this.countResponseTimeFunc();
   }

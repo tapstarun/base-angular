@@ -21,7 +21,7 @@ export class AuthService{
         return this.httpService.getData(newData,[])
         .pipe(           
             tap((resData:any)=>{
-               console.log('tap');
+               
                const expireToken=3600000;
                 const expirationDate=new Date(new Date().getTime() + expireToken);
 
@@ -95,7 +95,7 @@ export class AuthService{
             clearTimeout(this.loggoutTimer);
         }
         this.loggoutTimer=null;
-        console.log('logout');
+        
         window.location.href=environment.Url+'/member-area';
         //this.router.navigate(['/auth']);
     }
@@ -128,16 +128,16 @@ export class AuthService{
         return this.httpService.postDataForFile(formData,[]);
     }
 
-    getUserDetails(token:string){
+    getUserDetails(token:string,templateSlug:string){
        
         
         return this.httpService.getData({user:token,action:'getUserDetailsViaToken'},[]).subscribe((resData:any)=>{
-            console.log(resData);
+           
             if(!resData.status){
                 window.location.href=environment.Url+'/member-area';
                 return;
             }
-            console.log(resData);
+           
             const expireToken=3600000;
             const expirationDate=new Date(new Date().getTime() + expireToken);
             const user= new AuthModel(
@@ -155,7 +155,8 @@ export class AuthService{
              
              localStorage.setItem('userData',JSON.stringify(user));
              this.user.next(user);
-             window.location.reload(); 
+             this.router.navigate(['/quiz',templateSlug]);
+             //window.location.reload(); 
         });
     }
 }
