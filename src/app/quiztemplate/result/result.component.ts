@@ -55,7 +55,7 @@ export class ResultComponent implements OnInit{
             }
 
         });
-        avgScore=totalReactionTime/(numberOfOcurrence);
+        avgScore= +(totalReactionTime/numberOfOcurrence).toFixed(3);
         this.resultPageData.correctQuestion=correctQuestion;
         this.resultPageData.totalQuestion=totalQuestion;
         this.resultPageData.isQuizSwing=this.isQuizSwing;

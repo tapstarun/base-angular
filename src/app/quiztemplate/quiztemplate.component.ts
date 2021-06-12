@@ -282,14 +282,7 @@ constructor(
 
   nextQuestion(index:number){
    
-    this.showThumbs=false;
-    this.responseTime=0;
-    this.playButton(true);  
-    this.swingButtonWork=true;
-    this.progress = 100;
-    this.reactTime =this.timer; // Because everytime counter run so it shourld be same as timer
-    this.clearIntervalValue=false; // start interval for reaction time every time from the start 
-    this.storeQuizRelatedData.userAnsweredAlready=false;
+    this.disbaledExtraFeatures(); // reset everything for next question
     
     let currentIndexValue=index + 1;  // increase the value everytime
     
@@ -308,6 +301,27 @@ constructor(
     this.hightlightButtonId=0; // dont show any button highlighted
   }
  
+  /****
+   * 
+   * Disbale extra features earlier video so next video or question go smoothly
+   */
+  disbaledExtraFeatures(){
+      this.showThumbs=false;
+      this.responseTime=0;
+      this.playButton(true);  
+      this.swingButtonWork=true;
+      this.progress = 100;
+      this.reactTime =this.timer; // Because everytime counter run so it shourld be same as timer
+      this.clearIntervalValue=false; // start interval for reaction time every time from the start
+      this.questionDisplay=true;  // disable question after every question
+      this.storeQuizRelatedData.userAnsweredAlready=false;
+  }
+
+
+  /***
+   * 
+   * Show result page
+   */
   result(){
    
     this.showFirstPage=false;
@@ -329,9 +343,9 @@ constructor(
     this.storeQuizRelatedData.userAnsweredAlready=true; // if user answer already early the timer
     this.swingButtonWork=false;
     this.questionDisplay=true;
-    console.log('Timer Clear -'+this.timeOutRunining);
+
    clearTimeout(this.timeOutRunining);
-   console.log('Timer Clear -'+this.timeOutRunining);
+
     let correctAnswer:string;
     let userAns:string;
     let answners=this.currentQuestion.answers[0];
