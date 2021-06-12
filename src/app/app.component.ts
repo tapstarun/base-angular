@@ -8,7 +8,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'Applied Vision Baseball';
+  title = 'Applied Vision Baseball Pitch Recognition and Vision Training - Applied Vision Baseball';
   currentRoute: string;
   //hideHeaderFooter:boolean;
   constructor(
