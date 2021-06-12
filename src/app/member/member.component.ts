@@ -66,19 +66,19 @@ export class MemberComponent implements OnInit {
 		
 		this.videoUrl=this.sanitizer.bypassSecurityTrustResourceUrl(this.memberPageData.web_video_url+'?rel=0&modestbranding=1&autohide=0&loop=1&showinfo=0&controls=0&autoplay=1&mute=1');
 		
-		console.log(this.memberPageData);
+		
 
 		this.memberService.getCarousel(this.memberPageData.main_tab).subscribe((carousel:any)=>{			
 			
     		const authToken=userData.authToken;
 			this.mainTab=carousel.map((res:any)=>{
-				console.log(res);
+			
 				if(res.slug=='statistic-page' || res.slug=='leadership'){
 					return {...res,url:res.url+'?user='+authToken};
 				}
 				return res;
 			})
-			console.log(this.mainTab);
+		
 			
 		})
 		
@@ -92,7 +92,7 @@ export class MemberComponent implements OnInit {
 		 
 		 this.memberService.memberPageCarouselApi().subscribe((carousel:any)=>{
 			this.quizDataForMember= carousel.data;
-			console.log(this.quizDataForMember);
+			
 		})
 
 	});
@@ -193,7 +193,7 @@ export class MemberComponent implements OnInit {
   
 
   initVdo(){
-	  console.log('Play');
+	  
     this.videoData.play();
   }
 

@@ -14,10 +14,7 @@ export class AuthGuard implements CanActivate{
         router: RouterStateSnapshot
     ): boolean | Promise<boolean> | Observable<boolean>{
         return this.authService.user.pipe(take(1),map(user=>{
-                 console.log(user);
-                
-                
-                 if(user==null){
+                if(user==null){
                     return false;
                  }else if(user.level==0){
                     this.router.navigate(["/"]).then(result=>{window.location.href = environment.Url+"/upgrade-plan";});

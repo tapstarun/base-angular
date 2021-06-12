@@ -10,13 +10,14 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { QuizResolver } from "./quiz.resolver";
 
 const route: Routes =[
+    
     {
         path:'',
-        redirectTo:'auth',
-        pathMatch:'full',
+        component:QuizComponent,
+          
     },
     {
-        path:':slug/:user',
+        path:':user',
         component:QuizComponent,
         resolve:{
             user:QuizResolver
