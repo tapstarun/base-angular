@@ -8,9 +8,11 @@
 .quiz-title{
     font-weight: 600;
     font-size: 67px;
+    line-height: 70px;
 }
 .quiz-content pre{
     color: #fff;
+    overflow: initial;
 }
 h1 .quiz-title{
     font-size: 67px;
@@ -102,4 +104,10 @@ h1 .quiz-title{
 }
 .banner_content.text-center.quiz-template {
     padding: 60px 0;
+}
+@media(max-width: 767px){
+    .quiz-title{ 
+        font-size: 56px;
+        line-height: 60px;
+    }
 }

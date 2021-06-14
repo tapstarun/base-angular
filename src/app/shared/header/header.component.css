@@ -16,7 +16,13 @@
     text-transform: uppercase;
     font-family: 'Karla';
 
-}
+} 
+.main-header   i.fa-bars {
+    font-family: "FontAwesome";
+    color: #ffffff;
+    font-weight: 400;
+    font-style: normal;
+} 
 .main-header .dropdown-menu.show a.dropdown-item {
     color: #000!important;
 }
@@ -176,4 +182,96 @@ nav.navbar.navbar-expand-lg {
     header.main-header .container {
     max-width: 1000px;
 }
+}
+@media(max-width: 991px){
+     .navbar-collapse {
+        position: fixed;
+        top: 0;
+        right: 100%;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        margin: 0;
+        padding: 0;
+        float: none;
+        overflow: scroll;
+        background: #fff;
+        background: hsla(0,0%,100%,.98);
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        transition: 0.3s ease-in-out;
+        will-change: position;
+        padding: 30px;
+    }
+    .navbar-collapse.show{
+        right: 0;
+    }
+    .main-header .navbar-collapse ul li{
+        width: 100%;
+    }
+    .main-header .navbar-collapse>ul>li>a,
+    .main-header .navbar-collapse>ul>li button.dropbtn{
+        border: 1px solid rgba(84,86,85,.14);
+        padding: 10px 15px 8px;
+        font-size: 13px!important;
+        text-transform: uppercase;
+        border-radius: 20px;
+        line-height: 20px;
+        position: relative;
+        display: block;
+        color: #777;
+        text-align: left;
+        font-weight: 400;
+        font-family: 'Karla';
+        width: 100%;
+    }
+    .main-header .navbar-collapse>ul>li button.dropbtn i{
+        display: none;
+    }
+    .main-header .navbar-collapse>ul>li ul li a {
+        border: none;
+        padding: .5em 1em;
+        display: block;
+        text-transform: none;
+        color: #000!important;
+        font-size: 13px;
+    }
+    .main-header .navbar-collapse .column a{
+        color: #000 !Important;
+    }
+     .main-header .dropdown-content {
+        display: block;
+        position: relative;
+        left: unset;
+        top: unset;
+        width: 100%;
+        border: none;
+        box-shadow: unset
+    }
+    .main-header .dropdown {
+        width: 100%;
+        text-align: left;
+    }
+    .main-header li.navbar {
+        padding: 0.5rem 0!important;
+        margin: 0 !important;
+    }
+    .main-header li.nav-item{
+        margin-top:0.5rem !important;
+    }
+    button.navbar-toggler:not(.collapsed):not([aria-expanded="false"]) {
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 9999;
+        background-color: #3e8ae6;
+        height: 32px;
+        border-radius: 0;
+        width: 40px;
+        line-height: 28px;
+        padding: 0!important;
+    }
+    button.navbar-toggler:not(.collapsed):not([aria-expanded="false"]) .fa-bars:before { 
+        content: "\f00d";
+    }
 }

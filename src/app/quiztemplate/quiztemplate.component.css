@@ -332,5 +332,14 @@
 .report_button {
     padding: 4px 9px;
 }
+.showPlayButton:before{
+    background-size: 105px;
+}
+.video_box {
+    height: calc(100% - 150px)!important;
+}
+.video_box a{
+    font-size: 45px;
+}
 }
   /*210430 end*/
