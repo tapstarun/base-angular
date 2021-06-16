@@ -49,7 +49,7 @@ export class ResultComponent implements OnInit{
                 correctQuestion++;
             }
 
-            if(element['userAns']=='YOU SWUNG' && this.isQuizSwing){
+            if(element['userAns']=='YOU SWUNG' && this.isQuizSwing && element['ans']==true){
                 totalReactionTime+=element['reactionTime'];   
                 numberOfOcurrence++;
             }
