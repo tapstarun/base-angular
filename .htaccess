@@ -1,5 +1,5 @@
 <IfModule mod_headers.c>    
-    Header set Access-Control-Allow-Origin "*.jwpcdn.com"
+    Header set Access-Control-Allow-Origin "*.jwpcdn.com,*.jwplayer.com"
 </IfModule>
 
 RewriteEngine On
