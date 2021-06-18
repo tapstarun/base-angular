@@ -9,6 +9,7 @@ import {
 
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+import { HttpService } from '../services/httpservice';
 import { QuizService } from '../services/quiz.service';
 
 
@@ -68,7 +69,8 @@ constructor(
   private activatedRoute: ActivatedRoute,
   private quizService:QuizService,
   private authService:AuthService,
-  private elRef: ElementRef
+  private elRef: ElementRef,
+  private httpService:HttpService
   ) { 
   this.quizData = {} as any;
   this.currentQuestion = {} as any;
@@ -92,10 +94,22 @@ constructor(
     /***
      * For MP4 video 
      */
-    this.questions =  this.quizData.question_ids.map(ques=>{      
+    this.questions =  this.quizData.question_ids.map(ques=>{  
+
+      // this.httpService.getExternalData("https://cdn.jwplayer.com/v2/media/"+ques.url,[],[]).subscribe((res:any)=>{
+      //   this.url = res.playlist[0].sources[6].file;
+      //   console.log(this.url);        
+       
+      // });    
+      // return {...ques,url:this.url};
+          
       this.url=this.BASE_VIDEO_URL+ques.url+"-eqAMKrlW.mp4"; // for high quality videos
       return {...ques,url:this.url};
+      // return {...ques,url:this.BASE_VIDEO_URL+'gi2pb1VW-eqAMKrlW.mp4'};
+      //this.
     });
+
+    console.log(this.questions); 
 
      /***
      * start quiz from 1 question
