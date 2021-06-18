@@ -45,7 +45,7 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
   questionDisplay=true;
   swingButtonWork=true;
   BASE_IMAGE_URL = 'https://content.jwplatform.com/v2/media/';
-  BASE_VIDEO_URL = 'https://cdn.jwplayer.com/videos/';
+  BASE_VIDEO_URL = 'http://cdn.jwplayer.com/videos/';
   portateModeImage='/assets/baseball-icons/new-rotate-150x150.png';
   videoData:any;
   showThumbs=false;
