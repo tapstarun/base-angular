@@ -6,6 +6,7 @@ import {
   ViewEncapsulation, 
   OnDestroy,
   } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
@@ -70,7 +71,8 @@ constructor(
   private quizService:QuizService,
   private authService:AuthService,
   private elRef: ElementRef,
-  private httpService:HttpService
+  private httpService:HttpService,
+  private sanitizer:DomSanitizer,
   ) { 
   this.quizData = {} as any;
   this.currentQuestion = {} as any;
@@ -104,7 +106,7 @@ constructor(
       // return {...ques,url:this.url};
           
       this.url=this.BASE_VIDEO_URL+ques.url+"-eqAMKrlW.mp4"; // for high quality videos
-      return {...ques,url:this.url};
+      return {...ques,url:this.sanitizer.bypassSecurityTrustResourceUrl(this.url)};
       // return {...ques,url:this.BASE_VIDEO_URL+'gi2pb1VW-eqAMKrlW.mp4'};
       //this.
     });
