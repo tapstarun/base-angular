@@ -8,6 +8,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {VgCoreModule} from '@videogular/ngx-videogular/core';
 import {VgControlsModule} from '@videogular/ngx-videogular/controls';
 import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
+import {VgStreamingModule} from '@videogular/ngx-videogular/streaming';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 
 import { QuestionComponent } from "./questions/questions.component";
@@ -17,7 +18,6 @@ import { ResultComponent } from "./result/result.component";
 import { VideosComponent } from "./videos/videos.component";
 import { QuiztemplateRoutingModule } from "./quiztemplate-routing.module";
 import { SharedModule } from "../shared/shared.module";
-
 
 @NgModule({
     declarations:[
@@ -31,7 +31,8 @@ import { SharedModule } from "../shared/shared.module";
         VgCoreModule,
         VgControlsModule,
         VgOverlayPlayModule,
-        VgBufferingModule,     
+        VgBufferingModule,
+        VgStreamingModule,     
         RouterModule,
         CommonModule,       
         QuiztemplateRoutingModule,

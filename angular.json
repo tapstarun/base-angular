@@ -43,7 +43,9 @@
               "./node_modules/jquery/dist/jquery.js",
               "./node_modules/bootstrap/dist/js/bootstrap.js",
               "./node_modules/jquery/dist/jquery.min.js",
-               "./node_modules/slick-carousel/slick/slick.min.js"
+               "./node_modules/slick-carousel/slick/slick.min.js",
+               "./node_modules/dashjs/dist/dash.all.min.js",
+               "./node_modules/hls.js/dist/hls.min.js"
             ]
           },
           "configurations": {
@@ -108,7 +110,7 @@
               "src/assets",
               "src/manifest.webmanifest"
             ],
-            "styles": [
+            "styles": [              
               "./node_modules/@videogular/ngx-videogular/fonts/videogular.css",
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
