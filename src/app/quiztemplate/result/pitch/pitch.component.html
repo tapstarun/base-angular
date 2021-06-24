@@ -7,21 +7,42 @@
 </div>
   <div mat-dialog-content class="modal-body">
     <div class="row" *ngIf="!data.isQuizSwing">
-      <div class="col-md-12">
-          <div class="scoreDiv text-center">{{data.correctQuestion}}/{{data.totalQuestion}} </div>
+      <div class="col-lg-4 cstm-col-wrap">
+        <div class="scoreDiv-outer-wrap">
+          <div class="scoreDiv-inner-wrap">
+              <div class="scoreDiv">
+              {{data.correctQuestion}}/{{data.totalQuestion}}          
+              </div>  
+              <h6>Performance Score</h6>
+          </div>
+
+        </div>
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-          <ul >
-            <li><h2>Your Answer</h2></li>
-            <li [ngClass]="d.ans?'greenCheck':'redCheck'" *ngFor="let d of data">{{d.userAns=='undefined'?'Not answered!':d.userAns}}</li>               
-          </ul>
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-          <ul>
-            <li><h2>Correct Answer</h2></li>
-            <li *ngFor="let d of data">{{d.correctAns}}</li>            
-          </ul>
-       </div>
+
+        <div class="col-lg-8 cstm-col-wrap">
+          <div class="answer-center-wrapper">
+            
+                  
+            <div class="row">
+
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <ul >
+                  <li><h2>Your Answer</h2></li>
+                  <li [ngClass]="d.ans?'greenCheck':'redCheck'" *ngFor="let d of data">{{d.userAns=='undefined'?'Not answered!':d.userAns}}</li>               
+                </ul>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <ul>
+                  <li><h2>Correct Answer</h2></li>
+                  <li *ngFor="let d of data">{{d.correctAns}}</li>            
+                </ul>
+              </div>
+
+            </div>
+          </div>
+          
+        </div>
     </div>
 
     <div class="row cstm-scoreDiv-row" *ngIf="data.isQuizSwing">
@@ -45,29 +66,29 @@
       </div>
 
       <div class="col-lg-6 cstm-col-wrap">
-      <div class="answer-center-wrapper">
-        
-              
-        <div class="row">
+        <div class="answer-center-wrapper">
+          
+                
+          <div class="row">
 
-           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <ul >
-              <li><h2>Your Answer</h2></li>
-              <li [ngClass]="d.ans?'greenCheck':'redCheck'" *ngFor="let d of data">{{d.userAns=='undefined'?'Not answered!':d.userAns}}</li>               
-            </ul>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <ul >
+                <li><h2>Your Answer</h2></li>
+                <li [ngClass]="d.ans?'greenCheck':'redCheck'" *ngFor="let d of data">{{d.userAns=='undefined'?'Not answered!':d.userAns}}</li>               
+              </ul>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <ul>
+                <li><h2>Correct Answer</h2></li>
+                <li *ngFor="let d of data">{{d.correctAns}}</li>            
+              </ul>
+            </div>
+
           </div>
-
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <ul>
-              <li><h2>Correct Answer</h2></li>
-              <li *ngFor="let d of data">{{d.correctAns}}</li>            
-            </ul>
-          </div>
-
-         </div>
         </div>
          
-       </div>
+      </div>
      
 
       
@@ -79,7 +100,7 @@
               <li *ngFor="let d of data">{{d.reactionTime}}</li>           
             </ul>
           </div>
-          </div>
+      </div>
 
  </div>
 

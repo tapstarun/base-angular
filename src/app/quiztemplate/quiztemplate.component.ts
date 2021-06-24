@@ -96,19 +96,10 @@ constructor(
     /***
      * For MP4 video 
      */
-    this.questions =  this.quizData.question_ids.map(ques=>{  
-
-      // this.httpService.getExternalData("https://cdn.jwplayer.com/v2/media/"+ques.url,[],[]).subscribe((res:any)=>{
-      //   this.url = res.playlist[0].sources[6].file;
-      //   console.log(this.url);        
-       
-      // });    
-      // return {...ques,url:this.url};
-          
+    this.questions =  this.quizData.question_ids.map(ques=>{            
       this.url=this.BASE_VIDEO_URL+ques.url+"-eqAMKrlW.mp4"; // for high quality videos
       return {...ques,url:this.sanitizer.bypassSecurityTrustResourceUrl(this.url)};
-      // return {...ques,url:this.BASE_VIDEO_URL+'gi2pb1VW-eqAMKrlW.mp4'};
-      //this.
+    
     });
 
     console.log(this.questions); 
