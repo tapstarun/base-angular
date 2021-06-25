@@ -6,7 +6,10 @@
             <vg-player (onPlayerReady)="videoPlayerInit($event)"  *ngIf="url!=''">
                 <vg-overlay-play ></vg-overlay-play>
                 <vg-buffering></vg-buffering>                                               
-             
+                <vg-quality-selector *ngIf="bitrates"
+                (onBitrateChange)="setBitrate($event)"
+                [bitrates]="bitrates">
+</vg-quality-selector>
 <!--            
               <video 
               [vgMedia]="media" 
@@ -28,12 +31,24 @@
            controls
            crossorigin 
               webkit-playsinline="true" 
-              playsinline="true"> 
+              playsinline="true">  
    
     
-              </video> -->
+              </video>-->
 
-              <video 
+              <video #media
+              (onGetBitrates)="bitrates = $event"
+              [vgMedia]="media"
+              
+              [vgHls]="url"
+             
+              id="singleVideo"
+
+           crossorigin 
+              webkit-playsinline="true" 
+              playsinline="true">
+       </video>
+              <!-- <video 
               [vgMedia]="media" 
               #media 
               id="singleVideo" 
@@ -42,7 +57,7 @@
               webkit-playsinline="true" 
               playsinline="true"
               
-              >  </video>
+              >  </video> -->
             </vg-player>
 
           <!-- thumbs-sec -->

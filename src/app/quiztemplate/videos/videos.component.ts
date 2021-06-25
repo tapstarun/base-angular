@@ -1,5 +1,22 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import {
+    IDRMLicenseServer,
+    VgApiService,
+    BitrateOptions,
+} from '@videogular/ngx-videogular/core';
+import {
+    VgDashDirective,
+    VgHlsDirective,
+} from '@videogular/ngx-videogular/streaming';
+import { Subscription, timer } from 'rxjs';
 
+export interface IMediaStream {
+    type: 'vod' | 'dash' | 'hls';
+    source: string;
+    label: string;
+    token?: string;
+    licenseServers?: IDRMLicenseServer;
+}
 
 @Component({
   selector: 'app-videos',
@@ -15,6 +32,10 @@ export class VideosComponent implements OnInit {
 @Output() videoEnded= new EventEmitter<string>();
 @Output() videoPlay= new EventEmitter<boolean>();
 @Output() videoDuration= new EventEmitter<boolean>();
+
+@ViewChild(VgDashDirective, { static: true }) vgDash: VgDashDirective;
+@ViewChild(VgHlsDirective, { static: true }) vgHls: VgHlsDirective;
+dataEmit=false;
 data:any;
 timeout:any;
 correctThumbIcon='https://appliedvisionbaseball.com/wp-content/uploads/2020/03/newredthump.png';
@@ -22,10 +43,11 @@ wrongThumbIcon='https://appliedvisionbaseball.com/wp-content/uploads/2020/03/new
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  
 
   videoPlayerInit(data) {
+    //console.log('player init');
+    this.dataEmit=false;
     this.videoData = data;
      //this.videoData.getDefaultMedia().subscriptions.loadedMetadata.subscribe(this.initVdo.bind(this));
     this.videoData.getDefaultMedia().subscriptions.play.subscribe(this.playVideo.bind(this));
@@ -34,24 +56,22 @@ wrongThumbIcon='https://appliedvisionbaseball.com/wp-content/uploads/2020/03/new
    
   }
   
-  onGetBitrates(event:any){
-    console.log(event);
-    
-  }
-  onHls(event:any){
-    console.log(event);
-    
-  }
+
   onVideoseekTime(){
-    let currentTime =this.videoData.getDefaultMedia().currentTime
     
 
-    if(currentTime>=4){
-      console.log(currentTime);
+    if(!this.dataEmit){
+
+      let currentTime =this.videoData.getDefaultMedia().currentTime;
       
-      this.videoDuration.emit(true);
-      clearTimeout(this.timeout);      
-      return;
+      if(currentTime>=4){
+        console.log(currentTime);
+        this.dataEmit=true;
+        this.videoDuration.emit(true);
+        clearTimeout(this.timeout);      
+        return;
+      }
+
     }
 
    this.timeout=setTimeout(()=>{
@@ -80,4 +100,65 @@ wrongThumbIcon='https://appliedvisionbaseball.com/wp-content/uploads/2020/03/new
 
  
 
+  /***
+   * 
+   * 
+   * For hls video
+   */
+
+   ngOnInit() {
+   // this.currentStream = this.streams[0];
+  }
+
+  /*
+   currentStream: IMediaStream;
+   api: VgApiService;
+
+   bitrates: BitrateOptions[];
+
+   streams: IMediaStream[] = [
+      //  {
+      //      type: 'hls',
+      //      label: 'm3u8',
+      //      source: 'https://cdn.jwplayer.com/manifests/gi2pb1VW.m3u8',
+      //  }
+       {
+           type: 'hls',
+           label: 'HLS: Streaming',
+           source:
+               'https://cdn.jwplayer.com/manifests/gi2pb1VW.m3u8',
+       },
+   ];
+
+   onPlayerReady(api: VgApiService) {
+       this.api = api;
+   }
+
+   
+
+   setBitrate(option: BitrateOptions) {
+       switch (this.currentStream.type) {
+           case 'dash':
+               this.vgDash.setBitrate(option);
+               break;
+
+           case 'hls':
+               this.vgHls.setBitrate(option);
+               break;
+       }
+   }
+
+   onClickStream(stream: IMediaStream) {
+       this.api.pause();
+       this.bitrates = null;
+
+       const source = timer(1000, 2000);
+
+       const timerSubscription: Subscription = source.subscribe(() => {
+           this.currentStream = stream;
+
+           timerSubscription.unsubscribe();
+       });
+   }
+   */
 }

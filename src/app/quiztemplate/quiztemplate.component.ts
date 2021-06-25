@@ -99,7 +99,7 @@ constructor(
     this.questions =  this.quizData.question_ids.map(ques=>{            
       this.url=this.BASE_VIDEO_URL+ques.url+"-eqAMKrlW.mp4"; // for high quality videos
      // this.url='https://cdn.jwplayer.com/manifests/gi2pb1VW.m3u8';
-      return {...ques,url:this.sanitizer.bypassSecurityTrustResourceUrl(this.url)};
+      return {...ques,url:this.url};
     
     });
 
