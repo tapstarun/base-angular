@@ -34,7 +34,14 @@ wrongThumbIcon='https://appliedvisionbaseball.com/wp-content/uploads/2020/03/new
    
   }
   
-  
+  onGetBitrates(event:any){
+    console.log(event);
+    
+  }
+  onHls(event:any){
+    console.log(event);
+    
+  }
   onVideoseekTime(){
     let currentTime =this.videoData.getDefaultMedia().currentTime
     

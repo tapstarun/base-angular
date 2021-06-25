@@ -21,17 +21,28 @@
               > -->
               <video #myMedia
            [vgHls]="'https://cdn.jwplayer.com/manifests/gi2pb1VW.m3u8'"
-           
+           (onHls)="onHls($event)"
+           (onGetBitrates)="hlsBitrates = $event"
            id="singleVideo"
            type="video/mp4"
            controls
            crossorigin 
               webkit-playsinline="true" 
-              playsinline="true">
+              playsinline="true"> 
    
     
               </video>
 
+              <!-- <video 
+              [vgMedia]="media" 
+              #media 
+              id="singleVideo" 
+              [src]="url"  
+              crossorigin 
+              webkit-playsinline="true" 
+              playsinline="true"
+              
+              >  </video> -->
             </vg-player>
 
           <!-- thumbs-sec -->
