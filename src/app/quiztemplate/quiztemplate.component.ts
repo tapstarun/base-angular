@@ -47,6 +47,7 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
   swingButtonWork=true;
   BASE_IMAGE_URL = 'https://content.jwplatform.com/v2/media/';
   BASE_VIDEO_URL = 'http://cdn.jwplayer.com/videos/';
+  BASE_HLSVIDEO_URL = 'https://cdn.jwplayer.com/manifests/';
   portateModeImage='/assets/baseball-icons/new-rotate-150x150.png';
   videoData:any;
   showThumbs=false;
@@ -62,7 +63,7 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
   clearIntervalValue=false;
   storeQuizRelatedData:any;
 //https://cdn.jwplayer.com/v2/media/gi2pb1VW
-  
+
 
 
 
@@ -97,8 +98,8 @@ constructor(
      * For MP4 video 
      */
     this.questions =  this.quizData.question_ids.map(ques=>{            
-      this.url=this.BASE_VIDEO_URL+ques.url+"-eqAMKrlW.mp4"; // for high quality videos
-     // this.url='https://cdn.jwplayer.com/manifests/gi2pb1VW.m3u8';
+      //this.url=this.BASE_VIDEO_URL+ques.url+"-eqAMKrlW.mp4"; // for mp4 high quality videos
+      this.url=this.BASE_HLSVIDEO_URL+ques.url+".m3u8"; // for hls high quality videos
       return {...ques,url:this.url};
     
     });
