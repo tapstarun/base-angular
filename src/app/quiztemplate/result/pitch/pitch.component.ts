@@ -20,8 +20,13 @@ export class PitchComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData,public dialogref: MatDialogRef<PitchComponent>) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit() {
+        this.updateSize();
+    }
+
+    updateSize() {
+        this.dialogref.updateSize("80%", "");
+    }
 
   closePopup(){
     this.dialogref.close();

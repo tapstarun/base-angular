@@ -38,8 +38,8 @@
     font-size: 17px;
     line-height: 24px;
     font-weight: 400;
-    display: inline-block;
-    margin: 0 40px;
+    /*display: inline-block;*/
+    /*margin: 0 40px;*/
 }
 .modal-sec ul li.redCheck {
     color: red;
@@ -148,4 +148,17 @@ div#cdk-overlay-0 {
 /*210623 end*/
 .mat-dialog-content.modal-body ul {
         text-align: center;
+}
+.cdk-overlay-pane {
+    width: 80%!important;
+    max-width: inherit!important;
+}
+.scoreDiv-outer-wrap {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.scoreDiv-outer-wrap.baseball_result h6 {
+    margin: 0!important;
 }
