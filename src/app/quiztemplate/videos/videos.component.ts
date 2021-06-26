@@ -35,20 +35,26 @@ export class VideosComponent implements OnInit {
 
 @ViewChild(VgDashDirective, { static: true }) vgDash: VgDashDirective;
 @ViewChild(VgHlsDirective, { static: true }) vgHls: VgHlsDirective;
+
+
 dataEmit=false;
 data:any;
 timeout:any;
-correctThumbIcon='https://appliedvisionbaseball.com/wp-content/uploads/2020/03/newredthump.png';
-wrongThumbIcon='https://appliedvisionbaseball.com/wp-content/uploads/2020/03/newgreenthump.png';
+correctThumbIcon='/assets/icons/newredthump.png';
+wrongThumbIcon='/assets/icons/newgreenthump.png';
 
   constructor() { }
-
   
+  ngOnInit() {
+    // this.currentStream = this.streams[0];
+   }
+ 
 
   videoPlayerInit(data) {
     //console.log('player init');
     this.dataEmit=false;
     this.videoData = data;
+    
      //this.videoData.getDefaultMedia().subscriptions.loadedMetadata.subscribe(this.initVdo.bind(this));
     this.videoData.getDefaultMedia().subscriptions.play.subscribe(this.playVideo.bind(this));
     this.videoData.getDefaultMedia().subscriptions.pause.subscribe(this.initVdo.bind(this));
@@ -65,7 +71,6 @@ wrongThumbIcon='https://appliedvisionbaseball.com/wp-content/uploads/2020/03/new
       let currentTime =this.videoData.getDefaultMedia().currentTime;
       
       if(currentTime>=4){
-        console.log(currentTime);
         this.dataEmit=true;
         this.videoDuration.emit(true);
         clearTimeout(this.timeout);      
@@ -106,10 +111,25 @@ wrongThumbIcon='https://appliedvisionbaseball.com/wp-content/uploads/2020/03/new
    * For hls video
    */
 
-   ngOnInit() {
-   // this.currentStream = this.streams[0];
-  }
+  
+  bitrates: BitrateOptions[];
+  // set quality of the video 
+  setBitrate(option: BitrateOptions) {
+    //let length= this.bitrates.length-1;
+  //  console.log();
+     console.log(this.bitrates);
+     console.log(option);
+    // console.log(this.vgHls);
+    
+    // this.vgHls.setBitrate(option);
+}
 
+onGetBitrates($event) {
+  console.log($event);
+  
+  // Manipalute $event and add your labels
+ // this.dashBitrates = yourManipulatedEvent;
+}
   /*
    currentStream: IMediaStream;
    api: VgApiService;
