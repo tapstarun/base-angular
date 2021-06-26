@@ -46,7 +46,7 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
   questionDisplay=true;
   swingButtonWork=true;
   BASE_IMAGE_URL = 'https://content.jwplatform.com/v2/media/';
-  BASE_VIDEO_URL = 'http://cdn.jwplayer.com/videos/';
+  BASE_VIDEO_URL = 'https://cdn.jwplayer.com/videos/';
   BASE_HLSVIDEO_URL = 'https://cdn.jwplayer.com/manifests/';
   portateModeImage='/assets/baseball-icons/new-rotate-150x150.png';
   videoData:any;
@@ -98,8 +98,8 @@ constructor(
      * For MP4 video 
      */
     this.questions =  this.quizData.question_ids.map(ques=>{            
-    this.url=this.BASE_VIDEO_URL+ques.url+"-eqAMKrlW.mp4"; // for mp4 high quality videos
-     // this.url=this.BASE_HLSVIDEO_URL+ques.url+".m3u8"; // for hls high quality videos
+    //this.url=this.BASE_VIDEO_URL+ques.url+"-eqAMKrlW.mp4"; // for mp4 high quality videos
+   this.url=this.BASE_HLSVIDEO_URL+ques.url+".m3u8"; // for hls high quality videos
       return {...ques,url:this.url};
     
     });
