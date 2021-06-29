@@ -55,8 +55,27 @@ getExternalData(url:string,getParams:any|null,header:any){
             headers.set(key,header[key]);
         });
     } 
+  console.log(headers);
   
-    return this.http.get(url,{headers:headers}).pipe(catchError(this.handleError));;
+    return this.http.get(url,{headers:headers});
+}
+
+//Method for Post Request
+externalPostData(url:string,getParams:any|null,header:any){
+    const headers = new HttpHeaders();
+    console.log(header);
+    if(Object.keys(header).length>0){
+        
+        Object.keys(header).forEach(key => {
+            headers.set(key,header[key]);
+        });
+    } 
+    
+    headers.set('Access-Control-Allow-Origin','*');
+    
+    console.log(headers);
+    return this.http.post(url,getParams,{headers:headers})
+    .pipe(catchError(this.handleError));
 }
 
 //Method for Post Request

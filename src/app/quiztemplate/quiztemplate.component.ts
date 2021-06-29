@@ -97,9 +97,16 @@ constructor(
     /***
      * For MP4 video 
      */
+    //  let header={
+    //    'Authorization':'Bearer hqEahOCf4w4j81mhT9h4xGInVWtwWlpUSkViRGxVVFZGdk5ucGtWMlpyUWtaT1V6Wksn','Access-Control-Allow-Headers':'accept-encoding,cache-control,origin,dnt'
+    //   };
+    // this.httpService.getExternalData('https://cdn.jwplayer.com/videos/gi2pb1VW-eqAMKrlW.mp4',[],header).subscribe((res)=>{
+
+    // console.log(res);
+    // })
     this.questions =  this.quizData.question_ids.map(ques=>{            
-    //this.url=this.BASE_VIDEO_URL+ques.url+"-eqAMKrlW.mp4"; // for mp4 high quality videos
-   this.url=this.BASE_HLSVIDEO_URL+ques.url+".m3u8"; // for hls high quality videos
+    this.url=this.BASE_VIDEO_URL+ques.url+"-eqAMKrlW.mp4"; // for mp4 high quality videos
+  // this.url=this.BASE_HLSVIDEO_URL+ques.url+".m3u8"; // for hls high quality videos
       return {...ques,url:this.url};
     
     });
@@ -240,6 +247,7 @@ constructor(
         clearTimeout(this.responseTImeInterve);       
         return;
     }
+    //console.log(this.responseTime);
     
     this.responseTime++;
     this.responseTImeInterve=setTimeout(()=>{ 
