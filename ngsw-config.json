@@ -16,14 +16,14 @@
           "/*.mp4"
         ],
         "urls": [
-          "*.jwpcdn.com/**",
-          "*.jwplayer.com/**",
-          "*.jwplatform.com/**",
-          "*.jwpltx.com/**",
-          "*.jwpsrv.com/**",
-          "*.mux.com/**",
-          "*.videos-fms.jwpsrv.com/**",
-          "*.videos-cloudflare.jwpsrv.com/**"
+          "**.jwpcdn.com/**",
+          "**.jwplayer.com/**",
+          "**.jwplatform.com/**",
+          "**.jwpltx.com/**",
+          "**.jwpsrv.com/**",
+          "**.mux.com/**",
+          "**.videos-fms.jwpsrv.com/**",
+          "**.videos-cloudflare.jwpsrv.com/**"
         ]
       }
     },
