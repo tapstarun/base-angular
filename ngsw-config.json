@@ -16,8 +16,14 @@
           "/*.mp4"
         ],
         "urls": [
-          "https://appliedvisionbaseball.com/**",
-          "https://cdn.jwplayer.com/videos/**"
+          "*.jwpcdn.com/**",
+          "*.jwplayer.com/**",
+          "*.jwplatform.com/**",
+          "*.jwpltx.com/**",
+          "*.jwpsrv.com/**",
+          "*.mux.com/**",
+          "*.videos-fms.jwpsrv.com/**",
+          "*.videos-cloudflare.jwpsrv.com/**"
         ]
       }
     },
@@ -36,10 +42,7 @@
   "dataGroups": [
     {
       "name": "quiz",
-      "urls": [
-        "https://appliedvisionbaseball.com/**",
-        "https://cdn.jwplayer.com/videos/**"
-      ],
+      "urls": [],
       "cacheConfig": {
         "maxAge": "6h",
         "maxSize": 5,
