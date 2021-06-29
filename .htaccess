@@ -1,5 +1,10 @@
-<IfModule mod_headers.c>    
-    Header set Access-Control-Allow-Origin "*"
+<IfModule mod_setenvif.c>
+  <IfModule mod_headers.c>
+    <FilesMatch "\.(mp4|bmp|cur|gif|ico|jpe?g|png|svgz?|webp|avifs?)$">
+      SetEnvIf Origin ":" IS_CORS
+      Header set Access-Control-Allow-Origin "*" env=IS_CORS
+    </FilesMatch>
+  </IfModule>
 </IfModule>
 
 RewriteEngine On

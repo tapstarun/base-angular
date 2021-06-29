@@ -1,13 +1,10 @@
+<div class="video">
+  <div class="video-player-wrapper">
+    <vg-player (onPlayerReady)="videoPlayerInit($event)" *ngIf="url != ''">
+      <vg-overlay-play></vg-overlay-play>
+      <vg-buffering></vg-buffering>
 
-    <div class="video">                       
-
-        <div class="video-player-wrapper">
-           
-            <vg-player (onPlayerReady)="videoPlayerInit($event)"  *ngIf="url!=''">
-                <vg-overlay-play ></vg-overlay-play>
-                <vg-buffering></vg-buffering>                                               
-                
-                <!-- <vg-controls>
+      <!-- <vg-controls>
                     <vg-quality-selector 
                                          (onBitrateChange)="setBitrate($event)"
                                          [bitrates]="bitrates">
@@ -15,20 +12,18 @@
     
                 </vg-controls> -->
 
-              <video #media
-              (onGetBitrates)="bitrates = $event"
-              [vgMedia]="media"
-              
-              [vgHls]="url"
-             
-              id="singleVideo"
+      <video
+        #media
+        (onGetBitrates)="bitrates = $event"
+        [vgMedia]="media"
+        [vgHls]="url"
+        id="singleVideo"
+        crossorigin="anonymous"
+        webkit-playsinline="true"
+        playsinline="true"
+      ></video>
 
-           crossorigin 
-              webkit-playsinline="true" 
-              playsinline="true">
-       </video>
-    
-              <!-- <video 
+      <!-- <video 
               [vgMedia]="media" 
               #media 
               id="singleVideo" 
@@ -38,21 +33,21 @@
               playsinline="true"
               
               >  </video> -->
-            </vg-player>
+    </vg-player>
 
-          <!-- thumbs-sec -->
-            <div class="thumbs-sec" *ngIf="showThumbs">
-                <div class="thumbs-up" *ngIf="rightThumbs">
-                    <figure>
-                        <img [src]="correctThumbIcon">
-                    </figure>
-                </div>
-                <div class="thumbs-down" *ngIf="!rightThumbs">
-                    <figure>
-                        <img [src]="wrongThumbIcon">
-                    </figure>
-                </div>
-            </div>
-            <!-- thumbs-sec end -->
-          </div>
+    <!-- thumbs-sec -->
+    <div class="thumbs-sec" *ngIf="showThumbs">
+      <div class="thumbs-up" *ngIf="rightThumbs">
+        <figure>
+          <img [src]="correctThumbIcon" />
+        </figure>
+      </div>
+      <div class="thumbs-down" *ngIf="!rightThumbs">
+        <figure>
+          <img [src]="wrongThumbIcon" />
+        </figure>
+      </div>
     </div>
+    <!-- thumbs-sec end -->
+  </div>
+</div>
