@@ -5,17 +5,19 @@
     {
       "name": "app",
       "installMode": "prefetch",
-      
+
       "resources": {
         "files": [
           "/favicon.ico",
           "/index.html",
           "/manifest.webmanifest",
           "/*.css",
-          "/*.js"
+          "/*.js",
+          "/*.mp4"
         ],
-        "urls":[
-
+        "urls": [
+          "https://appliedvisionbaseball.com/**",
+          "https://cdn.jwplayer.com/videos/**"
         ]
       }
     },
@@ -33,8 +35,11 @@
   ],
   "dataGroups": [
     {
-      "name":"quiz",
-      "urls":["https://appliedvisionbaseball.com/**","https://cdn.jwplayer.com/videos/**"], 
+      "name": "quiz",
+      "urls": [
+        "https://appliedvisionbaseball.com/**",
+        "https://cdn.jwplayer.com/videos/**"
+      ],
       "cacheConfig": {
         "maxAge": "6h",
         "maxSize": 5,
