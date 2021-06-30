@@ -37,15 +37,14 @@
               "./node_modules/font-awesome/css/font-awesome.css",
               "./node_modules/aos/dist/aos.css",
               "src/styles.css"
-    
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.js",
               "./node_modules/bootstrap/dist/js/bootstrap.js",
               "./node_modules/jquery/dist/jquery.min.js",
-               "./node_modules/slick-carousel/slick/slick.min.js",
-               "./node_modules/dashjs/dist/dash.all.min.js",
-               "./node_modules/hls.js/dist/hls.min.js"
+              "./node_modules/slick-carousel/slick/slick.min.js",
+              "./node_modules/dashjs/dist/dash.all.min.js",
+              "./node_modules/hls.js/dist/hls.min.js"
             ]
           },
           "configurations": {
@@ -75,7 +74,7 @@
                   "maximumError": "10kb"
                 }
               ],
-              "serviceWorker": true,
+              "serviceWorker": false,
               "ngswConfigPath": "ngsw-config.json"
             }
           }
@@ -110,7 +109,7 @@
               "src/assets",
               "src/manifest.webmanifest"
             ],
-            "styles": [              
+            "styles": [
               "./node_modules/@videogular/ngx-videogular/fonts/videogular.css",
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
@@ -127,9 +126,7 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
