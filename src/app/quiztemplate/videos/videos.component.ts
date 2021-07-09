@@ -51,7 +51,7 @@ wrongThumbIcon='/assets/icons/newgreenthump.png';
  
 
   videoPlayerInit(data) {
-    //console.log('player init');
+    console.log('player init');
     this.dataEmit=false;
     this.videoData = data;
     
@@ -66,10 +66,11 @@ wrongThumbIcon='/assets/icons/newgreenthump.png';
   onVideoseekTime(){
     
 
+
     if(!this.dataEmit){
 
       let currentTime =this.videoData.getDefaultMedia().currentTime;
-      
+      //console.log(currentTime);
       if(currentTime>=4){
         this.dataEmit=true;
         this.videoDuration.emit(true);
@@ -77,33 +78,36 @@ wrongThumbIcon='/assets/icons/newgreenthump.png';
         return;
       }
 
-    }
+ 
 
-   this.timeout=setTimeout(()=>{
-      this.onVideoseekTime();
-    },10);
+    this.timeout=setTimeout(()=>{
+        this.onVideoseekTime();
+      },10);
+  }
   }
 
 
   initVdo(){
-   
+    
     this.videoData.play();
   }
   playVideo(){
-    
-    this.timeout=setTimeout(()=>{
-      this.onVideoseekTime();
-    },10);
+    this.dataEmit=false;
+    this.onVideoseekTime();
+    // this.timeout=setTimeout(()=>{
+    //   this.onVideoseekTime();
+    // },10);
 
     this.videoPlay.emit(false);
   }
 
   onVideoEnded(){
+    
     clearTimeout(this.timeout);
     this.videoEnded.emit(this.videoData);   
   }
 
- 
+  
 
   /***
    * 
