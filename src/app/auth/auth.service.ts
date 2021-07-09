@@ -95,7 +95,7 @@ export class AuthService{
             clearTimeout(this.loggoutTimer);
         }
         this.loggoutTimer=null;
-        
+        console.log('redirect from here-after logout');
         window.location.href=environment.Url+'/member-area';
         //this.router.navigate(['/auth']);
     }
@@ -132,8 +132,9 @@ export class AuthService{
        
         
         return this.httpService.getData({user:token,action:'getUserDetailsViaToken'},[]).subscribe((resData:any)=>{
-           
+           console.log(resData);
             if(!resData.status){
+                console.log('redirect from here-137');
                 window.location.href=environment.Url+'/member-area';
                 return;
             }
