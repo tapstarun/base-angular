@@ -11,6 +11,8 @@ export class QuizResolver implements Resolve<any>{
             console.log('resolver Works');
             const token=route.paramMap.get('user');
             const templateSlug=route.paramMap.get('slug');
+            
+            
             if(this.authService.userDetails()==null){
                 this.authService.getUserDetails(token,templateSlug);
                 

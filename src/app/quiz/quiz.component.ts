@@ -75,6 +75,13 @@ export class QuizComponent implements OnInit {
   getQuizSlider(): any{
     this.loader=true;
    const user=this.authService.userDetails();
+
+   if(this.authService.userDetails()==null){
+     
+      window.location.href=environment.Url+'/member-area';
+      return;
+    }
+
     let params={
         action:'get_level_data_dev',
         slug:this.quizSlug,//1258/
