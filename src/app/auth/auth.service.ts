@@ -22,7 +22,7 @@ export class AuthService{
         .pipe(           
             tap((resData:any)=>{
                
-               const expireToken=3600000;
+               const expireToken=5000;//3600000
                 const expirationDate=new Date(new Date().getTime() + expireToken);
 
                const user= new AuthModel(
@@ -139,7 +139,7 @@ export class AuthService{
                 return;
             }
            
-            const expireToken=3600000;
+            const expireToken=5000;//3600000
             const expirationDate=new Date(new Date().getTime() + expireToken);
             const user= new AuthModel(
                 resData.data.auth_token,
