@@ -37,7 +37,7 @@ export class QuizComponent implements OnInit {
     this.quizSlug=this.route.snapshot.paramMap.get('slug');
     
     this.quizDataReceived=false;
- 
+
     this.getQuizSlider();
   }
   
@@ -76,10 +76,11 @@ export class QuizComponent implements OnInit {
     this.loader=true;
    const user=this.authService.userDetails();
 
-   if(this.authService.userDetails()==null){
+   if(user==null){
+    console.log('quiz slider after page load');
      
-      window.location.href=environment.Url+'/member-area';
-      return;
+      // window.location.href=environment.Url+'/member-area';
+      // return;
     }
 
     let params={

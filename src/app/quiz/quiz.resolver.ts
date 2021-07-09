@@ -14,9 +14,12 @@ export class QuizResolver implements Resolve<any>{
             
             
             if(this.authService.userDetails()==null){
+                console.log('checking the token');
                 this.authService.getUserDetails(token,templateSlug);
+                console.log('token checked');
                 
             }
+
              return;
             //return this.authService.userDetails();
           

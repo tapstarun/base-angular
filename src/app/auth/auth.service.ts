@@ -131,14 +131,14 @@ export class AuthService{
     getUserDetails(token:string,templateSlug:string){
        
         
-        return this.httpService.getData({user:token,action:'getUserDetailsViaToken'},[]).subscribe((resData:any)=>{
-           console.log(resData);
+        return  this.httpService.getData({user:token,action:'getUserDetailsViaToken'},[]).toPromise().then((resData:any)=>{
+           
             if(!resData.status){
                 window.location.href=environment.Url+'/member-area';
                 return;
             }
            
-            const expireToken=5000;//3600000
+            const expireToken=3600000;//3600000
             const expirationDate=new Date(new Date().getTime() + expireToken);
             const user= new AuthModel(
                 resData.data.auth_token,
@@ -152,6 +152,7 @@ export class AuthService{
                 resData.data.last_name,
                 resData.data.profile_image,
              );
+            
              
              localStorage.setItem('userData',JSON.stringify(user));
              this.user.next(user);
