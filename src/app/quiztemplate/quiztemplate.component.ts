@@ -62,6 +62,9 @@ export class QuiztemplateComponent implements OnInit,OnDestroy  {
   responseTImeInterve:any;
   clearIntervalValue=false;
   storeQuizRelatedData:any;
+  quizDetails:any;
+  ipAddress:string;
+  storeResultDataForQuiz:any;
 //https://cdn.jwplayer.com/v2/media/gi2pb1VW
 
 
@@ -79,6 +82,11 @@ constructor(
   this.currentQuestion = {} as any;
   this.questions = new Array<any>();
   this.storeQuizRelatedData={};
+  this.quizDetails={};
+  this.getIP();
+  this.storeResultDataForQuiz={};
+  this.storeResultDataForQuiz.question_ids=[];
+
 }
 
   ngOnInit(): void {
@@ -93,17 +101,11 @@ constructor(
     
     this.quizData = JSON.parse(localStorage.getItem("quiz"));
     this.quizType = this.quizData.quiz_theme;
-
+    this.quizDetails.quiz_id=this.quizData.quiz_id;
     /***
      * For MP4 video 
      */
-    //  let header={
-    //    'Authorization':'Bearer hqEahOCf4w4j81mhT9h4xGInVWtwWlpUSkViRGxVVFZGdk5ucGtWMlpyUWtaT1V6Wksn','Access-Control-Allow-Headers':'accept-encoding,cache-control,origin,dnt'
-    //   };
-    // this.httpService.getExternalData('https://cdn.jwplayer.com/videos/gi2pb1VW-eqAMKrlW.mp4',[],header).subscribe((res)=>{
-
-    // console.log(res);
-    // })
+    
     this.questions =  this.quizData.question_ids.map(ques=>{            
     this.url=this.BASE_VIDEO_URL+ques.url+"-eqAMKrlW.mp4"; // for mp4 high quality videos
   // this.url=this.BASE_HLSVIDEO_URL+ques.url+".m3u8"; // for hls high quality videos
@@ -176,11 +178,19 @@ constructor(
 
 
   playQuiz():void{
-   
+    this.quizDetails.start_time= new Date().toISOString();
     this.quizTemplate(this.quizType);
 
   }
-  
+  /***
+   * Get user ip address
+   */
+   getIP()  
+   {  
+     this.httpService.getIPAddress().subscribe((res:any)=>{  
+       this.ipAddress=res.ip;  
+     });  
+   }
 
    /****
    * 
@@ -298,7 +308,7 @@ constructor(
   }
 
   nextQuestion(index:number){
-   
+    
     this.disbaledExtraFeatures(); // reset everything for next question
     
     let currentIndexValue=index + 1;  // increase the value everytime
@@ -309,7 +319,8 @@ constructor(
       this.currentQuestion.currentIndex = currentIndexValue;
       this.currentQuestion.totalQuestion = this.questions.length;       
     }else{
-     
+      
+      this.resultReport();
       this.result();
     }
     
@@ -317,7 +328,37 @@ constructor(
     this.ShowVideo=true;
     this.hightlightButtonId=0; // dont show any button highlighted
   }
- 
+  
+
+
+  /***
+   * 
+   * Store data for result report 
+   */
+    resultReport(){
+
+      this.quizDetails.end_time=new Date().toISOString();
+      let userData = this.authService.userDetails();
+
+      let quizReport={
+        'user_id':userData.userId,
+        'user_ip':this.ipAddress,
+        'user_name':userData.userName,
+        'user_email':userData.userEmail,
+        'user_phone':'',
+        'quiz_id':this.quizDetails.quiz_id,
+        'start_date': this.quizDetails.start_time,
+        'end_date': this.quizDetails.end_time,
+        'answered':this.storeResultDataForQuiz,
+        'action':'post_results'
+
+      };
+      console.log(this.storeResultDataForQuiz);
+      
+      this.quizService.storeQuizData(quizReport);
+    }
+  
+
   /****
    * 
    * Disbale extra features earlier video so next video or question go smoothly
@@ -469,8 +510,20 @@ constructor(
       'response_time_ms':this.responseTime,
       'action':'statistic_data_api'
      };
+     
     
-     console.log(data);
+     this.storeResultDataForQuiz.question_ids.push(this.currentQuestion.id);
+
+     let questionId='question_id_'+this.currentQuestion.id;
+     let responseCorrectAnswer=this.accuracy?true:false;
+     
+     this.storeResultDataForQuiz.correctness={...this.storeResultDataForQuiz.correctness,[questionId]:responseCorrectAnswer};
+
+     this.storeResultDataForQuiz.user_answered={...this.storeResultDataForQuiz.user_answered,[questionId]:storeData.user_answer};
+
+     
+    
+    
     this.storeDataForResultTemplateWise(storeData.user_answer); // Template wise store data 
      
     this.quizService.storeQuizData(data);

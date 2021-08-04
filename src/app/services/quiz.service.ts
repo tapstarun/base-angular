@@ -26,7 +26,17 @@ export class QuizService{
     
     }
 
-    storeQuizData(params){        
-         return this.httpService.postData(params,[]);
+    storeQuizData(params){  
+        
+         
+         return this.httpService.postRequest(params,[]).subscribe({
+            next: data => {
+                
+            },
+            error: error => {
+                //this.errorMessage = error.message;
+                console.error('There was an error!', error);
+            }
+        });
     }
 }

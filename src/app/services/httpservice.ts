@@ -10,6 +10,10 @@ import { throwError } from "rxjs";
 export class HttpService{
 constructor(private http:HttpClient){}
 
+getIPAddress(){
+
+    return this.http.get('http://api.ipify.org/?format=json');
+}
 // Method for get request
 getData(getParams:any|null,header:any){
    
@@ -117,13 +121,38 @@ externalPostData(url:string,getParams:any|null,header:any){
         let headers={};
         if(header){
             headers=header;
-        }   
-        const header1={
-            'Access-Control-Allow-Origin':'*'
-        };
+        }  
+         
         
-        return this.http.post(environment.API_URL,getParams,{headers:header1})
+        
+        return this.http.post(environment.API_URL,getParams,{headers:headers})
         .pipe(catchError(this.handleError));
+    }
+
+
+    postRequest(getParams:any|null,header:any){
+        
+        let headers={};
+        if(header){
+            headers=header;
+        }   
+        let body = new FormData();
+        if(Object.keys(getParams).length>0){
+            
+            Object.keys(getParams).forEach(key => {
+                
+                if(typeof getParams[key]=='object'){
+                    body.append(key,JSON.stringify(getParams[key]));
+                }else{
+
+                    body.append(key,getParams[key]);
+                }
+                
+            });
+        }
+        return this.http.post(environment.API_URL,body,{headers:headers})
+        .pipe(catchError(this.handleError));
+
     }
 
     // only used in this file for now for the error handling
