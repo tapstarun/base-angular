@@ -12,7 +12,7 @@ constructor(private http:HttpClient){}
 
 getIPAddress(){
 
-    return this.http.get('http://api.ipify.org/?format=json');
+    return this.http.get('https://api.ipify.org/?format=json');
 }
 // Method for get request
 getData(getParams:any|null,header:any){
